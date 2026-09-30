@@ -1,0 +1,259 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>ContractorHub Jobs</title>
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+  <div>
+
+    <h1>ContractorHub</h1>
+
+    <p>
+      Find Industrial Jobs
+    </p>
+
+  </div>
+
+  <a
+    href="status.html"
+    class="status-link"
+  >
+    My Status
+  </a>
+
+</header>
+
+
+<main class="container">
+
+
+<section class="search-box">
+
+  <h2>
+    Search Jobs
+  </h2>
+
+  <p class="muted">
+    Apni qualification, trade aur location ke
+    according job search karein.
+  </p>
+
+
+  <form id="searchForm">
+
+
+    <input
+      id="qualification"
+      placeholder="Qualification"
+    >
+
+
+    <input
+      id="trade"
+      placeholder="Trade"
+    >
+
+
+    <input
+      id="location"
+      placeholder="Preferred Location"
+    >
+
+
+    <input
+      id="experience"
+      type="number"
+      min="0"
+      placeholder="Experience (Years)"
+    >
+
+
+    <input
+      id="preferredJob"
+      placeholder="Preferred Job"
+    >
+
+
+    <input
+      id="skills"
+      placeholder="Skills (comma separated)"
+    >
+
+
+    <select id="gender">
+
+      <option value="">
+        Gender
+      </option>
+
+      <option value="Male">
+        Male
+      </option>
+
+      <option value="Female">
+        Female
+      </option>
+
+      <option value="Any">
+        Any
+      </option>
+
+    </select>
+
+
+    <button
+      type="submit"
+      class="primary"
+    >
+      Search Jobs
+    </button>
+
+
+  </form>
+
+</section>
+
+
+<div id="message"></div>
+
+
+<section>
+
+  <div
+    id="jobs"
+    class="jobs"
+  ></div>
+
+</section>
+
+
+</main>
+
+
+<div
+  id="applyModal"
+  class="modal hidden"
+>
+
+  <div class="modal-box">
+
+
+    <button
+      class="close"
+      onclick="closeApply()"
+    >
+      ×
+    </button>
+
+
+    <h2>
+      Apply for Job
+    </h2>
+
+
+    <div
+      id="selectedJob"
+      class="selected-job"
+    ></div>
+
+
+    <form id="applyForm">
+
+
+      <input
+        id="workerName"
+        placeholder="Your Name"
+        required
+      >
+
+
+      <input
+        id="workerMobile"
+        placeholder="Mobile Number"
+        maxlength="10"
+        inputmode="numeric"
+        required
+      >
+
+
+      <input
+        id="workerQualification"
+        placeholder="Qualification"
+      >
+
+
+      <input
+        id="workerTrade"
+        placeholder="Trade"
+      >
+
+
+      <input
+        id="workerExperience"
+        type="number"
+        min="0"
+        placeholder="Experience (Years)"
+      >
+
+
+      <input
+        id="workerSkills"
+        placeholder="Skills"
+      >
+
+
+      <input
+        id="workerLocation"
+        placeholder="Preferred Location"
+      >
+
+
+      <button
+        class="primary"
+        type="submit"
+      >
+        Submit Application
+      </button>
+
+
+    </form>
+
+
+    <div
+      id="applyMessage"
+    ></div>
+
+
+  </div>
+
+</div>
+
+
+<script src="js/config.js"></script>
+<script src="js/search.js"></script>
+
+</body>
+
+</html>
