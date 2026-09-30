@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
@@ -11,12 +10,1552 @@
     content="width=device-width,initial-scale=1"
   >
 
-  <title>ContractorHub Jobs</title>
+  <title>Find Jobs | ContractorHub</title>
 
-  <link
-    rel="stylesheet"
-    href="css/style.css"
-  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+      margin: 0;
+
+      font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f5f3ff 0%,
+          #eef5ff 48%,
+          #f9fbff 100%
+        );
+
+      color:
+        #182033;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .top-header {
+      position: sticky;
+
+      top: 0;
+
+      z-index: 5000;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6f2dbd,
+          #5146e5,
+          #2563eb
+        );
+
+      box-shadow:
+        0 8px 28px rgba(44, 40, 105, .20);
+    }
+
+
+    .header-container {
+      max-width: 1180px;
+
+      margin: auto;
+
+      padding:
+        13px 20px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+    }
+
+
+    .brand {
+      display: flex;
+
+      align-items: center;
+
+      gap: 11px;
+
+      text-decoration: none;
+
+      color:
+        white;
+    }
+
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+
+      flex-shrink: 0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 15px;
+
+      background:
+        rgba(255,255,255,.17);
+
+      border:
+        1px solid rgba(255,255,255,.25);
+
+      font-size: 24px;
+    }
+
+
+    .brand-text h2 {
+      margin: 0;
+
+      font-size: 18px;
+
+      white-space: nowrap;
+    }
+
+
+    .brand-text span {
+      display: block;
+
+      margin-top: 3px;
+
+      font-size: 10px;
+
+      opacity: .80;
+
+      white-space: nowrap;
+    }
+
+
+    .top-nav {
+      display: flex;
+
+      align-items: center;
+
+      gap: 8px;
+    }
+
+
+    .top-nav-item {
+      text-decoration: none;
+
+      color:
+        white;
+
+      padding:
+        9px 12px;
+
+      border-radius: 10px;
+
+      background:
+        rgba(255,255,255,.10);
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      transition: .2s;
+    }
+
+
+    .top-nav-item:hover {
+      background:
+        rgba(255,255,255,.20);
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    /* =========================================================
+       MAIN
+    ========================================================= */
+
+    .container {
+      width: 100%;
+
+      max-width: 1180px;
+
+      margin: auto;
+
+      padding:
+        25px 20px 60px;
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .search-hero {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 28px;
+
+      padding:
+        34px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #21154d,
+          #45208b 50%,
+          #263f9f
+        );
+
+      color:
+        white;
+
+      box-shadow:
+        0 18px 45px rgba(53,38,112,.22);
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .search-hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 230px;
+      height: 230px;
+
+      right: -75px;
+      top: -100px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,.08);
+    }
+
+
+    .search-hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 150px;
+      height: 150px;
+
+      left: -70px;
+      bottom: -80px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,.06);
+    }
+
+
+    .hero-content {
+      position: relative;
+
+      z-index: 2;
+    }
+
+
+    .hero-badge {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding:
+        7px 12px;
+
+      border-radius: 30px;
+
+      background:
+        rgba(255,255,255,.13);
+
+      border:
+        1px solid rgba(255,255,255,.15);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      margin-bottom:
+        14px;
+    }
+
+
+    .search-hero h1 {
+      margin:
+        0 0 9px;
+
+      font-size: 32px;
+
+      line-height: 1.2;
+    }
+
+
+    .search-hero h1 span {
+      color:
+        #ffb45c;
+    }
+
+
+    .search-hero p {
+      max-width: 720px;
+
+      margin: 0;
+
+      color:
+        #d8d8ec;
+
+      font-size: 14px;
+
+      line-height: 1.7;
+    }
+
+
+    .hero-points {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-top:
+        20px;
+    }
+
+
+    .hero-point {
+      padding:
+        8px 11px;
+
+      border-radius: 30px;
+
+      background:
+        rgba(255,255,255,.10);
+
+      font-size: 11px;
+
+      color:
+        #eeeeff;
+    }
+
+
+    /* =========================================================
+       SEARCH CARD
+    ========================================================= */
+
+    .search-card {
+      background:
+        rgba(255,255,255,.94);
+
+      border:
+        1px solid #e5e6ee;
+
+      border-radius: 24px;
+
+      padding:
+        25px;
+
+      box-shadow:
+        0 12px 35px rgba(38,43,77,.08);
+
+      margin-bottom:
+        25px;
+    }
+
+
+    .search-card-header {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 15px;
+
+      margin-bottom:
+        20px;
+    }
+
+
+    .search-card-title {
+      display: flex;
+
+      align-items: center;
+
+      gap: 11px;
+    }
+
+
+    .search-icon {
+      width: 43px;
+      height: 43px;
+
+      border-radius: 13px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background:
+        #eee8ff;
+
+      color:
+        #6f2dbd;
+
+      font-size: 20px;
+    }
+
+
+    .search-card h2 {
+      margin: 0;
+
+      font-size: 20px;
+
+      color:
+        #24263a;
+    }
+
+
+    .search-card-header p {
+      margin:
+        3px 0 0;
+
+      color:
+        #858b9e;
+
+      font-size: 12px;
+    }
+
+
+    .required-note {
+      font-size: 11px;
+
+      color:
+        #9a6070;
+    }
+
+
+    /* =========================================================
+       FORM
+    ========================================================= */
+
+    #searchForm {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 17px;
+    }
+
+
+    #searchForm > div {
+      position: relative;
+    }
+
+
+    #searchForm label {
+      display: block;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      color:
+        #303449;
+
+      margin-bottom:
+        5px;
+    }
+
+
+    #searchForm small {
+      display: block;
+
+      margin-bottom:
+        8px;
+
+      font-size: 10px;
+
+      color:
+        #9298a9;
+    }
+
+
+    #searchForm input,
+    #searchForm select {
+      width: 100%;
+
+      height: 48px;
+
+      padding:
+        0 14px;
+
+      border:
+        1px solid #dfe2eb;
+
+      border-radius: 12px;
+
+      background:
+        #fafbfc;
+
+      color:
+        #25293b;
+
+      font-family: inherit;
+
+      font-size: 13px;
+
+      outline: none;
+
+      transition:
+        .2s;
+    }
+
+
+    #searchForm input:focus,
+    #searchForm select:focus {
+      background:
+        white;
+
+      border-color:
+        #7650db;
+
+      box-shadow:
+        0 0 0 4px rgba(111,45,189,.09);
+    }
+
+
+    .orange {
+      border: none;
+
+      border-radius: 13px;
+
+      min-height: 50px;
+
+      padding:
+        13px 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff7a18,
+          #ff4f00
+        );
+
+      color:
+        white;
+
+      font-family: inherit;
+
+      font-size: 14px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 20px rgba(255,92,0,.22);
+
+      transition:
+        transform .2s,
+        box-shadow .2s;
+
+      grid-column:
+        1 / -1;
+    }
+
+
+    .orange:hover {
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 12px 25px rgba(255,92,0,.30);
+    }
+
+
+    .orange:disabled {
+      opacity:
+        .65;
+
+      cursor:
+        not-allowed;
+
+      transform:
+        none;
+    }
+
+
+    /* =========================================================
+       RESULTS HEADER
+    ========================================================= */
+
+    .results-header {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin:
+        10px 2px 14px;
+    }
+
+
+    .results-header h2 {
+      margin: 0;
+
+      font-size: 21px;
+
+      color:
+        #22253a;
+    }
+
+
+    .results-header span {
+      padding:
+        6px 10px;
+
+      border-radius: 20px;
+
+      background:
+        #eeeaff;
+
+      color:
+        #6330a5;
+
+      font-size: 11px;
+
+      font-weight: 800;
+    }
+
+
+    /* =========================================================
+       RESULTS
+    ========================================================= */
+
+    #results {
+      display: grid;
+
+      gap: 16px;
+    }
+
+
+    .job-card {
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        white;
+
+      border:
+        1px solid #e6e8ef;
+
+      border-radius: 20px;
+
+      padding:
+        21px;
+
+      box-shadow:
+        0 9px 28px rgba(38,43,77,.07);
+
+      transition:
+        transform .2s,
+        box-shadow .2s;
+    }
+
+
+    .job-card:hover {
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 15px 35px rgba(38,43,77,.11);
+    }
+
+
+    .job-card::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: 16px;
+      bottom: 16px;
+
+      width: 4px;
+
+      border-radius:
+        0 8px 8px 0;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ff7a18,
+          #6f2dbd,
+          #2563eb
+        );
+    }
+
+
+    .job-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-start;
+
+      gap: 15px;
+
+      padding-left:
+        7px;
+    }
+
+
+    .job-heading {
+      min-width:
+        0;
+    }
+
+
+    .job-title {
+      margin: 0;
+
+      font-size: 19px;
+
+      color:
+        #22253a;
+
+      font-weight:
+        850;
+    }
+
+
+    .company-name {
+      margin-top:
+        6px;
+
+      color:
+        #667087;
+
+      font-size: 13px;
+
+      line-height:
+        1.5;
+    }
+
+
+    .match {
+      flex-shrink:
+        0;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 5px;
+
+      padding:
+        8px 11px;
+
+      border-radius:
+        30px;
+
+      background:
+        #e9fbf1;
+
+      color:
+        #12814c;
+
+      font-size: 12px;
+
+      font-weight:
+        900;
+    }
+
+
+    .job-meta {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin:
+        16px 0 14px;
+
+      padding-left:
+        7px;
+    }
+
+
+    .job-chip {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 5px;
+
+      padding:
+        7px 10px;
+
+      border-radius:
+        9px;
+
+      background:
+        #f7f8fb;
+
+      border:
+        1px solid #eceef3;
+
+      color:
+        #555d72;
+
+      font-size: 11px;
+
+      font-weight:
+        700;
+    }
+
+
+    .job-chip.salary {
+      background:
+        #fff5e9;
+
+      border-color:
+        #ffe0b7;
+
+      color:
+        #a85b00;
+    }
+
+
+    .job-chip.location {
+      background:
+        #edf7ff;
+
+      border-color:
+        #d5ebff;
+
+      color:
+        #1767a7;
+    }
+
+
+    .job-chip.vacancy {
+      background:
+        #eeeaff;
+
+      border-color:
+        #ddd4ff;
+
+      color:
+        #6330a5;
+    }
+
+
+    .job-details {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 9px;
+
+      padding-left:
+        7px;
+    }
+
+
+    .job-detail {
+      padding:
+        11px 12px;
+
+      background:
+        #fafbfc;
+
+      border:
+        1px solid #edf0f4;
+
+      border-radius:
+        11px;
+    }
+
+
+    .job-detail-label {
+      display: block;
+
+      font-size: 10px;
+
+      color:
+        #969cac;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .4px;
+
+      margin-bottom:
+        4px;
+    }
+
+
+    .job-detail-value {
+      color:
+        #34384c;
+
+      font-size: 12px;
+
+      font-weight:
+        750;
+
+      line-height:
+        1.45;
+    }
+
+
+    .skills-box {
+      margin:
+        12px 0 0 7px;
+
+      padding:
+        12px;
+
+      border-radius:
+        12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f8f5ff,
+          #f4f8ff
+        );
+
+      border:
+        1px solid #e9e5f8;
+
+      font-size: 12px;
+
+      color:
+        #5c6275;
+
+      line-height:
+        1.6;
+    }
+
+
+    .skills-box strong {
+      color:
+        #6330a5;
+    }
+
+
+    .refer-btn {
+      width:
+        calc(100% - 7px);
+
+      margin:
+        17px 0 0 7px;
+
+      min-height:
+        48px;
+
+      border: none;
+
+      border-radius:
+        12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6f2dbd,
+          #4f46e5
+        );
+
+      color:
+        white;
+
+      font-size:
+        13px;
+
+      font-weight:
+        850;
+
+      cursor:
+        pointer;
+
+      box-shadow:
+        0 7px 18px rgba(79,70,229,.20);
+
+      transition:
+        .2s;
+    }
+
+
+    .refer-btn:hover {
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 11px 24px rgba(79,70,229,.27);
+    }
+
+
+    /* =========================================================
+       EMPTY / ERROR
+    ========================================================= */
+
+    .empty-result {
+      text-align:
+        center;
+
+      padding:
+        55px 20px;
+
+      background:
+        white;
+
+      border:
+        1px solid #e6e8ef;
+
+      border-radius:
+        20px;
+
+      box-shadow:
+        0 9px 28px rgba(38,43,77,.06);
+    }
+
+
+    .empty-result-icon {
+      font-size:
+        46px;
+
+      margin-bottom:
+        10px;
+    }
+
+
+    .empty-result h3 {
+      margin:
+        0 0 7px;
+
+      font-size:
+        18px;
+    }
+
+
+    .empty-result p {
+      margin:
+        0;
+
+      color:
+        #7d8496;
+
+      font-size:
+        13px;
+
+      line-height:
+        1.6;
+    }
+
+
+    .notice.error {
+      padding:
+        15px;
+
+      border-radius:
+        13px;
+
+      background:
+        #fff0f1;
+
+      border:
+        1px solid #ffc9ce;
+
+      color:
+        #a51e2c;
+
+      font-size:
+        13px;
+
+      font-weight:
+        650;
+    }
+
+
+    /* =========================================================
+       APPLY MODAL
+    ========================================================= */
+
+    #applyModal {
+      display:
+        none;
+
+      position:
+        fixed;
+
+      inset:
+        0;
+
+      z-index:
+        99999;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      padding:
+        18px;
+
+      background:
+        rgba(12,15,30,.68);
+
+      backdrop-filter:
+        blur(5px);
+
+      overflow-y:
+        auto;
+    }
+
+
+    .apply-modal-card {
+      width:
+        100%;
+
+      max-width:
+        500px;
+
+      background:
+        white;
+
+      border-radius:
+        24px;
+
+      padding:
+        25px;
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.28);
+
+      margin:
+        auto;
+    }
+
+
+    .modal-header {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        12px;
+
+      margin-bottom:
+        9px;
+    }
+
+
+    .modal-icon {
+      width:
+        45px;
+
+      height:
+        45px;
+
+      border-radius:
+        13px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        #eee8ff;
+
+      color:
+        #6f2dbd;
+
+      font-size:
+        21px;
+    }
+
+
+    .modal-header h2 {
+      margin:
+        0;
+
+      font-size:
+        21px;
+
+      color:
+        #25283c;
+    }
+
+
+    .selected-job {
+      padding:
+        12px;
+
+      margin:
+        12px 0 18px;
+
+      border-radius:
+        12px;
+
+      background:
+        #f6f4ff;
+
+      border:
+        1px solid #e7e1ff;
+
+      color:
+        #555b70;
+
+      font-size:
+        12px;
+
+      line-height:
+        1.6;
+    }
+
+
+    .modal-field {
+      margin-bottom:
+        13px;
+    }
+
+
+    .modal-field label {
+      display:
+        block;
+
+      margin-bottom:
+        6px;
+
+      color:
+        #34384c;
+
+      font-size:
+        12px;
+
+      font-weight:
+        800;
+    }
+
+
+    .modal-field input {
+      width:
+        100%;
+
+      height:
+        46px;
+
+      border:
+        1px solid #dfe2eb;
+
+      border-radius:
+        11px;
+
+      padding:
+        0 13px;
+
+      font-family:
+        inherit;
+
+      outline:
+        none;
+
+      background:
+        #fafbfc;
+    }
+
+
+    .modal-field input:focus {
+      background:
+        white;
+
+      border-color:
+        #6f2dbd;
+
+      box-shadow:
+        0 0 0 4px rgba(111,45,189,.09);
+    }
+
+
+    .modal-actions {
+      display:
+        grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:
+        10px;
+
+      margin-top:
+        18px;
+    }
+
+
+    .modal-confirm,
+    .modal-cancel {
+      min-height:
+        47px;
+
+      border:
+        none;
+
+      border-radius:
+        11px;
+
+      font-family:
+        inherit;
+
+      font-size:
+        13px;
+
+      font-weight:
+        800;
+
+      cursor:
+        pointer;
+    }
+
+
+    .modal-confirm {
+      background:
+        linear-gradient(
+          135deg,
+          #6f2dbd,
+          #4f46e5
+        );
+
+      color:
+        white;
+    }
+
+
+    .modal-confirm:disabled {
+      opacity:
+        .6;
+
+      cursor:
+        not-allowed;
+    }
+
+
+    .modal-cancel {
+      background:
+        #f0f1f5;
+
+      color:
+        #555c70;
+    }
+
+
+    .apply-message {
+      margin-top:
+        13px;
+
+      font-size:
+        12px;
+
+      line-height:
+        1.6;
+    }
+
+
+    .success {
+      padding:
+        12px;
+
+      border-radius:
+        12px;
+
+      background:
+        #eafaf1;
+
+      border:
+        1px solid #bdebd0;
+
+      color:
+        #147744;
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 800px) {
+
+      #searchForm {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .orange {
+        grid-column:
+          auto;
+      }
+
+
+      .search-hero {
+        padding:
+          25px 20px;
+
+        border-radius:
+          21px;
+      }
+
+
+      .search-hero h1 {
+        font-size:
+          27px;
+      }
+
+
+      .search-card {
+        padding:
+          18px;
+
+        border-radius:
+          19px;
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .header-container {
+        padding:
+          10px 13px;
+      }
+
+
+      .brand-icon {
+        width:
+          42px;
+
+        height:
+          42px;
+
+        font-size:
+          21px;
+      }
+
+
+      .brand-text h2 {
+        font-size:
+          14px;
+      }
+
+
+      .brand-text span {
+        font-size:
+          8px;
+      }
+
+
+      .container {
+        padding:
+          13px 11px 40px;
+      }
+
+
+      .search-hero {
+        padding:
+          22px 17px;
+      }
+
+
+      .search-hero h1 {
+        font-size:
+          24px;
+      }
+
+
+      .search-hero p {
+        font-size:
+          12px;
+      }
+
+
+      .search-card {
+        padding:
+          16px;
+      }
+
+
+      .job-card {
+        padding:
+          17px 14px;
+
+        border-radius:
+          17px;
+      }
+
+
+      .job-title {
+        font-size:
+          17px;
+      }
+
+
+      .job-details {
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .modal-actions {
+        grid-template-columns:
+          1fr;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -24,153 +1563,391 @@
 <body>
 
 
-<header class="header">
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
-  <div>
+<header class="top-header">
 
-    <h1>ContractorHub</h1>
+  <div class="header-container">
 
-    <p>
-      Find Industrial Jobs
-    </p>
+    <a
+      href="index.html"
+      class="brand"
+    >
+
+      <div class="brand-icon">
+        👷
+      </div>
+
+      <div class="brand-text">
+
+        <h2>
+          Contractor Job Network
+        </h2>
+
+        <span>
+          Find Industrial Jobs
+        </span>
+
+      </div>
+
+    </a>
+
+
+    <nav class="top-nav">
+
+      <a
+        href="status.html"
+        class="top-nav-item"
+      >
+        📋 My Status
+      </a>
+
+    </nav>
 
   </div>
-
-  <a
-    href="status.html"
-    class="status-link"
-  >
-    My Status
-  </a>
 
 </header>
 
 
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
 <main class="container">
 
 
-<section class="search-box">
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
 
-  <h2>
-    Search Jobs
-  </h2>
+  <section class="search-hero">
 
-  <p class="muted">
-    Apni qualification, trade aur location ke
-    according job search karein.
-  </p>
+    <div class="hero-content">
 
-
-  <form id="searchForm">
+      <div class="hero-badge">
+        🔎 Smart Job Search
+      </div>
 
 
-    <input
-      id="qualification"
-      placeholder="Qualification"
+      <h1>
+        Find Your
+        <span>Right Job</span>
+      </h1>
+
+
+      <p>
+        Apni qualification, trade, preferred location,
+        experience aur job preference ke according
+        available industrial jobs khojiye.
+      </p>
+
+
+      <div class="hero-points">
+
+        <div class="hero-point">
+          🎯 Smart Matching
+        </div>
+
+        <div class="hero-point">
+          📍 Location Based
+        </div>
+
+        <div class="hero-point">
+          💰 Salary Details
+        </div>
+
+        <div class="hero-point">
+          🤝 Easy Apply
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       SEARCH FORM
+  ======================================================== -->
+
+  <section class="search-card">
+
+    <div class="search-card-header">
+
+      <div class="search-card-title">
+
+        <div class="search-icon">
+          🔍
+        </div>
+
+        <div>
+
+          <h2>
+            Search Matching Jobs
+          </h2>
+
+          <p>
+            Apni details dalkar suitable jobs khojiye
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="required-note">
+        * Required fields
+      </div>
+
+    </div>
+
+
+
+    <form
+      id="searchForm"
     >
 
 
-    <input
-      id="trade"
-      placeholder="Trade"
-    >
+      <div>
+
+        <label>
+          🎓 Qualification *
+        </label>
+
+        <small>
+          ITI / Diploma / B.Tech / 10th / 12th
+        </small>
+
+        <input
+          id="qualification"
+          name="qualification"
+          placeholder="Enter Qualification"
+          autocomplete="off"
+          required
+        >
+
+      </div>
 
 
-    <input
-      id="location"
-      placeholder="Preferred Location"
-    >
+
+      <div>
+
+        <label>
+          🛠️ Trade *
+        </label>
+
+        <small>
+          Electrician / Mechanical / SMT / CNC / PLC
+        </small>
+
+        <input
+          id="trade"
+          name="trade"
+          placeholder="Enter Trade"
+          autocomplete="off"
+          required
+        >
+
+      </div>
 
 
-    <input
-      id="experience"
-      type="number"
-      min="0"
-      placeholder="Experience (Years)"
-    >
+
+      <div>
+
+        <label>
+          💼 Preferred Job / Designation
+        </label>
+
+        <small>
+          Supervisor / Electrician / SMT Engineer / Helper
+        </small>
+
+        <input
+          id="preferredJob"
+          name="preferredJob"
+          placeholder="Optional Job Designation"
+          autocomplete="off"
+        >
+
+      </div>
 
 
-    <input
-      id="preferredJob"
-      placeholder="Preferred Job"
-    >
+
+      <div>
+
+        <label>
+          📍 Preferred Location *
+        </label>
+
+        <small>
+          Rudrapur / Pantnagar / Shahjahanpur
+        </small>
+
+        <input
+          id="location"
+          name="location"
+          placeholder="Enter Preferred Location"
+          autocomplete="off"
+          required
+        >
+
+      </div>
 
 
-    <input
-      id="skills"
-      placeholder="Skills (comma separated)"
-    >
+
+      <div>
+
+        <label>
+          💼 Experience
+        </label>
+
+        <small>
+          Experience in years
+        </small>
+
+        <input
+          id="experience"
+          name="experience"
+          type="number"
+          min="0"
+          max="60"
+          placeholder="Example: 2"
+        >
+
+      </div>
 
 
-    <select id="gender">
 
-      <option value="">
-        Gender
-      </option>
+      <div>
 
-      <option value="Male">
-        Male
-      </option>
+        <label>
+          👤 Gender *
+        </label>
 
-      <option value="Female">
-        Female
-      </option>
+        <small>
+          Select worker gender
+        </small>
 
-      <option value="Any">
-        Any
-      </option>
+        <select
+          id="gender"
+          name="gender"
+          required
+        >
 
-    </select>
+          <option value="">
+            Select Gender
+          </option>
+
+          <option value="Male">
+            Male
+          </option>
+
+          <option value="Female">
+            Female
+          </option>
+
+          <option value="Other">
+            Other
+          </option>
+
+        </select>
+
+      </div>
 
 
-    <button
-      type="submit"
-      class="primary"
-    >
-      Search Jobs
-    </button>
+
+      <div>
+
+        <label>
+          🧠 Skills
+        </label>
+
+        <small>
+          PLC / SMT / Maintenance / CNC etc.
+        </small>
+
+        <input
+          id="skills"
+          name="skills"
+          placeholder="Example: PLC, Maintenance"
+          autocomplete="off"
+        >
+
+      </div>
 
 
-  </form>
 
-</section>
+      <button
+        type="submit"
+        class="orange"
+        id="searchButton"
+      >
+        🔎 Search Matching Jobs
+      </button>
 
 
-<div id="message"></div>
+    </form>
+
+  </section>
 
 
-<section>
+
+  <!-- =======================================================
+       RESULTS HEADER
+  ======================================================== -->
 
   <div
-    id="jobs"
-    class="jobs"
-  ></div>
+    id="resultsHeader"
+    class="results-header"
+    style="display:none;"
+  >
 
-</section>
+    <h2>
+      Available Jobs
+    </h2>
+
+    <span id="resultCount">
+      0 Jobs
+    </span>
+
+  </div>
+
+
+  <div id="results"></div>
 
 
 </main>
 
 
+
+<!-- =========================================================
+     APPLY MODAL
+========================================================= -->
+
 <div
   id="applyModal"
-  class="modal hidden"
 >
 
-  <div class="modal-box">
+  <div class="apply-modal-card">
 
 
-    <button
-      class="close"
-      onclick="closeApply()"
-    >
-      ×
-    </button>
+    <div class="modal-header">
+
+      <div class="modal-icon">
+        🤝
+      </div>
 
 
-    <h2>
-      Apply for Job
-    </h2>
+      <h2>
+        Apply for Job
+      </h2>
+
+    </div>
 
 
     <div
@@ -179,71 +1956,148 @@
     ></div>
 
 
-    <form id="applyForm">
 
+    <div class="modal-field">
+
+      <label>
+        👤 Worker Name *
+      </label>
 
       <input
         id="workerName"
-        placeholder="Your Name"
-        required
+        placeholder="Enter your name"
+        autocomplete="name"
       >
 
+    </div>
+
+
+
+    <div class="modal-field">
+
+      <label>
+        📱 Mobile Number *
+      </label>
 
       <input
         id="workerMobile"
-        placeholder="Mobile Number"
-        maxlength="10"
+        type="tel"
         inputmode="numeric"
-        required
+        maxlength="10"
+        placeholder="10 digit mobile number"
+        autocomplete="tel"
       >
 
+    </div>
+
+
+
+    <div class="modal-field">
+
+      <label>
+        🎓 Qualification
+      </label>
 
       <input
         id="workerQualification"
-        placeholder="Qualification"
+        placeholder="Example: Diploma"
       >
 
+    </div>
+
+
+
+    <div class="modal-field">
+
+      <label>
+        🛠️ Trade
+      </label>
 
       <input
         id="workerTrade"
-        placeholder="Trade"
+        placeholder="Example: Electrical"
       >
 
+    </div>
+
+
+
+    <div class="modal-field">
+
+      <label>
+        💼 Experience
+      </label>
 
       <input
         id="workerExperience"
         type="number"
         min="0"
-        placeholder="Experience (Years)"
+        max="60"
+        placeholder="Experience in years"
       >
 
+    </div>
+
+
+
+    <div class="modal-field">
+
+      <label>
+        🧠 Skills
+      </label>
 
       <input
         id="workerSkills"
-        placeholder="Skills"
+        placeholder="PLC, Maintenance, SMT..."
       >
 
+    </div>
+
+
+
+    <div class="modal-field">
+
+      <label>
+        📍 Preferred Location
+      </label>
 
       <input
         id="workerLocation"
-        placeholder="Preferred Location"
+        placeholder="Example: Rudrapur"
       >
 
+    </div>
 
-      <button
-        class="primary"
-        type="submit"
-      >
-        Submit Application
-      </button>
-
-
-    </form>
 
 
     <div
       id="applyMessage"
+      class="apply-message"
     ></div>
+
+
+
+    <div class="modal-actions">
+
+      <button
+        type="button"
+        class="modal-confirm"
+        id="applyButton"
+        onclick="submitApplication()"
+      >
+        🤝 Submit Application
+      </button>
+
+
+      <button
+        type="button"
+        class="modal-cancel"
+        onclick="closeApply()"
+      >
+        Cancel
+      </button>
+
+    </div>
 
 
   </div>
@@ -251,8 +2105,1210 @@
 </div>
 
 
-<script src="js/config.js"></script>
-<script src="js/search.js"></script>
+
+<script>
+
+
+/* =========================================================
+   API CONFIG
+========================================================= */
+
+const API_URL =
+  "https://industrial-contractor-job-network.onrender.com/api";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const searchForm =
+  document.getElementById(
+    "searchForm"
+  );
+
+
+const results =
+  document.getElementById(
+    "results"
+  );
+
+
+const resultsHeader =
+  document.getElementById(
+    "resultsHeader"
+  );
+
+
+const resultCount =
+  document.getElementById(
+    "resultCount"
+  );
+
+
+const applyModal =
+  document.getElementById(
+    "applyModal"
+  );
+
+
+let selectedJob =
+  null;
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchForm.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    await searchJobs();
+
+  }
+);
+
+
+/* =========================================================
+   SEARCH JOBS
+========================================================= */
+
+async function searchJobs() {
+
+  const formData =
+    new FormData(
+      searchForm
+    );
+
+
+  const qualification =
+    String(
+      formData.get(
+        "qualification"
+      ) || ""
+    ).trim();
+
+
+  const trade =
+    String(
+      formData.get(
+        "trade"
+      ) || ""
+    ).trim();
+
+
+  const location =
+    String(
+      formData.get(
+        "location"
+      ) || ""
+    ).trim();
+
+
+  const experience =
+    String(
+      formData.get(
+        "experience"
+      ) || ""
+    ).trim();
+
+
+  const preferredJob =
+    String(
+      formData.get(
+        "preferredJob"
+      ) || ""
+    ).trim();
+
+
+  const skills =
+    String(
+      formData.get(
+        "skills"
+      ) || ""
+    ).trim();
+
+
+  const gender =
+    String(
+      formData.get(
+        "gender"
+      ) || ""
+    ).trim();
+
+
+  if (!qualification) {
+
+    alert(
+      "Please enter Qualification."
+    );
+
+    return;
+
+  }
+
+
+  if (!trade) {
+
+    alert(
+      "Please enter Trade."
+    );
+
+    return;
+
+  }
+
+
+  if (!location) {
+
+    alert(
+      "Please enter Preferred Location."
+    );
+
+    return;
+
+  }
+
+
+  if (!gender) {
+
+    alert(
+      "Please select Gender."
+    );
+
+    return;
+
+  }
+
+
+  const searchButton =
+    document.getElementById(
+      "searchButton"
+    );
+
+
+  searchButton.disabled =
+    true;
+
+
+  searchButton.textContent =
+    "🔎 Searching...";
+
+
+  resultsHeader.style.display =
+    "none";
+
+
+  results.innerHTML = `
+
+    <div class="empty-result">
+
+      <div class="empty-result-icon">
+        🔎
+      </div>
+
+      <h3>
+        Searching for matching jobs...
+      </h3>
+
+      <p>
+        Please wait while we find suitable
+        job requirements.
+      </p>
+
+    </div>
+
+  `;
+
+
+  try {
+
+    const params =
+      new URLSearchParams();
+
+
+    params.set(
+      "qualification",
+      qualification
+    );
+
+
+    params.set(
+      "trade",
+      trade
+    );
+
+
+    params.set(
+      "location",
+      location
+    );
+
+
+    params.set(
+      "gender",
+      gender
+    );
+
+
+    if (experience) {
+
+      params.set(
+        "experience",
+        experience
+      );
+
+    }
+
+
+    if (preferredJob) {
+
+      params.set(
+        "preferredJob",
+        preferredJob
+      );
+
+    }
+
+
+    if (skills) {
+
+      params.set(
+        "skills",
+        skills
+      );
+
+    }
+
+
+    const response =
+      await fetch(
+        `${API_URL}/public-worker/jobs/search?${params.toString()}`,
+        {
+          method:
+            "GET",
+
+          headers: {
+            "Accept":
+              "application/json"
+          }
+        }
+      );
+
+
+    let data;
+
+    try {
+
+      data =
+        await response.json();
+
+    }
+    catch {
+
+      throw new Error(
+        "Server returned an invalid response."
+      );
+
+    }
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        data.message ||
+        "Unable to search jobs."
+      );
+
+    }
+
+
+    if (
+      !data.jobs ||
+      !data.jobs.length
+    ) {
+
+      resultsHeader.style.display =
+        "none";
+
+
+      results.innerHTML = `
+
+        <div class="empty-result">
+
+          <div class="empty-result-icon">
+            🔍
+          </div>
+
+          <h3>
+            No suitable jobs found
+          </h3>
+
+          <p>
+            Qualification, Trade, Location या
+            Gender बदलकर दोबारा search करें।
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    resultsHeader.style.display =
+      "flex";
+
+
+    resultCount.textContent =
+      `${data.jobs.length} ${
+        data.jobs.length === 1
+          ? "Job"
+          : "Jobs"
+      }`;
+
+
+    results.innerHTML =
+      data.jobs
+        .map(
+          renderJob
+        )
+        .join("");
+
+
+  }
+  catch (error) {
+
+    console.error(
+      "PUBLIC JOB SEARCH ERROR:",
+      error
+    );
+
+
+    resultsHeader.style.display =
+      "none";
+
+
+    results.innerHTML = `
+
+      <div class="notice error">
+
+        ❌
+        ${
+          escapeHtml(
+            error.message ||
+            "Failed to fetch jobs."
+          )
+        }
+
+        <br><br>
+
+        Please try again.
+
+      </div>
+
+    `;
+
+  }
+  finally {
+
+    searchButton.disabled =
+      false;
+
+    searchButton.textContent =
+      "🔎 Search Matching Jobs";
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER JOB
+========================================================= */
+
+function renderJob(
+  job
+) {
+
+  const salary =
+    (
+      job.salaryMin ||
+      job.salaryMax
+    )
+      ? `₹${job.salaryMin || 0} - ₹${job.salaryMax || 0}`
+      : "Salary not specified";
+
+
+  const skills =
+    Array.isArray(
+      job.skills
+    )
+      ? job.skills.join(
+          ", "
+        )
+      : (
+          job.skills ||
+          "Not specified"
+        );
+
+
+  return `
+
+    <article class="job-card">
+
+
+      <div class="job-top">
+
+        <div class="job-heading">
+
+          <h2 class="job-title">
+
+            ${escapeHtml(
+              job.jobTitle ||
+              "Job"
+            )}
+
+          </h2>
+
+
+          <div class="company-name">
+
+            🏢
+
+            <b>
+              ${escapeHtml(
+                job.companyName ||
+                "Company"
+              )}
+            </b>
+
+          </div>
+
+        </div>
+
+
+        <div class="match">
+
+          ⭐
+          ${job.matchScore ?? 0}%
+          Match
+
+        </div>
+
+      </div>
+
+
+
+      <div class="job-meta">
+
+        <span class="job-chip location">
+
+          📍
+          ${escapeHtml(
+            job.companyLocation ||
+            "-"
+          )}
+
+        </span>
+
+
+        <span class="job-chip salary">
+
+          💰
+          ${escapeHtml(
+            salary
+          )}
+
+        </span>
+
+
+        <span class="job-chip">
+
+          🧰
+          ${job.experienceMin ?? 0}
+          -
+          ${job.experienceMax ?? "-"}
+          Years
+
+        </span>
+
+
+        <span class="job-chip vacancy">
+
+          👥
+          ${job.workersRemaining ?? 0}
+          Vacancies
+
+        </span>
+
+      </div>
+
+
+
+      <div class="job-details">
+
+
+        <div class="job-detail">
+
+          <span class="job-detail-label">
+            Qualification
+          </span>
+
+          <span class="job-detail-value">
+
+            🎓
+            ${escapeHtml(
+              job.qualification ||
+              "-"
+            )}
+
+          </span>
+
+        </div>
+
+
+        <div class="job-detail">
+
+          <span class="job-detail-label">
+            Trade
+          </span>
+
+          <span class="job-detail-value">
+
+            🛠️
+            ${escapeHtml(
+              job.trade ||
+              "-"
+            )}
+
+          </span>
+
+        </div>
+
+
+        <div class="job-detail">
+
+          <span class="job-detail-label">
+            Gender
+          </span>
+
+          <span class="job-detail-value">
+
+            👤
+            ${escapeHtml(
+              job.gender ||
+              "Any"
+            )}
+
+          </span>
+
+        </div>
+
+
+        <div class="job-detail">
+
+          <span class="job-detail-label">
+            Experience
+          </span>
+
+          <span class="job-detail-value">
+
+            🕐
+            ${job.experienceMin ?? 0}
+            -
+            ${job.experienceMax ?? "-"}
+            years
+
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="skills-box">
+
+        <strong>
+          🧠 Required Skills:
+        </strong>
+
+        ${escapeHtml(
+          skills
+        )}
+
+      </div>
+
+
+
+      <button
+        type="button"
+        class="refer-btn"
+        onclick="openApply(${escapeHtml(
+          JSON.stringify(
+            job
+          )
+        )})"
+      >
+
+        🤝 Apply for This Job
+
+      </button>
+
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   OPEN APPLY MODAL
+========================================================= */
+
+function openApply(
+  job
+) {
+
+  selectedJob =
+    job;
+
+
+  document.getElementById(
+    "selectedJob"
+  ).innerHTML = `
+
+    <strong>
+      ${escapeHtml(
+        job.jobTitle ||
+        "Job"
+      )}
+    </strong>
+
+    <br>
+
+    🏢
+    ${escapeHtml(
+      job.companyName ||
+      "-"
+    )}
+
+    <br>
+
+    📍
+    ${escapeHtml(
+      job.companyLocation ||
+      "-"
+    )}
+
+    <br>
+
+    💰
+    ${escapeHtml(
+      job.salaryMin || 0
+    )}
+    -
+    ${escapeHtml(
+      job.salaryMax || 0
+    )}
+
+  `;
+
+
+  document.getElementById(
+    "workerName"
+  ).value = "";
+
+
+  document.getElementById(
+    "workerMobile"
+  ).value = "";
+
+
+  document.getElementById(
+    "workerQualification"
+  ).value =
+    document.getElementById(
+      "qualification"
+    ).value.trim();
+
+
+  document.getElementById(
+    "workerTrade"
+  ).value =
+    document.getElementById(
+      "trade"
+    ).value.trim();
+
+
+  document.getElementById(
+    "workerExperience"
+  ).value =
+    document.getElementById(
+      "experience"
+    ).value;
+
+
+  document.getElementById(
+    "workerSkills"
+  ).value =
+    document.getElementById(
+      "skills"
+    ).value;
+
+
+  document.getElementById(
+    "workerLocation"
+  ).value =
+    document.getElementById(
+      "location"
+    ).value.trim();
+
+
+  document.getElementById(
+    "applyMessage"
+  ).innerHTML =
+    "";
+
+
+  document.getElementById(
+    "applyButton"
+  ).disabled =
+    false;
+
+
+  applyModal.style.display =
+    "flex";
+
+
+  setTimeout(
+    () => {
+
+      document.getElementById(
+        "workerName"
+      ).focus();
+
+    },
+    100
+  );
+
+}
+
+
+/* =========================================================
+   CLOSE APPLY
+========================================================= */
+
+function closeApply() {
+
+  selectedJob =
+    null;
+
+  applyModal.style.display =
+    "none";
+
+}
+
+
+/* =========================================================
+   SUBMIT APPLICATION
+========================================================= */
+
+async function submitApplication() {
+
+  if (!selectedJob) {
+
+    alert(
+      "Job selection missing."
+    );
+
+    return;
+
+  }
+
+
+  const workerName =
+    document.getElementById(
+      "workerName"
+    ).value.trim();
+
+
+  const workerMobile =
+    document.getElementById(
+      "workerMobile"
+    )
+    .value
+    .replace(
+      /\D/g,
+      ""
+    )
+    .slice(-10);
+
+
+  const qualification =
+    document.getElementById(
+      "workerQualification"
+    ).value.trim();
+
+
+  const trade =
+    document.getElementById(
+      "workerTrade"
+    ).value.trim();
+
+
+  const experienceValue =
+    document.getElementById(
+      "workerExperience"
+    ).value;
+
+
+  const skillsText =
+    document.getElementById(
+      "workerSkills"
+    ).value.trim();
+
+
+  const preferredLocation =
+    document.getElementById(
+      "workerLocation"
+    ).value.trim();
+
+
+  const applyMessage =
+    document.getElementById(
+      "applyMessage"
+    );
+
+
+  if (!workerName) {
+
+    applyMessage.innerHTML = `
+      <div class="notice error">
+        Please enter your name.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  if (
+    !/^[6-9]\d{9}$/.test(
+      workerMobile
+    )
+  ) {
+
+    applyMessage.innerHTML = `
+      <div class="notice error">
+        Please enter a valid 10 digit mobile number.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  const applyButton =
+    document.getElementById(
+      "applyButton"
+    );
+
+
+  applyButton.disabled =
+    true;
+
+
+  applyButton.textContent =
+    "Submitting...";
+
+
+  applyMessage.innerHTML =
+    "Application submit ho rahi hai...";
+
+
+  try {
+
+    const skills =
+      skillsText
+        ? skillsText
+            .split(",")
+            .map(
+              x =>
+                x.trim()
+            )
+            .filter(Boolean)
+        : [];
+
+
+    const body = {
+
+      jobId:
+        selectedJob._id,
+
+      workerName,
+
+      workerMobile,
+
+      qualification,
+
+      trade,
+
+      experience:
+        experienceValue
+          ? Number(
+              experienceValue
+            )
+          : 0,
+
+      skills,
+
+      preferredJob:
+        document.getElementById(
+          "preferredJob"
+        ).value.trim(),
+
+      preferredLocation
+
+    };
+
+
+    const response =
+      await fetch(
+        `${API_URL}/public-worker/apply`,
+        {
+
+          method:
+            "POST",
+
+          headers: {
+
+            "Content-Type":
+              "application/json",
+
+            "Accept":
+              "application/json"
+
+          },
+
+          body:
+            JSON.stringify(
+              body
+            )
+
+        }
+      );
+
+
+    let data;
+
+    try {
+
+      data =
+        await response.json();
+
+    }
+    catch {
+
+      throw new Error(
+        "Server returned an invalid response."
+      );
+
+    }
+
+
+    if (!response.ok) {
+
+      throw new Error(
+        data.message ||
+        "Application failed."
+      );
+
+    }
+
+
+    /*
+      Tracking token user ko nahi dikhaya jayega.
+      Sirf browser localStorage mein save hoga.
+    */
+
+    if (
+      data.trackingToken
+    ) {
+
+      localStorage.setItem(
+        "publicWorkerTrackingToken",
+        data.trackingToken
+      );
+
+    }
+
+
+    applyMessage.innerHTML = `
+
+      <div class="success">
+
+        <strong>
+          ✅ Application Submitted Successfully
+        </strong>
+
+        <br><br>
+
+        Aapki application admin verification
+        ke liye bhej di gayi hai.
+
+        <br><br>
+
+        Admin approval ke baad application
+        concerned contractor ko bheji jayegi.
+
+        <br><br>
+
+        <button
+          type="button"
+          class="modal-confirm"
+          onclick="goToStatus()"
+          style="width:100%;"
+        >
+          📋 My Application Status
+        </button>
+
+      </div>
+
+    `;
+
+
+    applyButton.style.display =
+      "none";
+
+
+    document
+      .querySelector(
+        ".modal-cancel"
+      )
+      .textContent =
+      "Close";
+
+
+  }
+  catch (error) {
+
+    console.error(
+      "PUBLIC APPLY ERROR:",
+      error
+    );
+
+
+    applyMessage.innerHTML = `
+
+      <div class="notice error">
+
+        ❌
+        ${escapeHtml(
+          error.message ||
+          "Unable to submit application."
+        )}
+
+      </div>
+
+    `;
+
+
+    applyButton.disabled =
+      false;
+
+
+    applyButton.textContent =
+      "🤝 Submit Application";
+
+  }
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function goToStatus() {
+
+  window.location.href =
+    "status.html";
+
+}
+
+
+/* =========================================================
+   CLOSE MODAL OUTSIDE CLICK
+========================================================= */
+
+applyModal.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target ===
+      applyModal
+    ) {
+
+      closeApply();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(
+  value
+) {
+
+  return String(
+    value ?? ""
+  )
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+</script>
+
 
 </body>
 
