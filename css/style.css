@@ -1,0 +1,346 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #172033;
+}
+
+
+.header {
+  background: #0f1e36;
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+
+.header h1 {
+  font-size: 24px;
+}
+
+
+.header p {
+  opacity: 0.8;
+  margin-top: 4px;
+}
+
+
+.status-link {
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.4);
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+
+.container {
+  width: min(1100px, 94%);
+  margin: 25px auto;
+}
+
+
+.search-box,
+.status-box {
+  background: white;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+
+.search-box h2,
+.status-box h2 {
+  margin-bottom: 8px;
+}
+
+
+.muted {
+  color: #687386;
+  margin-bottom: 20px;
+}
+
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+
+input,
+select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #d8dee8;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+
+input:focus,
+select:focus {
+  border-color: #356ae6;
+}
+
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+
+.primary {
+  display: inline-block;
+  background: #1456d9;
+  color: white;
+  padding: 12px 17px;
+  border-radius: 8px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+
+.jobs {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(290px, 1fr)
+  );
+  gap: 18px;
+}
+
+
+.job-card {
+  background: white;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+
+.job-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+
+.job-top h3 {
+  font-size: 19px;
+}
+
+
+.badge {
+  background: #e8f5e9;
+  color: #21733b;
+  padding: 5px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+
+.company {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+
+.details {
+  display: grid;
+  gap: 8px;
+  margin: 15px 0;
+  color: #4f5b6d;
+}
+
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 12px 0;
+}
+
+
+.skills span {
+  background: #edf2ff;
+  padding: 5px 8px;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  z-index: 1000;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+.modal-box {
+  background: white;
+  width: min(500px, 100%);
+  max-height: 92vh;
+  overflow-y: auto;
+  padding: 22px;
+  border-radius: 15px;
+  position: relative;
+}
+
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  background: transparent;
+  font-size: 28px;
+}
+
+
+.selected-job {
+  background: #f1f5fb;
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 8px;
+}
+
+
+#message,
+#applyMessage {
+  margin-top: 15px;
+}
+
+
+.success {
+  background: #e9f8ee;
+  color: #176b36;
+  padding: 14px;
+  border-radius: 9px;
+}
+
+
+.error {
+  background: #ffecec;
+  color: #a52222;
+  padding: 14px;
+  border-radius: 9px;
+}
+
+
+.empty {
+  background: white;
+  padding: 30px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 12px;
+}
+
+
+.worker-info,
+.job-info {
+  background: #f5f7fb;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+
+.status-flow {
+  margin-top: 25px;
+}
+
+
+.status-step {
+  padding: 15px;
+  border-radius: 10px;
+  background: #edf0f5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #777;
+}
+
+
+.status-step.active {
+  background: #e7f7ed;
+  color: #177139;
+}
+
+
+.status-step span {
+  font-size: 20px;
+}
+
+
+.arrow {
+  text-align: center;
+  padding: 5px;
+  font-size: 22px;
+  color: #777;
+}
+
+
+.contractor-box {
+  margin-top: 22px;
+  background: #e9f8ee;
+  border: 1px solid #b8e5c5;
+  padding: 18px;
+  border-radius: 12px;
+}
+
+
+.contractor-box h3 {
+  margin-bottom: 12px;
+}
+
+
+.contractor-box p {
+  margin-top: 8px;
+}
+
+
+.contractor-box a {
+  color: #1261cf;
+}
+
+
+.button-link {
+  margin-top: 15px;
+}
+
+
+@media (max-width: 600px) {
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .status-link {
+    font-size: 13px;
+  }
+
+}
