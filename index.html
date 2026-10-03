@@ -1183,7 +1183,7 @@ select:focus {
 
 <!-- =================================================
      HERO
-================================================= -->
+===================================================== -->
 
 <section class="hero">
 
@@ -1210,7 +1210,7 @@ select:focus {
 
 <!-- =================================================
      MAIN
-================================================= -->
+===================================================== -->
 
 <div class="container">
 
@@ -1261,10 +1261,10 @@ select:focus {
                 onclick="switchSearchMode('contractor')"
             >
 
-                🏢 Contractor के नाम से
+                🏢 ठेका के नाम से
 
                 <span>
-                    Contractor का नाम डालकर खोजें
+                    ठेका का नाम डालकर खोजें
                 </span>
 
             </button>
@@ -1518,12 +1518,12 @@ select:focus {
 
                 🏢
                 <strong>
-                    Contractor के नाम से Job खोजें
+                    ठेका के नाम से Job खोजें
                 </strong>
 
                 <br>
 
-                अगर आप किसी खास Contractor की Jobs
+                अगर आप किसी खास ठेका की Jobs
                 देखना चाहते हैं, तो उसके नाम का कोई
                 हिस्सा लिखें।
 
@@ -1549,7 +1549,7 @@ select:focus {
                     <div class="field full">
 
                         <label>
-                            🏢 Contractor का नाम *
+                            🏢 ठेका का नाम *
                         </label>
 
                         <input
@@ -1573,7 +1573,7 @@ select:focus {
                     type="submit"
                     class="search-btn"
                 >
-                    🏢 Contractor की Jobs खोजें
+                    🏢 ठेका की Jobs खोजें
                 </button>
 
             </form>
@@ -1625,7 +1625,7 @@ select:focus {
 
 <!-- =================================================
      APPLY MODAL
-================================================= -->
+===================================================== -->
 
 <div
     id="applyModal"
@@ -1810,7 +1810,7 @@ select:focus {
 
 <!-- =================================================
      FOOTER
-================================================= -->
+===================================================== -->
 
 <div class="footer">
     © 2026 JOBNEX • Job & Worker Network
@@ -2051,7 +2051,7 @@ async function searchContractorJobs() {
     if (!contractorName) {
 
         alert(
-            "कृपया Contractor का नाम लिखें।"
+            "कृपया ठेका का नाम लिखें।"
         );
 
         return;
@@ -2145,7 +2145,7 @@ async function performSearch(
                         searchType === "contractor"
 
                         ? `
-                            🏢 इस Contractor की
+                            🏢 इस ठेका की
                             <br>
                             अभी कोई Available Job नहीं मिली।
                           `
@@ -2317,7 +2317,7 @@ function renderJob(job) {
 
             <div class="contractor-name">
 
-                🏢 Contractor:
+                🏢 ठेका:
                 ${escapeHtml(
                     job.contractorName
                 )}
