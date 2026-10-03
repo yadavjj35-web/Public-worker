@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 
     <meta charset="UTF-8">
@@ -23,6 +23,7 @@
                 Arial,
                 Helvetica,
                 sans-serif;
+
             background: #f5f7fb;
             color: #1f2937;
         }
@@ -40,29 +41,42 @@
                 );
 
             color: white;
-            padding: 16px 20px;
+
+            padding: 15px 18px;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            gap: 15px;
+            gap: 12px;
         }
 
         .brand {
-            font-size: 21px;
-            font-weight: 700;
+            font-size: 20px;
+            font-weight: 800;
         }
 
         .status-btn {
             text-decoration: none;
+
             color: white;
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.35);
-            padding: 9px 14px;
+
+            background:
+                rgba(255,255,255,0.16);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.35);
+
+            padding: 9px 13px;
+
             border-radius: 8px;
-            font-size: 14px;
+
+            font-size: 13px;
+
+            font-weight: 700;
         }
+
 
         /* ========================================
            HERO
@@ -70,94 +84,221 @@
 
         .hero {
             text-align: center;
-            padding: 35px 15px 25px;
+
+            padding:
+                30px
+                15px
+                22px;
         }
 
         .hero h1 {
-            margin: 0 0 10px;
-            font-size: 32px;
+            margin: 0 0 8px;
+
+            font-size: 30px;
+
             color: #111827;
         }
 
         .hero p {
             margin: 0;
+
             color: #6b7280;
-            font-size: 16px;
+
+            font-size: 15px;
+
+            line-height: 1.5;
         }
 
+
         /* ========================================
-           MAIN
+           CONTAINER
         ======================================== */
 
         .container {
             width: 94%;
+
             max-width: 1050px;
+
             margin: auto;
         }
 
+
+        /* ========================================
+           SEARCH CARD
+        ======================================== */
+
         .search-card {
+
             background: white;
-            border-radius: 15px;
-            padding: 22px;
+
+            border-radius: 16px;
+
+            padding: 20px;
 
             box-shadow:
-                0 5px 25px rgba(0,0,0,0.07);
+                0 5px 25px
+                rgba(0,0,0,0.07);
 
             margin-bottom: 25px;
         }
+
+
+        /* ========================================
+           SEARCH HEADING
+        ======================================== */
+
+        .search-heading {
+
+            text-align: center;
+
+            margin-bottom: 16px;
+        }
+
+        .search-heading h2 {
+
+            margin: 0 0 5px;
+
+            font-size: 21px;
+
+            color: #111827;
+        }
+
+        .search-heading p {
+
+            margin: 0;
+
+            color: #6b7280;
+
+            font-size: 13px;
+        }
+
 
         /* ========================================
            SEARCH MODE BUTTONS
         ======================================== */
 
         .search-modes {
-            display: flex;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
             gap: 10px;
+
             margin-bottom: 22px;
-            flex-wrap: wrap;
         }
 
         .mode-btn {
-            flex: 1;
-            min-width: 220px;
 
-            padding: 13px 16px;
+            min-height: 62px;
 
-            border: 1px solid #d1d5db;
+            padding: 10px;
+
+            border:
+                2px solid
+                #e5e7eb;
+
             background: #f9fafb;
 
-            border-radius: 9px;
+            border-radius: 11px;
 
             font-size: 15px;
-            font-weight: 700;
+
+            font-weight: 800;
 
             cursor: pointer;
+
             transition: 0.2s;
+
+            color: #374151;
         }
 
-        .mode-btn:hover {
-            border-color: #4f46e5;
+        .mode-btn span {
+
+            display: block;
+
+            font-size: 12px;
+
+            margin-top: 4px;
+
+            font-weight: 500;
+
+            color: #6b7280;
         }
 
         .mode-btn.active {
-            background: #4f46e5;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #2563eb
+                );
+
             color: white;
+
             border-color: #4f46e5;
         }
+
+        .mode-btn.active span {
+
+            color: white;
+        }
+
+
+        /* ========================================
+           SEARCH SECTIONS
+        ======================================== */
+
+        .search-section {
+
+            display: none;
+        }
+
+        .search-section.active {
+
+            display: block;
+        }
+
+
+        /* ========================================
+           INFO BOX
+        ======================================== */
+
+        .info-box {
+
+            background: #eef2ff;
+
+            border-left:
+                4px solid
+                #4f46e5;
+
+            padding: 13px;
+
+            border-radius: 8px;
+
+            margin-bottom: 17px;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            color: #374151;
+        }
+
+        .info-box strong {
+
+            color: #312e81;
+        }
+
 
         /* ========================================
            FORM
         ======================================== */
 
-        .search-section {
-            display: none;
-        }
-
-        .search-section.active {
-            display: block;
-        }
-
         .form-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -167,28 +308,48 @@
         }
 
         .field {
+
             display: flex;
+
             flex-direction: column;
         }
 
         .field.full {
+
             grid-column: 1 / -1;
         }
 
         label {
+
             font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 7px;
+
+            font-weight: 800;
+
+            margin-bottom: 6px;
+
             color: #374151;
+        }
+
+        .field-help {
+
+            font-size: 11px;
+
+            color: #6b7280;
+
+            margin-top: 4px;
         }
 
         input,
         select {
+
             width: 100%;
 
-            padding: 12px 13px;
+            padding: 13px;
 
-            border: 1px solid #d1d5db;
+            border:
+                1px solid
+                #d1d5db;
+
             border-radius: 8px;
 
             font-size: 14px;
@@ -200,20 +361,29 @@
 
         input:focus,
         select:focus {
+
             border-color: #4f46e5;
 
             box-shadow:
-                0 0 0 3px rgba(79,70,229,0.10);
+                0 0 0 3px
+                rgba(79,70,229,0.10);
         }
 
+
+        /* ========================================
+           SEARCH BUTTON
+        ======================================== */
+
         .search-btn {
+
             width: 100%;
 
             margin-top: 18px;
 
-            padding: 13px 20px;
+            padding: 14px;
 
             border: none;
+
             border-radius: 9px;
 
             background:
@@ -226,29 +396,28 @@
             color: white;
 
             font-size: 16px;
-            font-weight: 700;
+
+            font-weight: 800;
 
             cursor: pointer;
         }
 
         .search-btn:hover {
+
             opacity: 0.92;
         }
 
-        .search-info {
-            margin-top: 10px;
-
-            font-size: 13px;
-            color: #6b7280;
-        }
 
         /* ========================================
            RESULTS
         ======================================== */
 
         .results-header {
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
             gap: 10px;
@@ -257,12 +426,16 @@
         }
 
         .results-header h2 {
+
             margin: 0;
+
             font-size: 21px;
         }
 
         .result-count {
+
             background: #eef2ff;
+
             color: #4338ca;
 
             padding: 6px 10px;
@@ -270,14 +443,17 @@
             border-radius: 20px;
 
             font-size: 13px;
-            font-weight: 700;
+
+            font-weight: 800;
         }
+
 
         /* ========================================
            JOB CARD
         ======================================== */
 
         .job-card {
+
             background: white;
 
             border-radius: 14px;
@@ -287,15 +463,20 @@
             margin-bottom: 15px;
 
             box-shadow:
-                0 4px 18px rgba(0,0,0,0.06);
+                0 4px 18px
+                rgba(0,0,0,0.06);
 
-            border: 1px solid #eef0f4;
+            border:
+                1px solid
+                #eef0f4;
         }
 
         .job-top {
+
             display: flex;
 
             align-items: flex-start;
+
             justify-content: space-between;
 
             gap: 15px;
@@ -304,7 +485,8 @@
         }
 
         .job-title {
-            margin: 0 0 5px;
+
+            margin: 0 0 6px;
 
             font-size: 20px;
 
@@ -312,23 +494,29 @@
         }
 
         .company-name {
+
             color: #4f46e5;
 
             font-size: 14px;
-            font-weight: 700;
+
+            font-weight: 800;
         }
 
         .contractor-name {
-            margin-top: 5px;
+
+            margin-top: 6px;
 
             color: #059669;
 
             font-size: 13px;
-            font-weight: 700;
+
+            font-weight: 800;
         }
 
         .job-badge {
+
             background: #dcfce7;
+
             color: #166534;
 
             padding: 6px 10px;
@@ -336,12 +524,14 @@
             border-radius: 20px;
 
             font-size: 12px;
-            font-weight: 700;
+
+            font-weight: 800;
 
             white-space: nowrap;
         }
 
         .job-details {
+
             display: grid;
 
             grid-template-columns:
@@ -353,19 +543,26 @@
         }
 
         .detail {
+
             font-size: 14px;
+
             color: #4b5563;
+
+            line-height: 1.45;
         }
 
         .detail strong {
+
             color: #1f2937;
         }
 
         .skills {
+
             margin-top: 12px;
         }
 
         .skill-tag {
+
             display: inline-block;
 
             background: #f3f4f6;
@@ -382,11 +579,12 @@
         }
 
         .apply-btn {
+
             width: 100%;
 
             border: none;
 
-            padding: 12px;
+            padding: 13px;
 
             border-radius: 8px;
 
@@ -395,7 +593,8 @@
             color: white;
 
             font-size: 15px;
-            font-weight: 700;
+
+            font-weight: 800;
 
             cursor: pointer;
 
@@ -403,14 +602,17 @@
         }
 
         .apply-btn:hover {
+
             background: #374151;
         }
 
+
         /* ========================================
-           EMPTY / LOADING
+           MESSAGE
         ======================================== */
 
         .message-box {
+
             background: white;
 
             padding: 30px 20px;
@@ -420,20 +622,28 @@
             border-radius: 12px;
 
             color: #6b7280;
+
+            line-height: 1.6;
         }
 
         .loading {
+
             text-align: center;
+
             padding: 25px;
+
             color: #4f46e5;
-            font-weight: 700;
+
+            font-weight: 800;
         }
+
 
         /* ========================================
            MODAL
         ======================================== */
 
         .modal {
+
             position: fixed;
 
             inset: 0;
@@ -444,6 +654,7 @@
             display: none;
 
             align-items: center;
+
             justify-content: center;
 
             padding: 15px;
@@ -452,14 +663,18 @@
         }
 
         .modal.show {
+
             display: flex;
         }
 
         .modal-box {
+
             width: 100%;
+
             max-width: 550px;
 
             max-height: 92vh;
+
             overflow-y: auto;
 
             background: white;
@@ -467,11 +682,10 @@
             border-radius: 15px;
 
             padding: 22px;
-
-            position: relative;
         }
 
         .modal-header {
+
             display: flex;
 
             justify-content: space-between;
@@ -482,17 +696,20 @@
         }
 
         .modal-header h2 {
+
             margin: 0;
 
             font-size: 21px;
         }
 
         .close-btn {
+
             border: none;
 
             background: #f3f4f6;
 
             width: 35px;
+
             height: 35px;
 
             border-radius: 50%;
@@ -503,24 +720,31 @@
         }
 
         .selected-job {
+
             background: #f8fafc;
 
-            border: 1px solid #e5e7eb;
+            border:
+                1px solid
+                #e5e7eb;
 
             padding: 13px;
 
             border-radius: 8px;
 
             margin-bottom: 18px;
+
+            line-height: 1.6;
         }
 
         .selected-job strong {
+
             display: block;
 
             margin-bottom: 4px;
         }
 
         .submit-btn {
+
             width: 100%;
 
             margin-top: 15px;
@@ -537,14 +761,11 @@
 
             font-size: 16px;
 
-            font-weight: 700;
+            font-weight: 800;
 
             cursor: pointer;
         }
 
-        .submit-btn:hover {
-            background: #15803d;
-        }
 
         /* ========================================
            MOBILE
@@ -553,15 +774,27 @@
         @media (max-width: 700px) {
 
             header {
-                padding: 13px 15px;
+                padding: 13px 14px;
             }
 
             .brand {
-                font-size: 17px;
+                font-size: 16px;
+            }
+
+            .status-btn {
+                font-size: 12px;
+            }
+
+            .hero {
+                padding-top: 25px;
             }
 
             .hero h1 {
-                font-size: 26px;
+                font-size: 25px;
+            }
+
+            .search-modes {
+                grid-template-columns: 1fr;
             }
 
             .form-grid {
@@ -611,7 +844,7 @@
         href="status.html"
         class="status-btn"
     >
-        📋 My Status
+        📋 मेरा आवेदन
     </a>
 
 </header>
@@ -624,12 +857,12 @@
 <section class="hero">
 
     <h1>
-        Find Your Right Job
+        नौकरी खोजें
     </h1>
 
     <p>
-        Search industrial jobs according to your
-        qualification, trade or contractor.
+        अपनी जानकारी या ठेकेदार के नाम से
+        उपलब्ध नौकरी खोजें।
     </p>
 
 </section>
@@ -645,9 +878,25 @@
 <div class="search-card">
 
 
-    <!-- SEARCH MODE -->
+    <div class="search-heading">
+
+        <h2>
+            आपको नौकरी कैसे खोजनी है?
+        </h2>
+
+        <p>
+            नीचे दिए गए किसी एक विकल्प को चुनें
+        </p>
+
+    </div>
+
+
+    <!-- =====================================
+         SEARCH MODE BUTTONS
+    ====================================== -->
 
     <div class="search-modes">
+
 
         <button
             type="button"
@@ -655,8 +904,15 @@
             class="mode-btn active"
             onclick="switchSearchMode('worker')"
         >
-            🔎 Worker Details Search
+
+            👷 अपनी योग्यता से नौकरी खोजें
+
+            <span>
+                Qualification और Trade से
+            </span>
+
         </button>
+
 
         <button
             type="button"
@@ -664,8 +920,15 @@
             class="mode-btn"
             onclick="switchSearchMode('contractor')"
         >
-            🏢 Contractor Search
+
+            🏢 ठेकेदार के नाम से नौकरी खोजें
+
+            <span>
+                Contractor का नाम डालें
+            </span>
+
         </button>
+
 
     </div>
 
@@ -679,7 +942,20 @@
         class="search-section active"
     >
 
+
+        <div class="info-box">
+
+            👷 <strong>अपनी योग्यता से नौकरी खोजें</strong><br>
+
+            अपनी Qualification, Trade और पसंद की
+            Location भरें। आपको आपकी जानकारी के
+            अनुसार उपलब्ध नौकरियाँ दिखाई जाएँगी।
+
+        </div>
+
+
         <form id="workerSearchForm">
+
 
             <div class="form-grid">
 
@@ -689,15 +965,19 @@
                 <div class="field">
 
                     <label>
-                        Qualification *
+                        🎓 आपकी Qualification *
                     </label>
 
                     <input
                         type="text"
                         id="qualification"
-                        placeholder="Example: Diploma Electrical"
+                        placeholder="जैसे: Diploma Electrical"
                         required
                     >
+
+                    <div class="field-help">
+                        आपने क्या पढ़ाई की है?
+                    </div>
 
                 </div>
 
@@ -707,15 +987,19 @@
                 <div class="field">
 
                     <label>
-                        Trade *
+                        🔧 आपका Trade *
                     </label>
 
                     <input
                         type="text"
                         id="trade"
-                        placeholder="Example: Electrical"
+                        placeholder="जैसे: Electrical"
                         required
                     >
+
+                    <div class="field-help">
+                        आपका काम / Trade क्या है?
+                    </div>
 
                 </div>
 
@@ -725,14 +1009,18 @@
                 <div class="field">
 
                     <label>
-                        Preferred Job / Designation
+                        💼 कौन-सी Job चाहिए?
                     </label>
 
                     <input
                         type="text"
                         id="preferredJob"
-                        placeholder="Example: Maintenance Engineer"
+                        placeholder="जैसे: Maintenance Engineer"
                     >
+
+                    <div class="field-help">
+                        अगर कोई खास Job चाहिए तो लिखें
+                    </div>
 
                 </div>
 
@@ -742,15 +1030,19 @@
                 <div class="field">
 
                     <label>
-                        Preferred Location *
+                        📍 कहाँ नौकरी चाहिए? *
                     </label>
 
                     <input
                         type="text"
                         id="preferredLocation"
-                        placeholder="Example: Pantnagar"
+                        placeholder="जैसे: Pantnagar"
                         required
                     >
+
+                    <div class="field-help">
+                        शहर / Industrial Area लिखें
+                    </div>
 
                 </div>
 
@@ -760,15 +1052,19 @@
                 <div class="field">
 
                     <label>
-                        Experience
+                        🧑‍🔧 Experience
                     </label>
 
                     <input
                         type="number"
                         id="experience"
                         min="0"
-                        placeholder="Years"
+                        placeholder="जैसे: 2"
                     >
+
+                    <div class="field-help">
+                        कितने साल का अनुभव है?
+                    </div>
 
                 </div>
 
@@ -778,7 +1074,7 @@
                 <div class="field">
 
                     <label>
-                        Gender *
+                        👤 Gender *
                     </label>
 
                     <select
@@ -787,7 +1083,7 @@
                     >
 
                         <option value="">
-                            Select Gender
+                            अपना Gender चुनें
                         </option>
 
                         <option value="Male">
@@ -799,7 +1095,7 @@
                         </option>
 
                         <option value="Any">
-                            Any
+                            कोई भी
                         </option>
 
                     </select>
@@ -812,14 +1108,18 @@
                 <div class="field full">
 
                     <label>
-                        Skills
+                        🛠️ आपकी Skills
                     </label>
 
                     <input
                         type="text"
                         id="skills"
-                        placeholder="Example: PLC, AOI, SMT, Maintenance"
+                        placeholder="जैसे: PLC, AOI, SMT, Maintenance"
                     >
+
+                    <div class="field-help">
+                        आपको जो मशीन / काम आता है, वह लिखें
+                    </div>
 
                 </div>
 
@@ -831,13 +1131,11 @@
                 type="submit"
                 class="search-btn"
             >
-                🔎 Search Jobs
+
+                🔎 मेरी नौकरी खोजें
+
             </button>
 
-
-            <div class="search-info">
-                * Required fields
-            </div>
 
         </form>
 
@@ -853,6 +1151,24 @@
         class="search-section"
     >
 
+
+        <div class="info-box">
+
+            🏢 <strong>ठेकेदार के नाम से नौकरी खोजें</strong><br>
+
+            अगर आपको किसी खास ठेकेदार की कंपनी में
+            नौकरी देखनी है, तो नीचे उस ठेकेदार का
+            नाम लिखें।<br><br>
+
+            <strong>उदाहरण:</strong>
+            अगर ठेकेदार का नाम
+            <strong>Digital</strong> है,
+            तो केवल <strong>Digital</strong> लिखकर
+            नीचे का बटन दबाएँ।
+
+        </div>
+
+
         <form id="contractorSearchForm">
 
 
@@ -862,16 +1178,26 @@
                 <div class="field full">
 
                     <label>
-                        Contractor Name *
+                        🏢 ठेकेदार का नाम *
                     </label>
 
                     <input
                         type="text"
                         id="contractorName"
-                        placeholder="Example: Digital"
+                        placeholder="ठेकेदार का नाम लिखें, जैसे: Digital"
                         autocomplete="off"
                         required
                     >
+
+                    <div class="field-help">
+
+                        ठेकेदार के नाम का कोई हिस्सा भी
+                        लिख सकते हैं।
+
+                        उदाहरण:
+                        <strong>Digital</strong>
+
+                    </div>
 
                 </div>
 
@@ -883,14 +1209,11 @@
                 type="submit"
                 class="search-btn"
             >
-                🏢 Search Contractor Jobs
+
+                🏢 ठेकेदार की नौकरी खोजें
+
             </button>
 
-
-            <div class="search-info">
-                Contractor name ka koi part bhi enter kar sakte hain.
-                Example: <strong>Digital</strong>
-            </div>
 
         </form>
 
@@ -907,7 +1230,7 @@
 <div class="results-header">
 
     <h2>
-        Available Jobs
+        उपलब्ध नौकरियाँ
     </h2>
 
     <span
@@ -925,8 +1248,8 @@
 
     <div class="message-box">
 
-        🔎 Job search karne ke liye
-        upar details enter karein.
+        👆 ऊपर से कोई एक तरीका चुनकर
+        नौकरी खोजें।
 
     </div>
 
@@ -951,7 +1274,7 @@
         <div class="modal-header">
 
             <h2>
-                Apply for Job
+                नौकरी के लिए आवेदन
             </h2>
 
             <button
@@ -980,25 +1303,21 @@
             >
 
 
-            <!-- Name -->
-
             <div class="field">
 
                 <label>
-                    Your Name *
+                    👤 आपका नाम *
                 </label>
 
                 <input
                     type="text"
                     id="workerName"
                     required
-                    placeholder="Enter your full name"
+                    placeholder="अपना पूरा नाम लिखें"
                 >
 
             </div>
 
-
-            <!-- Mobile -->
 
             <div
                 class="field"
@@ -1006,7 +1325,7 @@
             >
 
                 <label>
-                    Mobile Number *
+                    📱 Mobile Number *
                 </label>
 
                 <input
@@ -1014,13 +1333,11 @@
                     id="workerMobile"
                     maxlength="10"
                     required
-                    placeholder="10 digit mobile number"
+                    placeholder="10 अंकों का मोबाइल नंबर"
                 >
 
             </div>
 
-
-            <!-- Qualification -->
 
             <div
                 class="field"
@@ -1028,20 +1345,18 @@
             >
 
                 <label>
-                    Qualification *
+                    🎓 Qualification *
                 </label>
 
                 <input
                     type="text"
                     id="applyQualification"
                     required
-                    placeholder="Your qualification"
+                    placeholder="अपनी Qualification"
                 >
 
             </div>
 
-
-            <!-- Trade -->
 
             <div
                 class="field"
@@ -1049,20 +1364,18 @@
             >
 
                 <label>
-                    Trade *
+                    🔧 Trade *
                 </label>
 
                 <input
                     type="text"
                     id="applyTrade"
                     required
-                    placeholder="Your trade"
+                    placeholder="अपना Trade"
                 >
 
             </div>
 
-
-            <!-- Experience -->
 
             <div
                 class="field"
@@ -1070,20 +1383,18 @@
             >
 
                 <label>
-                    Experience
+                    🧑‍🔧 Experience
                 </label>
 
                 <input
                     type="number"
                     id="applyExperience"
                     min="0"
-                    placeholder="Years"
+                    placeholder="Experience in Years"
                 >
 
             </div>
 
-
-            <!-- Skills -->
 
             <div
                 class="field"
@@ -1091,19 +1402,17 @@
             >
 
                 <label>
-                    Skills
+                    🛠️ Skills
                 </label>
 
                 <input
                     type="text"
                     id="applySkills"
-                    placeholder="PLC, AOI, SMT, Maintenance..."
+                    placeholder="जैसे: PLC, AOI, SMT"
                 >
 
             </div>
 
-
-            <!-- Location -->
 
             <div
                 class="field"
@@ -1111,13 +1420,13 @@
             >
 
                 <label>
-                    Preferred Location
+                    📍 Preferred Location
                 </label>
 
                 <input
                     type="text"
                     id="applyLocation"
-                    placeholder="Preferred job location"
+                    placeholder="पसंदीदा नौकरी की जगह"
                 >
 
             </div>
@@ -1127,7 +1436,9 @@
                 type="submit"
                 class="submit-btn"
             >
-                ✅ Submit Application
+
+                ✅ आवेदन जमा करें
+
             </button>
 
 
@@ -1152,11 +1463,10 @@ const API_URL =
 
 /* ========================================
    JOB CACHE
-   JSON ko onclick me directly bhejne ki
-   problem avoid karne ke liye
 ======================================== */
 
-const jobCache = new Map();
+const jobCache =
+    new Map();
 
 
 /* ========================================
@@ -1188,13 +1498,17 @@ function switchSearchMode(mode) {
 
     if (mode === "worker") {
 
-        workerSection.classList.add("active");
+        workerSection.classList.add(
+            "active"
+        );
 
         contractorSection.classList.remove(
             "active"
         );
 
-        workerBtn.classList.add("active");
+        workerBtn.classList.add(
+            "active"
+        );
 
         contractorBtn.classList.remove(
             "active"
@@ -1224,9 +1538,14 @@ function switchSearchMode(mode) {
     document.getElementById(
         "results"
     ).innerHTML = `
+
         <div class="message-box">
-            🔎 Search karke available jobs dekhein.
+
+            👆 अपनी जानकारी भरकर
+            नौकरी खोजें।
+
         </div>
+
     `;
 
 
@@ -1356,8 +1675,11 @@ async function searchWorkerJobs() {
 
 
     await performSearch(
+
         `${API_URL}/public-worker/jobs/search?${params.toString()}`,
+
         "worker"
+
     );
 
 }
@@ -1393,7 +1715,7 @@ async function searchContractorJobs() {
     if (!contractorName) {
 
         alert(
-            "Contractor name enter karein."
+            "कृपया ठेकेदार का नाम लिखें।"
         );
 
         return;
@@ -1412,8 +1734,11 @@ async function searchContractorJobs() {
 
 
     await performSearch(
+
         `${API_URL}/public-worker/jobs/search-by-contractor?${params.toString()}`,
+
         "contractor"
+
     );
 
 }
@@ -1440,9 +1765,13 @@ async function performSearch(
 
 
     results.innerHTML = `
+
         <div class="loading">
-            ⏳ Jobs search ho rahi hain...
+
+            ⏳ नौकरी खोजी जा रही है...
+
         </div>
+
     `;
 
 
@@ -1482,8 +1811,16 @@ async function performSearch(
 
                     ${
                         searchType === "contractor"
-                            ? "🏢 Is contractor ki koi active job nahi mili."
-                            : "😔 Aapki details ke according koi active job nahi mili."
+
+                            ? `
+                                🏢 इस ठेकेदार की
+                                अभी कोई उपलब्ध नौकरी नहीं मिली।
+                              `
+
+                            : `
+                                😔 आपकी जानकारी के अनुसार
+                                अभी कोई उपलब्ध नौकरी नहीं मिली।
+                              `
                     }
 
                 </div>
@@ -1498,23 +1835,28 @@ async function performSearch(
         resultCount.textContent =
             `${data.jobs.length} Job${data.jobs.length > 1 ? "s" : ""}`;
 
+
         resultCount.style.display =
             "inline-block";
 
 
         results.innerHTML =
             data.jobs
-                .map(job =>
-                    renderJob(job)
+                .map(
+                    job =>
+                        renderJob(job)
                 )
                 .join("");
 
 
         window.scrollTo({
+
             top:
                 results.offsetTop - 20,
+
             behavior:
                 "smooth"
+
         });
 
 
@@ -1530,13 +1872,13 @@ async function performSearch(
 
             <div class="message-box">
 
-                ❌ Jobs search nahi ho paayi.
+                ❌ नौकरी खोजने में समस्या हुई।
 
                 <br><br>
 
                 ${escapeHtml(
                     error.message ||
-                    "Please try again."
+                    "कृपया दोबारा कोशिश करें।"
                 )}
 
             </div>
@@ -1581,7 +1923,7 @@ function renderJob(job) {
     const location =
         job.companyLocation ||
         job.industrialArea ||
-        "Location not specified";
+        "Location नहीं दी गई";
 
 
     const remaining =
@@ -1597,13 +1939,19 @@ function renderJob(job) {
 
         skillsHtml =
             job.skills
-                .map(skill => `
-                    <span class="skill-tag">
-                        ${escapeHtml(
-                            String(skill)
-                        )}
-                    </span>
-                `)
+                .map(
+                    skill => `
+
+                        <span class="skill-tag">
+
+                            ${escapeHtml(
+                                String(skill)
+                            )}
+
+                        </span>
+
+                    `
+                )
                 .join("");
 
     } else if (
@@ -1614,37 +1962,41 @@ function renderJob(job) {
         skillsHtml =
             job.skills
                 .split(",")
-                .map(skill => `
-                    <span class="skill-tag">
-                        ${escapeHtml(
-                            skill.trim()
-                        )}
-                    </span>
-                `)
+                .map(
+                    skill => `
+
+                        <span class="skill-tag">
+
+                            ${escapeHtml(
+                                skill.trim()
+                            )}
+
+                        </span>
+
+                    `
+                )
                 .join("");
 
     }
 
 
-    let contractorHtml = "";
+    const contractorHtml =
+        job.contractorName
 
+            ? `
 
-    if (job.contractorName) {
+                <div class="contractor-name">
 
-        contractorHtml = `
+                    🏢 ठेकेदार:
+                    ${escapeHtml(
+                        job.contractorName
+                    )}
 
-            <div class="contractor-name">
+                </div>
 
-                🏢 Contractor:
-                ${escapeHtml(
-                    job.contractorName
-                )}
+              `
 
-            </div>
-
-        `;
-
-    }
+            : "";
 
 
     return `
@@ -1653,6 +2005,7 @@ function renderJob(job) {
 
 
             <div class="job-top">
+
 
                 <div>
 
@@ -1687,11 +2040,15 @@ function renderJob(job) {
                     ${
                         remaining !== null &&
                         remaining !== undefined
+
                             ? `${remaining} Vacancy`
-                            : "Active Job"
+
+                            : "Available"
+
                     }
 
                 </div>
+
 
             </div>
 
@@ -1702,7 +2059,9 @@ function renderJob(job) {
                 <div class="detail">
 
                     📍
-                    <strong>Location:</strong>
+                    <strong>
+                        जगह:
+                    </strong>
 
                     ${escapeHtml(
                         location
@@ -1714,7 +2073,9 @@ function renderJob(job) {
                 <div class="detail">
 
                     💰
-                    <strong>Salary:</strong>
+                    <strong>
+                        Salary:
+                    </strong>
 
                     ${escapeHtml(
                         salary
@@ -1726,7 +2087,9 @@ function renderJob(job) {
                 <div class="detail">
 
                     🎓
-                    <strong>Qualification:</strong>
+                    <strong>
+                        Qualification:
+                    </strong>
 
                     ${escapeHtml(
                         job.qualification ||
@@ -1739,7 +2102,9 @@ function renderJob(job) {
                 <div class="detail">
 
                     🔧
-                    <strong>Trade:</strong>
+                    <strong>
+                        Trade:
+                    </strong>
 
                     ${escapeHtml(
                         job.trade ||
@@ -1752,7 +2117,9 @@ function renderJob(job) {
                 <div class="detail">
 
                     🧑‍🔧
-                    <strong>Experience:</strong>
+                    <strong>
+                        Experience:
+                    </strong>
 
                     ${escapeHtml(
                         experience
@@ -1763,8 +2130,10 @@ function renderJob(job) {
 
                 <div class="detail">
 
-                    👥
-                    <strong>Gender:</strong>
+                    👤
+                    <strong>
+                        Gender:
+                    </strong>
 
                     ${escapeHtml(
                         job.gender ||
@@ -1776,36 +2145,48 @@ function renderJob(job) {
 
                 ${
                     job.department
+
                         ? `
+
                             <div class="detail">
 
                                 🏢
-                                <strong>Department:</strong>
+                                <strong>
+                                    Department:
+                                </strong>
 
                                 ${escapeHtml(
                                     job.department
                                 )}
 
                             </div>
-                        `
+
+                          `
+
                         : ""
                 }
 
 
                 ${
                     job.jobType
+
                         ? `
+
                             <div class="detail">
 
                                 📋
-                                <strong>Job Type:</strong>
+                                <strong>
+                                    Job Type:
+                                </strong>
 
                                 ${escapeHtml(
                                     job.jobType
                                 )}
 
                             </div>
-                        `
+
+                          `
+
                         : ""
                 }
 
@@ -1815,11 +2196,13 @@ function renderJob(job) {
 
             ${
                 skillsHtml
+
                     ? `
+
                         <div class="skills">
 
                             <strong>
-                                Skills:
+                                🛠️ Skills:
                             </strong>
 
                             <br>
@@ -1827,14 +2210,18 @@ function renderJob(job) {
                             ${skillsHtml}
 
                         </div>
-                    `
+
+                      `
+
                     : ""
             }
 
 
             ${
                 job.benefits
+
                     ? `
+
                         <div
                             class="detail"
                             style="margin-top:10px;"
@@ -1850,7 +2237,9 @@ function renderJob(job) {
                             )}
 
                         </div>
-                    `
+
+                      `
+
                     : ""
             }
 
@@ -1861,7 +2250,7 @@ function renderJob(job) {
                 onclick="openApplyById('${escapeHtml(id)}')"
             >
 
-                Apply Now →
+                ✅ इस नौकरी के लिए आवेदन करें
 
             </button>
 
@@ -1888,7 +2277,7 @@ function openApplyById(id) {
     if (!job) {
 
         alert(
-            "Job information unavailable. Please search again."
+            "Job information उपलब्ध नहीं है। दोबारा search करें।"
         );
 
         return;
@@ -1922,28 +2311,20 @@ function openApply(job) {
 
         </strong>
 
-        <span>
-
-            🏭
-            ${escapeHtml(
-                job.companyName ||
-                "Company"
-            )}
-
-        </span>
+        🏭
+        ${escapeHtml(
+            job.companyName ||
+            "Company"
+        )}
 
         <br>
 
-        <span>
-
-            📍
-            ${escapeHtml(
-                job.companyLocation ||
-                job.industrialArea ||
-                "Location"
-            )}
-
-        </span>
+        📍
+        ${escapeHtml(
+            job.companyLocation ||
+            job.industrialArea ||
+            "Location"
+        )}
 
     `;
 
@@ -1971,7 +2352,9 @@ function openApply(job) {
         "applySkills"
     ).value =
         Array.isArray(job.skills)
+
             ? job.skills.join(", ")
+
             : (job.skills || "");
 
 
@@ -2004,7 +2387,7 @@ function closeApplyModal() {
 
 
 /* ========================================
-   APPLY FORM
+   APPLY
 ======================================== */
 
 document
@@ -2093,7 +2476,7 @@ document
             ) {
 
                 alert(
-                    "Valid 10 digit mobile number enter karein."
+                    "कृपया सही 10 अंकों का मोबाइल नंबर डालें।"
                 );
 
                 return;
@@ -2110,23 +2493,30 @@ document
             submitBtn.disabled = true;
 
             submitBtn.textContent =
-                "⏳ Submitting...";
+                "⏳ आवेदन जमा हो रहा है...";
 
 
             try {
 
                 const response =
                     await fetch(
+
                         `${API_URL}/public-worker/apply`,
+
                         {
-                            method: "POST",
+
+                            method:
+                                "POST",
 
                             headers: {
+
                                 "Content-Type":
                                     "application/json"
+
                             },
 
                             body:
+
                                 JSON.stringify({
 
                                     jobId,
@@ -2140,6 +2530,7 @@ document
                                     trade,
 
                                     experience:
+
                                         experience
                                             ? Number(
                                                 experience
@@ -2153,6 +2544,7 @@ document
                                 })
 
                         }
+
                     );
 
 
@@ -2163,8 +2555,10 @@ document
                 if (!response.ok) {
 
                     throw new Error(
+
                         data.message ||
                         "Application failed"
+
                     );
 
                 }
@@ -2175,15 +2569,18 @@ document
                 ) {
 
                     localStorage.setItem(
+
                         "contractorHubTrackingToken",
+
                         data.trackingToken
+
                     );
 
                 }
 
 
                 alert(
-                    "✅ Application successfully submit ho gayi hai!"
+                    "✅ आपका आवेदन सफलतापूर्वक जमा हो गया है!"
                 );
 
 
@@ -2202,6 +2599,7 @@ document
                 ) {
 
                     window.location.href =
+
                         `status.html?token=${encodeURIComponent(
                             data.trackingToken
                         )}`;
@@ -2218,16 +2616,20 @@ document
 
 
                 alert(
+
                     error.message ||
-                    "Application submit nahi ho paayi."
+
+                    "आवेदन जमा नहीं हो पाया।"
+
                 );
 
             } finally {
 
-                submitBtn.disabled = false;
+                submitBtn.disabled =
+                    false;
 
                 submitBtn.textContent =
-                    "✅ Submit Application";
+                    "✅ आवेदन जमा करें";
 
             }
 
@@ -2258,7 +2660,7 @@ document
 
 
 /* ========================================
-   ESCAPE KEY
+   ESCAPE
 ======================================== */
 
 document.addEventListener(
@@ -2278,30 +2680,13 @@ document.addEventListener(
 
 
 /* ========================================
-   FORMAT SALARY
+   SALARY
 ======================================== */
 
 function formatSalary(
     min,
     max
 ) {
-
-    if (
-        min === null ||
-        min === undefined
-    ) {
-
-        if (
-            max === null ||
-            max === undefined
-        ) {
-
-            return "Not specified";
-
-        }
-
-    }
-
 
     const format =
         value => {
@@ -2343,13 +2728,13 @@ function formatSalary(
 
     return minValue ||
         maxValue ||
-        "Not specified";
+        "Salary नहीं दी गई";
 
 }
 
 
 /* ========================================
-   FORMAT EXPERIENCE
+   EXPERIENCE
 ======================================== */
 
 function formatExperience(
@@ -2389,13 +2774,13 @@ function formatExperience(
     }
 
 
-    return "Any";
+    return "कोई भी";
 
 }
 
 
 /* ========================================
-   HTML ESCAPE
+   ESCAPE HTML
 ======================================== */
 
 function escapeHtml(value) {
