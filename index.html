@@ -956,189 +956,218 @@
 
         <form id="workerSearchForm">
 
+    <div class="form-grid">
 
-            <div class="form-grid">
+        <!-- Qualification -->
 
+        <div class="field">
 
-                <!-- Qualification -->
+            <label>
+                🎓 आपने कितनी पढ़ाई की है? *
+            </label>
 
-                <div class="field">
-
-                    <label>
-                        🎓 आपकी Qualification *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="qualification"
-                        placeholder="जैसे: Diploma Electrical"
-                        required
-                    >
-
-                    <div class="field-help">
-                        आपने क्या पढ़ाई की है?
-                    </div>
-
-                </div>
-
-
-                <!-- Trade -->
-
-                <div class="field">
-
-                    <label>
-                        🔧 आपका Trade *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="trade"
-                        placeholder="जैसे: Electrical"
-                        required
-                    >
-
-                    <div class="field-help">
-                        आपका काम / Trade क्या है?
-                    </div>
-
-                </div>
-
-
-                <!-- Preferred Job -->
-
-                <div class="field">
-
-                    <label>
-                        💼 कौन-सी Job चाहिए?
-                    </label>
-
-                    <input
-                        type="text"
-                        id="preferredJob"
-                        placeholder="जैसे: Maintenance Engineer"
-                    >
-
-                    <div class="field-help">
-                        अगर कोई खास Job चाहिए तो लिखें
-                    </div>
-
-                </div>
-
-
-                <!-- Location -->
-
-                <div class="field">
-
-                    <label>
-                        📍 कहाँ नौकरी चाहिए? *
-                    </label>
-
-                    <input
-                        type="text"
-                        id="preferredLocation"
-                        placeholder="जैसे: Pantnagar"
-                        required
-                    >
-
-                    <div class="field-help">
-                        शहर / Industrial Area लिखें
-                    </div>
-
-                </div>
-
-
-                <!-- Experience -->
-
-                <div class="field">
-
-                    <label>
-                        🧑‍🔧 Experience
-                    </label>
-
-                    <input
-                        type="number"
-                        id="experience"
-                        min="0"
-                        placeholder="जैसे: 2"
-                    >
-
-                    <div class="field-help">
-                        कितने साल का अनुभव है?
-                    </div>
-
-                </div>
-
-
-                <!-- Gender -->
-
-                <div class="field">
-
-                    <label>
-                        👤 Gender *
-                    </label>
-
-                    <select
-                        id="gender"
-                        required
-                    >
-
-                        <option value="">
-                            अपना Gender चुनें
-                        </option>
-
-                        <option value="Male">
-                            Male
-                        </option>
-
-                        <option value="Female">
-                            Female
-                        </option>
-
-                        <option value="Any">
-                            कोई भी
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- Skills -->
-
-                <div class="field full">
-
-                    <label>
-                        🛠️ आपकी Skills
-                    </label>
-
-                    <input
-                        type="text"
-                        id="skills"
-                        placeholder="जैसे: PLC, AOI, SMT, Maintenance"
-                    >
-
-                    <div class="field-help">
-                        आपको जो मशीन / काम आता है, वह लिखें
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-            <button
-                type="submit"
-                class="search-btn"
+            <input
+                type="text"
+                id="qualification"
+                placeholder="जैसे: 10th, 12th, ITI, Diploma"
+                required
             >
 
-                🔎 मेरी नौकरी खोजें
+            <div class="field-help">
+                अपनी सबसे बड़ी पढ़ाई लिखें। जैसे 10th, 12th, ITI, Diploma, B.A. आदि।
+            </div>
 
-            </button>
+        </div>
 
 
-        </form>
+        <!-- Trade / Work -->
 
+        <div class="field">
+
+            <label>
+                🔧 आपको कौन-सा काम आता है? *
+            </label>
+
+            <input
+                type="text"
+                id="trade"
+                placeholder="जैसे: Helper, Electrician, Fitter"
+                required
+            >
+
+            <div class="field-help">
+                जो काम आपको आता है, उसका नाम लिखें। जैसे Helper, Operator, Electrician, Welder, Fitter, Carpenter, Driver आदि।
+            </div>
+
+        </div>
+
+
+        <!-- Preferred Job -->
+
+        <div class="field">
+
+            <label>
+                💼 आप कौन-सी नौकरी करना चाहते हैं?
+            </label>
+
+            <input
+                type="text"
+                id="preferredJob"
+                placeholder="जैसे: Helper, Machine Operator, Technician"
+            >
+
+            <div class="field-help">
+                जिस तरह की Job चाहिए उसका नाम लिखें। अगर Job का नाम नहीं पता तो खाली छोड़ सकते हैं।
+            </div>
+
+        </div>
+
+
+        <!-- Location -->
+
+        <div class="field">
+
+            <label>
+                📍 आपको नौकरी कहाँ चाहिए? *
+            </label>
+
+            <input
+                type="text"
+                id="preferredLocation"
+                placeholder="जैसे: Shahjahanpur, Pantnagar, Delhi"
+                required
+            >
+
+            <div class="field-help">
+                जिस शहर या जगह के पास नौकरी चाहिए, उसका नाम लिखें।
+            </div>
+
+        </div>
+
+
+        <!-- Experience -->
+
+        <div class="field">
+
+            <label>
+                🧑‍🔧 आपको कितने साल का काम आता है?
+            </label>
+
+            <input
+                type="number"
+                id="experience"
+                min="0"
+                placeholder="जैसे: 1, 2, 5"
+            >
+
+            <div class="field-help">
+                पहले कभी यह काम किया है तो कितने साल किया है? नहीं किया है तो 0 लिखें।
+            </div>
+
+        </div>
+
+
+        <!-- Gender -->
+
+        <div class="field">
+
+            <label>
+                👤 आप कौन हैं? *
+            </label>
+
+            <select
+                id="gender"
+                required
+            >
+
+                <option value="">
+                    अपना विकल्प चुनें
+                </option>
+
+                <option value="Male">
+                    👨 पुरुष
+                </option>
+
+                <option value="Female">
+                    👩 महिला
+                </option>
+
+                <option value="Any">
+                    कोई भी
+                </option>
+
+            </select>
+
+            <div class="field-help">
+                अपना Gender चुनें।
+            </div>
+
+        </div>
+
+
+        <!-- Skills -->
+
+        <div class="field full">
+
+            <label>
+                🛠️ आपको और कौन-कौन से काम आते हैं?
+            </label>
+
+            <input
+                type="text"
+                id="skills"
+                placeholder="जैसे: मशीन चलाना, Wiring, Welding, Computer"
+            >
+
+            <div class="field-help">
+                आपको जो भी काम आता है, लिखें। जैसे मशीन चलाना, Wiring, Welding, Computer, Packing, Loading आदि।
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- Simple Example Box -->
+
+    <div class="search-example">
+
+        <strong>💡 समझ नहीं आ रहा क्या लिखें?</strong>
+
+        <p>
+            उदाहरण:
+            <br>
+            पढ़ाई: <b>10th</b>
+            <br>
+            काम: <b>Helper</b>
+            <br>
+            Job: <b>Helper</b>
+            <br>
+            जगह: <b>Pantnagar</b>
+            <br>
+            अनुभव: <b>1 साल</b>
+        </p>
+
+        <p>
+            अगर आपको किसी काम का नाम नहीं पता है,
+            तो <b>जो काम आप कर सकते हैं उसका नाम</b> लिखें।
+        </p>
+
+    </div>
+
+
+    <button
+        type="submit"
+        class="search-btn"
+    >
+
+        🔎 मेरी योग्यता के अनुसार Job खोजें
+
+    </button>
+
+
+</form>
     </div>
 
 
@@ -1184,7 +1213,7 @@
                     <input
                         type="text"
                         id="contractorName"
-                        placeholder="ठेकेदार का नाम लिखें, जैसे: Digital"
+                        placeholder="ठेके का नाम लिखें, जैसे: Digital"
                         autocomplete="off"
                         required
                     >
@@ -1715,7 +1744,7 @@ async function searchContractorJobs() {
     if (!contractorName) {
 
         alert(
-            "कृपया ठेकेदार का नाम लिखें।"
+            "कृपया ठेके का नाम लिखें।"
         );
 
         return;
