@@ -9,56 +9,600 @@
     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 >
 
+<meta name="theme-color" content="#0f172a">
+
 <title>JOBNEX | Find Your Job</title>
 
 <style>
 
-/* =====================================================
-   JOBNEX — PROFESSIONAL APP UI
-===================================================== */
+/* =========================================================
+   JOBNEX PREMIUM PROFESSIONAL UI
+========================================================= */
 
-:root {
-    --primary: #4f46e5;
-    --primary-dark: #3730a3;
-    --secondary: #2563eb;
-    --success: #16a34a;
-    --danger: #dc2626;
-    --text: #111827;
-    --text-soft: #6b7280;
-    --border: #e5e7eb;
-    --bg: #f4f7fb;
-    --card: #ffffff;
-    --radius: 16px;
-    --shadow: 0 8px 30px rgba(15,23,42,.07);
+:root{
+    --navy:#0f172a;
+    --navy-2:#111827;
+    --primary:#4f46e5;
+    --primary-2:#6366f1;
+    --blue:#2563eb;
+    --blue-light:#eff6ff;
+    --purple-light:#eef2ff;
+    --green:#16a34a;
+    --green-light:#ecfdf5;
+    --red:#dc2626;
+    --orange:#f97316;
+
+    --text:#0f172a;
+    --text-2:#334155;
+    --muted:#64748b;
+    --muted-2:#94a3b8;
+
+    --border:#e2e8f0;
+    --border-light:#eef2f7;
+
+    --background:#f6f8fc;
+    --white:#ffffff;
+
+    --radius-sm:10px;
+    --radius-md:14px;
+    --radius-lg:20px;
+    --radius-xl:26px;
+
+    --shadow-sm:
+        0 2px 8px rgba(15,23,42,.04);
+
+    --shadow:
+        0 10px 35px rgba(15,23,42,.07);
+
+    --shadow-lg:
+        0 20px 60px rgba(15,23,42,.12);
 }
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    margin: 0;
+body{
+    margin:0;
     font-family:
         Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
         Arial,
-        Helvetica,
         sans-serif;
-    background: var(--bg);
-    color: var(--text);
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8fafc 0%,
+            #f5f7fb 100%
+        );
+
+    color:var(--text);
+
+    -webkit-font-smoothing:antialiased;
 }
 
-/* =====================================================
-   APP HEADER
-===================================================== */
+button,
+input,
+select{
+    font-family:inherit;
+}
 
-.app-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+button{
+    -webkit-tap-highlight-color:transparent;
+}
+
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.app-header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    background:
+        rgba(15,23,42,.96);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+    box-shadow:
+        0 5px 25px
+        rgba(15,23,42,.12);
+}
+
+.header-inner{
+    width:92%;
+    max-width:1180px;
+
+    min-height:72px;
+
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:16px;
+}
+
+.brand-wrap{
+    display:flex;
+    align-items:center;
+
+    gap:11px;
+
+    min-width:0;
+}
+
+.brand-icon{
+    width:42px;
+    height:42px;
+
+    flex:none;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #2563eb
+        );
+
+    box-shadow:
+        0 8px 22px
+        rgba(79,70,229,.30);
+
+    font-size:20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+}
+
+.brand{
+    color:white;
+
+    font-size:20px;
+
+    line-height:1;
+
+    font-weight:950;
+
+    letter-spacing:.8px;
+}
+
+.brand-sub{
+    color:
+        rgba(255,255,255,.48);
+
+    font-size:9px;
+
+    letter-spacing:
+        1.6px;
+
+    font-weight:700;
+
+    margin-top:5px;
+}
+
+.status-btn{
+    text-decoration:none;
+
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    padding:
+        10px 14px;
+
+    border-radius:11px;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:800;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    transition:
+        .2s ease;
+
+    white-space:nowrap;
+}
+
+.status-btn:hover{
+    background:
+        rgba(255,255,255,.14);
+
+    transform:
+        translateY(-1px);
+}
+
+.status-icon{
+    font-size:15px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:
+        54px 20px
+        66px;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(99,102,241,.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(37,99,235,.20),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #0f172a,
+            #172554
+        );
+
+    color:white;
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    right:-160px;
+    bottom:-190px;
+
+    border-radius:50%;
+
+    background:
+        rgba(99,102,241,.16);
+
+    filter:
+        blur(3px);
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+    height:240px;
+
+    left:-130px;
+    top:-130px;
+
+    border-radius:50%;
+
+    background:
+        rgba(37,99,235,.13);
+}
+
+.hero-inner{
+    position:relative;
+    z-index:2;
+
+    max-width:900px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+.hero-badge{
+    display:inline-flex;
+
+    align-items:center;
+    gap:7px;
+
+    padding:
+        7px 13px;
+
+    border-radius:30px;
+
+    color:
+        #dbeafe;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:.2px;
+
+    backdrop-filter:
+        blur(10px);
+}
+
+.hero h1{
+    margin:
+        18px 0 12px;
+
+    font-size:
+        clamp(32px,5vw,52px);
+
+    line-height:1.08;
+
+    letter-spacing:-1.5px;
+
+    font-weight:950;
+}
+
+.hero h1 span{
+    display:inline-block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a5b4fc,
+            #60a5fa
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+.hero p{
+    max-width:650px;
+
+    margin:auto;
+
+    color:
+        rgba(255,255,255,.70);
+
+    font-size:
+        clamp(13px,2vw,15px);
+
+    line-height:1.7;
+}
+
+
+/* =========================================================
+   HERO STATS
+========================================================= */
+
+.hero-stats{
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:27px;
+}
+
+.hero-stat{
+    min-width:125px;
+
+    padding:
+        9px 14px;
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    font-size:11px;
+
+    color:
+        rgba(255,255,255,.65);
+}
+
+.hero-stat strong{
+    display:block;
+
+    color:white;
+
+    font-size:14px;
+
+    margin-bottom:2px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.container{
+    width:92%;
+
+    max-width:1080px;
+
+    margin:
+        -30px auto
+        50px;
+
+    position:relative;
+
+    z-index:10;
+}
+
+
+/* =========================================================
+   SEARCH CARD
+========================================================= */
+
+.search-card{
+    background:white;
+
+    border:
+        1px solid
+        rgba(226,232,240,.9);
+
+    border-radius:
+        var(--radius-xl);
+
+    padding:
+        27px;
+
+    box-shadow:
+        var(--shadow-lg);
+}
+
+.search-heading{
+    text-align:center;
+
+    margin-bottom:22px;
+}
+
+.search-heading h2{
+    margin:0 0 6px;
+
+    font-size:22px;
+
+    font-weight:950;
+
+    letter-spacing:-.3px;
+}
+
+.search-heading p{
+    margin:0;
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+
+/* =========================================================
+   SEARCH MODES
+========================================================= */
+
+.search-modes{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:12px;
+
+    padding:5px;
+
+    background:#f8fafc;
+
+    border:
+        1px solid
+        var(--border-light);
+
+    border-radius:17px;
+
+    margin-bottom:22px;
+}
+
+.mode-btn{
+    min-height:76px;
+
+    border:
+        1px solid
+        transparent;
+
+    border-radius:13px;
+
+    background:transparent;
+
+    color:var(--text-2);
+
+    cursor:pointer;
+
+    padding:
+        12px 15px;
+
+    text-align:left;
+
+    font-size:14px;
+
+    font-weight:900;
+
+    transition:
+        all .2s ease;
+}
+
+.mode-btn:hover{
+    background:white;
+
+    border-color:
+        var(--border);
+}
+
+.mode-btn:active{
+    transform:scale(.985);
+}
+
+.mode-btn span{
+    display:block;
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    font-weight:500;
+}
+
+.mode-btn.active{
+    color:white;
 
     background:
         linear-gradient(
@@ -67,690 +611,815 @@ body {
             #2563eb
         );
 
-    color: white;
-
-    padding:
-        13px 16px;
-
-    box-shadow:
-        0 4px 18px rgba(37,99,235,.20);
-}
-
-.header-inner {
-    max-width: 1100px;
-    margin: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 12px;
-}
-
-.brand-wrap {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.brand-icon {
-    width: 40px;
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(255,255,255,.18);
-
-    border:
-        1px solid
-        rgba(255,255,255,.25);
-
-    border-radius: 12px;
-
-    font-size: 22px;
-}
-
-.brand {
-    font-size: 21px;
-    font-weight: 900;
-    letter-spacing: .5px;
-}
-
-.brand-sub {
-    font-size: 10px;
-    opacity: .85;
-    margin-top: 2px;
-}
-
-.status-btn {
-    text-decoration: none;
-
-    display: flex;
-    align-items: center;
-    gap: 6px;
-
-    color: white;
-
-    background:
-        rgba(255,255,255,.14);
-
-    border:
-        1px solid
-        rgba(255,255,255,.30);
-
-    padding:
-        9px 12px;
-
-    border-radius: 10px;
-
-    font-size: 12px;
-    font-weight: 800;
-
-    white-space: nowrap;
-}
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-    background:
-        linear-gradient(
-            180deg,
-            #eef2ff,
-            #f4f7fb
-        );
-
-    padding:
-        28px 16px
-        22px;
-
-    text-align: center;
-}
-
-.hero-inner {
-    max-width: 850px;
-    margin: auto;
-}
-
-.hero-badge {
-    display: inline-flex;
-
-    align-items: center;
-    gap: 6px;
-
-    padding:
-        6px 11px;
-
-    border-radius: 20px;
-
-    background: white;
-
-    color: var(--primary);
-
-    font-size: 11px;
-    font-weight: 900;
-
-    box-shadow:
-        0 3px 12px rgba(0,0,0,.05);
-}
-
-.hero h1 {
-    margin:
-        12px 0 7px;
-
-    font-size: 30px;
-    line-height: 1.15;
-
-    font-weight: 900;
-
-    color: #111827;
-}
-
-.hero h1 span {
-    color: var(--primary);
-}
-
-.hero p {
-    margin: 0;
-
-    color: var(--text-soft);
-
-    font-size: 14px;
-
-    line-height: 1.6;
-}
-
-/* =====================================================
-   MAIN CONTAINER
-===================================================== */
-
-.container {
-    width: 94%;
-    max-width: 1050px;
-    margin: -5px auto 40px;
-}
-
-/* =====================================================
-   SEARCH CARD
-===================================================== */
-
-.search-card {
-    background: var(--card);
-
-    border:
-        1px solid
-        rgba(229,231,235,.8);
-
-    border-radius: 20px;
-
-    padding: 20px;
-
-    box-shadow: var(--shadow);
-}
-
-.search-heading {
-    text-align: center;
-    margin-bottom: 18px;
-}
-
-.search-heading h2 {
-    margin: 0 0 5px;
-
-    font-size: 20px;
-    font-weight: 900;
-}
-
-.search-heading p {
-    margin: 0;
-
-    color: var(--text-soft);
-
-    font-size: 12px;
-}
-
-/* =====================================================
-   SEARCH MODE
-===================================================== */
-
-.search-modes {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0,1fr));
-
-    gap: 11px;
-
-    margin-bottom: 20px;
-}
-
-.mode-btn {
-    border:
-        1.5px solid
-        var(--border);
-
-    background: #f8fafc;
-
-    color: #374151;
-
-    border-radius: 13px;
-
-    min-height: 70px;
-
-    padding: 11px;
-
-    cursor: pointer;
-
-    font-size: 14px;
-    font-weight: 900;
-
-    transition:
-        transform .18s,
-        box-shadow .18s,
-        background .18s;
-}
-
-.mode-btn:active {
-    transform: scale(.98);
-}
-
-.mode-btn span {
-    display: block;
-
-    margin-top: 5px;
-
-    color: #6b7280;
-
-    font-size: 11px;
-    font-weight: 500;
-}
-
-.mode-btn.active {
-    color: white;
-
     border-color:
-        var(--primary);
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
+        rgba(255,255,255,.15);
 
     box-shadow:
-        0 7px 18px
-        rgba(79,70,229,.20);
+        0 8px 20px
+        rgba(79,70,229,.22);
 }
 
-.mode-btn.active span {
-    color: rgba(255,255,255,.88);
+.mode-btn.active span{
+    color:
+        rgba(255,255,255,.78);
 }
 
-/* =====================================================
+
+/* =========================================================
    SEARCH SECTION
-===================================================== */
+========================================================= */
 
-.search-section {
-    display: none;
+.search-section{
+    display:none;
 }
 
-.search-section.active {
-    display: block;
+.search-section.active{
+    display:block;
+
+    animation:
+        fadeIn .25s ease;
 }
 
-/* =====================================================
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(5px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* =========================================================
    INFO BOX
-===================================================== */
+========================================================= */
 
-.info-box {
+.info-box{
+    position:relative;
+
     background:
         linear-gradient(
             135deg,
-            #eef2ff,
-            #f5f7ff
+            #f5f7ff,
+            #eef4ff
         );
 
     border:
         1px solid
-        #dbe3ff;
+        #dbe4ff;
 
     border-left:
         4px solid
         var(--primary);
 
-    padding: 13px 14px;
+    border-radius:13px;
 
-    border-radius: 11px;
+    padding:
+        14px 16px;
 
-    margin-bottom: 18px;
+    margin-bottom:20px;
 
-    color: #374151;
+    color:
+        #475569;
 
-    font-size: 13px;
-    line-height: 1.6;
+    font-size:12px;
+
+    line-height:1.7;
 }
 
-.info-box strong {
-    color: #312e81;
+.info-box strong{
+    color:#312e81;
 }
 
-/* =====================================================
+
+/* =========================================================
    FORM
-===================================================== */
+========================================================= */
 
-.form-grid {
-    display: grid;
+.form-grid{
+    display:grid;
 
     grid-template-columns:
-        repeat(2, minmax(0,1fr));
+        repeat(2,minmax(0,1fr));
 
-    gap: 14px;
+    gap:17px;
 }
 
-.field {
-    display: flex;
-    flex-direction: column;
+.field{
+    display:flex;
+
+    flex-direction:column;
 }
 
-.field.full {
-    grid-column: 1 / -1;
+.field.full{
+    grid-column:
+        1 / -1;
 }
 
-label {
-    font-size: 13px;
-    font-weight: 900;
+label{
+    margin-bottom:7px;
 
-    margin-bottom: 6px;
+    color:
+        #1e293b;
 
-    color: #374151;
+    font-size:12px;
+
+    font-weight:900;
 }
 
-.field-help {
-    font-size: 10px;
+.field-help{
+    margin-top:5px;
 
-    color: #6b7280;
+    color:
+        #94a3b8;
 
-    margin-top: 5px;
+    font-size:10px;
 
-    line-height: 1.4;
+    line-height:1.4;
 }
 
 input,
-select {
-    width: 100%;
+select{
+    width:100%;
+
+    min-height:46px;
 
     padding:
-        12px 13px;
+        11px 13px;
 
     border:
         1px solid
-        #d1d5db;
+        #d7dee9;
 
-    border-radius: 10px;
+    border-radius:11px;
 
-    background: white;
+    outline:none;
 
-    color: #111827;
+    background:white;
 
-    font-size: 14px;
+    color:
+        #0f172a;
 
-    outline: none;
+    font-size:13px;
 
     transition:
-        border .15s,
-        box-shadow .15s;
+        border .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
 }
 
-input::placeholder {
-    color: #9ca3af;
+input:hover,
+select:hover{
+    border-color:
+        #b9c3d2;
 }
 
 input:focus,
-select:focus {
+select:focus{
     border-color:
         var(--primary);
 
+    background:
+        #fff;
+
     box-shadow:
-        0 0 0 3px
-        rgba(79,70,229,.10);
+        0 0 0 4px
+        rgba(79,70,229,.09);
 }
 
-/* =====================================================
-   EXAMPLE BOX
-===================================================== */
+input::placeholder{
+    color:#a1aab8;
+}
 
-.search-example {
-    margin-top: 17px;
 
-    background:
-        #f8fafc;
+/* =========================================================
+   SEARCH EXAMPLE
+========================================================= */
+
+.search-example{
+    margin-top:19px;
+
+    padding:
+        14px 15px;
 
     border:
         1px dashed
         #cbd5e1;
 
-    border-radius: 11px;
-
-    padding: 13px;
-
-    color: #475569;
-
-    font-size: 12px;
-
-    line-height: 1.55;
-}
-
-.search-example strong {
-    color: #1e293b;
-}
-
-.search-example p {
-    margin:
-        7px 0 0;
-}
-
-/* =====================================================
-   SEARCH BUTTON
-===================================================== */
-
-.search-btn {
-    width: 100%;
-
-    margin-top: 18px;
-
-    padding:
-        14px;
-
-    border: none;
-
-    border-radius: 11px;
+    border-radius:12px;
 
     background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
-
-    color: white;
-
-    font-size: 15px;
-
-    font-weight: 900;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 7px 18px
-        rgba(79,70,229,.18);
-
-    transition:
-        transform .15s,
-        opacity .15s;
-}
-
-.search-btn:hover {
-    opacity: .94;
-}
-
-.search-btn:active {
-    transform: scale(.99);
-}
-
-/* =====================================================
-   RESULTS
-===================================================== */
-
-.results-area {
-    margin-top: 28px;
-}
-
-.results-header {
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 10px;
-
-    margin-bottom: 14px;
-}
-
-.results-header h2 {
-    margin: 0;
-
-    font-size: 19px;
-    font-weight: 900;
-}
-
-.result-count {
-    background:
-        #eef2ff;
-
-    color:
-        #4338ca;
-
-    padding:
-        6px 10px;
-
-    border-radius: 20px;
-
-    font-size: 11px;
-
-    font-weight: 900;
-}
-
-/* =====================================================
-   JOB CARD
-===================================================== */
-
-.job-card {
-    background: white;
-
-    border:
-        1px solid
-        #e8ebf1;
-
-    border-radius: 17px;
-
-    padding: 17px;
-
-    margin-bottom: 14px;
-
-    box-shadow:
-        0 5px 20px
-        rgba(15,23,42,.055);
-
-    transition:
-        transform .18s,
-        box-shadow .18s;
-}
-
-.job-card:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 9px 28px
-        rgba(15,23,42,.09);
-}
-
-.job-top {
-    display: flex;
-
-    align-items: flex-start;
-    justify-content: space-between;
-
-    gap: 12px;
-
-    margin-bottom: 12px;
-}
-
-.job-title {
-    margin:
-        0 0 5px;
-
-    font-size: 18px;
-
-    line-height: 1.3;
-
-    font-weight: 900;
-}
-
-.company-name {
-    color:
-        var(--primary);
-
-    font-size: 13px;
-
-    font-weight: 900;
-}
-
-.contractor-name {
-    margin-top: 5px;
-
-    color:
-        #059669;
-
-    font-size: 12px;
-
-    font-weight: 900;
-}
-
-.job-badge {
-    background:
-        #dcfce7;
-
-    color:
-        #166534;
-
-    padding:
-        6px 9px;
-
-    border-radius: 20px;
-
-    font-size: 10px;
-
-    font-weight: 900;
-
-    white-space: nowrap;
-}
-
-/* =====================================================
-   JOB DETAILS
-===================================================== */
-
-.job-details {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2,minmax(0,1fr));
-
-    gap: 8px;
-
-    margin:
-        14px 0;
-
-    padding:
-        12px 0;
-
-    border-top:
-        1px solid
-        #f1f5f9;
-
-    border-bottom:
-        1px solid
-        #f1f5f9;
-}
-
-.detail {
-    font-size: 12px;
+        #f8fafc;
 
     color:
         #64748b;
 
-    line-height: 1.5;
+    font-size:11px;
+
+    line-height:1.6;
 }
 
-.detail strong {
+.search-example strong{
+    color:#334155;
+
+    font-size:12px;
+}
+
+.search-example p{
+    margin:
+        7px 0 0;
+}
+
+
+/* =========================================================
+   SEARCH BUTTON
+========================================================= */
+
+.search-btn{
+    position:relative;
+
+    width:100%;
+
+    margin-top:20px;
+
+    min-height:50px;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #2563eb
+        );
+
+    font-size:14px;
+
+    font-weight:950;
+
+    letter-spacing:.1px;
+
+    box-shadow:
+        0 9px 22px
+        rgba(79,70,229,.20);
+
+    transition:
+        all .2s ease;
+}
+
+.search-btn:hover{
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 12px 27px
+        rgba(79,70,229,.26);
+}
+
+.search-btn:active{
+    transform:
+        translateY(0)
+        scale(.99);
+}
+
+
+/* =========================================================
+   RESULTS AREA
+========================================================= */
+
+.results-area{
+    margin-top:31px;
+}
+
+.results-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-bottom:15px;
+
+    padding:
+        0 2px;
+}
+
+.results-header h2{
+    margin:0;
+
+    font-size:20px;
+
+    font-weight:950;
+
+    letter-spacing:-.3px;
+}
+
+.result-count{
+    padding:
+        6px 11px;
+
+    border-radius:30px;
+
+    color:#3730a3;
+
+    background:#eef2ff;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    border:
+        1px solid
+        #e0e7ff;
+}
+
+
+/* =========================================================
+   JOB CARD
+========================================================= */
+
+.job-card{
+    position:relative;
+
+    overflow:hidden;
+
+    background:white;
+
+    border:
+        1px solid
+        #e3e8f0;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+        var(--shadow-sm);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+
+    animation:
+        cardIn .3s ease both;
+}
+
+.job-card::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #4f46e5,
+            #2563eb
+        );
+}
+
+.job-card:hover{
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #d7def0;
+
+    box-shadow:
+        var(--shadow);
+}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:translateY(7px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* =========================================================
+   JOB TOP
+========================================================= */
+
+.job-top{
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:14px;
+}
+
+.job-title{
+    margin:
+        0 0 6px;
+
     color:
-        #1e293b;
+        #0f172a;
+
+    font-size:18px;
+
+    line-height:1.35;
+
+    font-weight:950;
 }
 
-/* =====================================================
+.company-name{
+    color:
+        #4f46e5;
+
+    font-size:12px;
+
+    font-weight:900;
+}
+
+.contractor-name{
+    margin-top:6px;
+
+    color:
+        #059669;
+
+    font-size:11px;
+
+    font-weight:900;
+}
+
+.job-badge{
+    flex:none;
+
+    padding:
+        6px 10px;
+
+    border-radius:30px;
+
+    color:
+        #166534;
+
+    background:
+        #dcfce7;
+
+    border:
+        1px solid
+        #bbf7d0;
+
+    font-size:10px;
+
+    font-weight:950;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   JOB DETAILS
+========================================================= */
+
+.job-details{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:10px;
+
+    margin:
+        15px 0;
+
+    padding:
+        14px 0;
+
+    border-top:
+        1px solid
+        #edf1f5;
+
+    border-bottom:
+        1px solid
+        #edf1f5;
+}
+
+.detail{
+    color:
+        #64748b;
+
+    font-size:11px;
+
+    line-height:1.55;
+}
+
+.detail strong{
+    color:
+        #334155;
+
+    font-weight:850;
+}
+
+
+/* =========================================================
    SKILLS
-===================================================== */
+========================================================= */
 
-.skills {
-    margin-top: 11px;
+.skills{
+    margin-top:12px;
 
-    font-size: 12px;
+    color:
+        #475569;
+
+    font-size:11px;
 }
 
-.skill-tag {
-    display: inline-block;
+.skill-tag{
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:
+        5px 8px;
+
+    margin:
+        5px 3px 0 0;
+
+    border-radius:7px;
+
+    color:
+        #475569;
+
+    background:
+        #f1f5f9;
+
+    border:
+        1px solid
+        #e2e8f0;
+
+    font-size:9px;
+
+    font-weight:800;
+}
+
+
+/* =========================================================
+   BENEFITS
+========================================================= */
+
+.benefit-detail{
+    margin-top:12px;
+
+    padding:
+        10px 11px;
+
+    border-radius:9px;
+
+    color:
+        #166534;
+
+    background:
+        #f0fdf4;
+
+    border:
+        1px solid
+        #dcfce7;
+}
+
+
+/* =========================================================
+   APPLY BUTTON
+========================================================= */
+
+.apply-btn{
+    width:100%;
+
+    min-height:45px;
+
+    margin-top:13px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:
+        #0f172a;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+    font-weight:900;
+
+    transition:
+        all .18s ease;
+}
+
+.apply-btn:hover{
+    background:
+        #1e293b;
+
+    transform:
+        translateY(-1px);
+}
+
+.apply-btn:active{
+    transform:
+        scale(.99);
+}
+
+
+/* =========================================================
+   EMPTY / ERROR / LOADING
+========================================================= */
+
+.message-box{
+    padding:
+        38px 20px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:17px;
+
+    background:white;
+
+    color:
+        #64748b;
+
+    font-size:12px;
+
+    line-height:1.8;
+
+    box-shadow:
+        var(--shadow-sm);
+}
+
+.loading{
+    padding:
+        32px 20px;
+
+    text-align:center;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:17px;
+
+    background:white;
+
+    color:
+        var(--primary);
+
+    font-size:13px;
+
+    font-weight:900;
+
+    box-shadow:
+        var(--shadow-sm);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:none;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    background:
+        rgba(2,6,23,.68);
+
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
+}
+
+.modal.show{
+    display:flex;
+
+    animation:
+        modalBg .2s ease;
+}
+
+@keyframes modalBg{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+}
+
+.modal-box{
+    width:100%;
+
+    max-width:600px;
+
+    max-height:94vh;
+
+    overflow-y:auto;
+
+    padding:
+        23px;
+
+    background:white;
+
+    border-radius:
+        24px 24px 0 0;
+
+    box-shadow:
+        0 -15px 60px
+        rgba(0,0,0,.20);
+
+    animation:
+        modalUp .25s ease;
+}
+
+@keyframes modalUp{
+    from{
+        transform:
+            translateY(40px);
+
+        opacity:0;
+    }
+
+    to{
+        transform:
+            translateY(0);
+
+        opacity:1;
+    }
+}
+
+.modal-header{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:17px;
+}
+
+.modal-header h2{
+    margin:0;
+
+    font-size:20px;
+
+    font-weight:950;
+}
+
+.close-btn{
+    width:37px;
+    height:37px;
+
+    flex:none;
+
+    border:none;
+
+    border-radius:50%;
 
     background:
         #f1f5f9;
@@ -758,252 +1427,81 @@ select:focus {
     color:
         #475569;
 
-    padding:
-        5px 8px;
+    cursor:pointer;
 
-    margin:
-        3px 2px;
+    font-size:21px;
 
-    border-radius: 6px;
-
-    font-size: 10px;
-
-    font-weight: 700;
-}
-
-/* =====================================================
-   BENEFITS
-===================================================== */
-
-.benefit-detail {
-    margin-top: 10px;
-
-    background:
-        #f0fdf4;
-
-    border-radius: 8px;
-
-    padding: 8px;
-
-    color: #166534;
-}
-
-/* =====================================================
-   APPLY BUTTON
-===================================================== */
-
-.apply-btn {
-    width: 100%;
-
-    border: none;
-
-    padding:
-        12px;
-
-    border-radius: 10px;
-
-    background:
-        #111827;
-
-    color: white;
-
-    font-size: 14px;
-
-    font-weight: 900;
-
-    cursor: pointer;
-
-    margin-top: 11px;
+    line-height:1;
 
     transition:
-        background .15s,
-        transform .15s;
+        .18s ease;
 }
 
-.apply-btn:hover {
+.close-btn:hover{
     background:
-        #374151;
+        #e2e8f0;
 }
 
-.apply-btn:active {
-    transform:
-        scale(.99);
-}
 
-/* =====================================================
-   MESSAGE / LOADING
-===================================================== */
+/* =========================================================
+   SELECTED JOB
+========================================================= */
 
-.message-box {
-    background: white;
+.selected-job{
+    padding:
+        14px;
+
+    margin-bottom:19px;
 
     border:
         1px solid
-        #e5e7eb;
+        #dbe4ff;
 
-    padding:
-        30px 18px;
+    border-radius:13px;
 
-    text-align: center;
-
-    border-radius: 15px;
+    background:
+        linear-gradient(
+            135deg,
+            #f5f7ff,
+            #eff6ff
+        );
 
     color:
         #64748b;
 
-    font-size: 13px;
+    font-size:11px;
 
-    line-height: 1.7;
-
-    box-shadow:
-        0 4px 15px
-        rgba(0,0,0,.04);
+    line-height:1.7;
 }
 
-.loading {
-    background: white;
+.selected-job strong{
+    display:block;
 
-    padding:
-        28px;
-
-    border-radius: 15px;
-
-    text-align: center;
+    margin-bottom:4px;
 
     color:
-        var(--primary);
+        #0f172a;
 
-    font-weight: 900;
+    font-size:15px;
+
+    font-weight:950;
 }
 
-/* =====================================================
-   MODAL
-===================================================== */
 
-.modal {
-    position: fixed;
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
 
-    inset: 0;
+.submit-btn{
+    width:100%;
 
-    background:
-        rgba(15,23,42,.65);
+    min-height:48px;
 
-    display: none;
+    margin-top:19px;
 
-    align-items: flex-end;
-    justify-content: center;
+    border:none;
 
-    padding: 0;
-
-    z-index: 9999;
-}
-
-.modal.show {
-    display: flex;
-}
-
-.modal-box {
-    width: 100%;
-
-    max-width: 560px;
-
-    max-height: 94vh;
-
-    overflow-y: auto;
-
-    background: white;
-
-    border-radius:
-        22px 22px 0 0;
-
-    padding:
-        20px;
-
-    box-shadow:
-        0 -8px 35px
-        rgba(0,0,0,.18);
-}
-
-.modal-header {
-    display: flex;
-
-    align-items: center;
-    justify-content: space-between;
-
-    margin-bottom: 16px;
-}
-
-.modal-header h2 {
-    margin: 0;
-
-    font-size: 20px;
-    font-weight: 900;
-}
-
-.close-btn {
-    border: none;
-
-    background:
-        #f1f5f9;
-
-    width: 36px;
-    height: 36px;
-
-    border-radius: 50%;
-
-    font-size: 20px;
-
-    cursor: pointer;
-
-    color: #475569;
-}
-
-.selected-job {
-    background:
-        linear-gradient(
-            135deg,
-            #eef2ff,
-            #f8fafc
-        );
-
-    border:
-        1px solid
-        #dbe3ff;
-
-    padding:
-        13px;
-
-    border-radius: 11px;
-
-    margin-bottom: 18px;
-
-    font-size: 12px;
-
-    line-height: 1.7;
-
-    color: #475569;
-}
-
-.selected-job strong {
-    display: block;
-
-    margin-bottom: 3px;
-
-    font-size: 15px;
-
-    color: #111827;
-}
-
-.submit-btn {
-    width: 100%;
-
-    margin-top: 17px;
-
-    padding: 13px;
-
-    border: none;
-
-    border-radius: 10px;
+    border-radius:11px;
 
     background:
         linear-gradient(
@@ -1012,126 +1510,268 @@ select:focus {
             #059669
         );
 
-    color: white;
+    color:white;
 
-    font-size: 15px;
+    cursor:pointer;
 
-    font-weight: 900;
+    font-size:13px;
 
-    cursor: pointer;
+    font-weight:950;
+
+    box-shadow:
+        0 8px 20px
+        rgba(22,163,74,.18);
+
+    transition:
+        all .18s ease;
 }
 
-.submit-btn:disabled {
-    opacity: .65;
-    cursor: not-allowed;
+.submit-btn:hover{
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 11px 25px
+        rgba(22,163,74,.23);
 }
 
-/* =====================================================
+.submit-btn:disabled{
+    opacity:.6;
+
+    cursor:not-allowed;
+
+    transform:none;
+}
+
+
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
-.footer {
-    text-align: center;
-
+.footer{
     padding:
-        10px 15px
-        30px;
+        8px 20px
+        35px;
+
+    text-align:center;
 
     color:
         #94a3b8;
 
-    font-size: 10px;
+    font-size:10px;
+
+    letter-spacing:.1px;
 }
 
-/* =====================================================
+
+/* =========================================================
    MOBILE
-===================================================== */
+========================================================= */
 
-@media (max-width:700px) {
+@media(max-width:700px){
 
-    .brand {
-        font-size: 18px;
+    .header-inner{
+        width:94%;
+
+        min-height:64px;
     }
 
-    .brand-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 19px;
+    .brand-icon{
+        width:38px;
+        height:38px;
+
+        border-radius:11px;
+
+        font-size:18px;
     }
 
-    .brand-sub {
-        display: none;
+    .brand{
+        font-size:18px;
     }
 
-    .status-btn {
+    .brand-sub{
+        display:none;
+    }
+
+    .status-btn{
         padding:
-            8px 10px;
+            9px 10px;
+
+        font-size:10px;
     }
 
-    .hero {
+    .hero{
         padding:
-            24px 14px
-            20px;
+            38px 17px
+            55px;
     }
 
-    .hero h1 {
-        font-size: 26px;
+    .hero h1{
+        font-size:32px;
+
+        letter-spacing:-1px;
     }
 
-    .search-card {
-        padding: 15px;
-        border-radius: 17px;
+    .hero p{
+        font-size:12px;
     }
 
-    .search-modes {
-        grid-template-columns: 1fr;
+    .hero-stat{
+        min-width:110px;
     }
 
-    .form-grid {
-        grid-template-columns: 1fr;
+    .container{
+        width:94%;
+
+        margin:
+            -24px auto
+            40px;
     }
 
-    .field.full {
-        grid-column: auto;
-    }
-
-    .job-details {
-        grid-template-columns: 1fr;
-    }
-
-    .job-top {
-        flex-direction: column;
-    }
-
-    .job-badge {
-        align-self: flex-start;
-    }
-
-    .job-title {
-        font-size: 17px;
-    }
-
-    .modal-box {
+    .search-card{
         padding:
-            18px;
+            16px;
+
+        border-radius:
+            19px;
     }
+
+    .search-heading h2{
+        font-size:19px;
+    }
+
+    .search-modes{
+        grid-template-columns:1fr;
+
+        gap:7px;
+
+        padding:4px;
+    }
+
+    .mode-btn{
+        min-height:65px;
+
+        padding:
+            10px 12px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+
+        gap:15px;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .job-details{
+        grid-template-columns:1fr;
+    }
+
+    .job-top{
+        flex-direction:column;
+
+        gap:8px;
+    }
+
+    .job-badge{
+        align-self:flex-start;
+    }
+
+    .job-card{
+        padding:17px;
+    }
+
+    .job-title{
+        font-size:17px;
+    }
+
+    .results-header h2{
+        font-size:18px;
+    }
+
+    .modal-box{
+        padding:
+            19px;
+
+        border-radius:
+            22px 22px 0 0;
+    }
+
 }
 
-/* =====================================================
+
+/* =========================================================
    DESKTOP
-===================================================== */
+========================================================= */
 
-@media (min-width:701px) {
+@media(min-width:701px){
 
-    .modal {
-        align-items: center;
-        padding: 15px;
+    .modal{
+        align-items:center;
+
+        padding:20px;
     }
 
-    .modal-box {
-        border-radius: 18px;
+    .modal-box{
+        border-radius:20px;
     }
 
+}
+
+
+/* =========================================================
+   EXTRA SMALL
+========================================================= */
+
+@media(max-width:380px){
+
+    .status-btn{
+        padding:
+            8px;
+
+        font-size:9px;
+    }
+
+    .hero h1{
+        font-size:28px;
+    }
+
+    .hero-stats{
+        gap:6px;
+    }
+
+    .hero-stat{
+        min-width:100px;
+
+        padding:
+            8px;
+    }
+
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar{
+    width:7px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f1f5f9;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#94a3b8;
 }
 
 </style>
@@ -1141,9 +1781,9 @@ select:focus {
 <body>
 
 
-<!-- =================================================
+<!-- =========================================================
      HEADER
-================================================= -->
+========================================================= -->
 
 <header class="app-header">
 
@@ -1169,6 +1809,7 @@ select:focus {
 
         </div>
 
+
         <a
             href="status.html"
             class="status-btn"
@@ -1181,43 +1822,65 @@ select:focus {
 </header>
 
 
-<!-- =================================================
+
+<!-- =========================================================
      HERO
-===================================================== -->
+========================================================= -->
 
 <section class="hero">
 
     <div class="hero-inner">
 
         <div class="hero-badge">
-            🚀 आपका अगला Job यहीं से
+            ✦ Smart Job Search Platform
         </div>
 
         <h1>
-            अपनी पसंद की
-            <span>नौकरी खोजें</span>
+            आपकी अगली
+            <span>Job यहीं है</span>
         </h1>
 
         <p>
-            अपनी Qualification, Trade और Location
-            के अनुसार उपलब्ध Jobs खोजें।
+            अपनी Qualification, Trade, Experience और
+            Location के अनुसार बेहतर Job Opportunities खोजें।
         </p>
+
+
+        <div class="hero-stats">
+
+            <div class="hero-stat">
+                <strong>🔎 Smart Search</strong>
+                Qualification Based
+            </div>
+
+            <div class="hero-stat">
+                <strong>🏢 Real Jobs</strong>
+                Contractor Opportunities
+            </div>
+
+            <div class="hero-stat">
+                <strong>⚡ Easy Apply</strong>
+                Simple Application
+            </div>
+
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =================================================
+
+<!-- =========================================================
      MAIN
-===================================================== -->
+========================================================= -->
 
 <div class="container">
 
 
-    <!-- =================================================
+    <!-- =====================================================
          SEARCH CARD
-    ================================================= -->
+    ===================================================== -->
 
     <div class="search-card">
 
@@ -1228,7 +1891,7 @@ select:focus {
             </h2>
 
             <p>
-                नौकरी खोजने का अपना तरीका चुनें
+                अपने लिए सही Job खोजने का तरीका चुनें
             </p>
 
         </div>
@@ -1248,7 +1911,7 @@ select:focus {
                 👷 अपनी योग्यता से Job
 
                 <span>
-                    Qualification और Trade से खोजें
+                    Qualification, Trade और Location के आधार पर खोजें
                 </span>
 
             </button>
@@ -1261,15 +1924,16 @@ select:focus {
                 onclick="switchSearchMode('contractor')"
             >
 
-                🏢 ठेका के नाम से
+                🏢 ठेके के नाम से खोजें
 
                 <span>
-                    ठेका का नाम डालकर खोजें
+                    किसी खास Contractor की Jobs देखें
                 </span>
 
             </button>
 
         </div>
+
 
 
         <!-- =================================================
@@ -1285,14 +1949,14 @@ select:focus {
 
                 👷
                 <strong>
-                    अपनी योग्यता से Job खोजें
+                    अपनी Qualification के अनुसार Job खोजें
                 </strong>
 
                 <br>
 
-                अपनी Qualification, Trade और पसंद की
-                Location भरें। JOBNEX आपके लिए
-                उपलब्ध Jobs दिखाएगा।
+                अपनी Qualification, Trade, Location और
+                Experience भरें। JOBNEX उपलब्ध Jobs को
+                आपके लिए दिखाएगा।
 
             </div>
 
@@ -1307,7 +1971,7 @@ select:focus {
                     <div class="field">
 
                         <label>
-                            🎓 आपने कितनी पढ़ाई की है? *
+                            🎓 Qualification *
                         </label>
 
                         <input
@@ -1318,8 +1982,7 @@ select:focus {
                         >
 
                         <div class="field-help">
-                            अपनी सबसे बड़ी पढ़ाई लिखें।
-                            जैसे 10th, 12th, ITI, Diploma, B.A. आदि।
+                            अपनी सबसे बड़ी qualification लिखें।
                         </div>
 
                     </div>
@@ -1330,18 +1993,18 @@ select:focus {
                     <div class="field">
 
                         <label>
-                            🔧 आपको कौन-सा काम आता है? *
+                            🔧 Trade / काम *
                         </label>
 
                         <input
                             type="text"
                             id="trade"
-                            placeholder="जैसे: Helper, Electrician, Fitter"
+                            placeholder="जैसे: Electrician, Fitter, Helper"
                             required
                         >
 
                         <div class="field-help">
-                            जो काम आपको आता है उसका नाम लिखें।
+                            जिस काम में आप Job चाहते हैं।
                         </div>
 
                     </div>
@@ -1352,7 +2015,7 @@ select:focus {
                     <div class="field">
 
                         <label>
-                            💼 आप कौन-सी Job चाहते हैं?
+                            💼 Preferred Job
                         </label>
 
                         <input
@@ -1362,8 +2025,7 @@ select:focus {
                         >
 
                         <div class="field-help">
-                            Job का नाम पता हो तो लिखें,
-                            नहीं तो खाली छोड़ सकते हैं।
+                            Job का नाम पता हो तो लिखें।
                         </div>
 
                     </div>
@@ -1374,18 +2036,18 @@ select:focus {
                     <div class="field">
 
                         <label>
-                            📍 Job कहाँ चाहिए? *
+                            📍 Preferred Location *
                         </label>
 
                         <input
                             type="text"
                             id="preferredLocation"
-                            placeholder="जैसे: Pantnagar, Delhi"
+                            placeholder="जैसे: Pantnagar, Rudrapur, Delhi"
                             required
                         >
 
                         <div class="field-help">
-                            जिस शहर या जगह के पास Job चाहिए।
+                            जिस जगह या शहर के पास Job चाहिए।
                         </div>
 
                     </div>
@@ -1407,7 +2069,7 @@ select:focus {
                         >
 
                         <div class="field-help">
-                            इस काम का अनुभव कितने साल है?
+                            संबंधित काम का अनुभव वर्षों में।
                         </div>
 
                     </div>
@@ -1452,17 +2114,17 @@ select:focus {
                     <div class="field full">
 
                         <label>
-                            🛠️ और कौन-कौन से Skills आते हैं?
+                            🛠️ Additional Skills
                         </label>
 
                         <input
                             type="text"
                             id="skills"
-                            placeholder="जैसे: Wiring, Welding, Computer, Machine"
+                            placeholder="जैसे: Wiring, Welding, PLC, Computer, Machine"
                         >
 
                         <div class="field-help">
-                            आपको आने वाले अन्य काम/Skills लिखें।
+                            आपको आने वाले अन्य skills comma से लिख सकते हैं।
                         </div>
 
                     </div>
@@ -1475,19 +2137,28 @@ select:focus {
                 <div class="search-example">
 
                     <strong>
-                        💡 Example
+                        💡 Search Example
                     </strong>
 
                     <p>
-                        पढ़ाई: <b>10th</b>
+                        Qualification:
+                        <b>Diploma</b>
                         <br>
-                        काम: <b>Helper</b>
+
+                        Trade:
+                        <b>Electrician</b>
                         <br>
-                        Job: <b>Helper</b>
+
+                        Job:
+                        <b>Technician</b>
                         <br>
-                        जगह: <b>Pantnagar</b>
+
+                        Location:
+                        <b>Pantnagar</b>
                         <br>
-                        Experience: <b>1 साल</b>
+
+                        Experience:
+                        <b>2 Years</b>
                     </p>
 
                 </div>
@@ -1505,6 +2176,7 @@ select:focus {
         </div>
 
 
+
         <!-- =================================================
              CONTRACTOR SEARCH
         ================================================= -->
@@ -1518,14 +2190,13 @@ select:focus {
 
                 🏢
                 <strong>
-                    ठेका के नाम से Job खोजें
+                    किसी खास Contractor की Jobs खोजें
                 </strong>
 
                 <br>
 
-                अगर आप किसी खास ठेका की Jobs
-                देखना चाहते हैं, तो उसके नाम का कोई
-                हिस्सा लिखें।
+                Contractor या ठेके के नाम का कोई भी
+                हिस्सा लिखें और उसकी उपलब्ध Jobs देखें।
 
                 <br><br>
 
@@ -1533,11 +2204,11 @@ select:focus {
                     Example:
                 </strong>
 
-                अगर नाम
+                अगर Contractor का नाम
+                <strong>Digital Engineering</strong>
+                है तो आप केवल
                 <strong>Digital</strong>
-                है तो केवल
-                <strong>Digital</strong>
-                लिखें।
+                भी लिख सकते हैं।
 
             </div>
 
@@ -1549,7 +2220,7 @@ select:focus {
                     <div class="field full">
 
                         <label>
-                            🏢 ठेका का नाम *
+                            🏢 Contractor / ठेका का नाम *
                         </label>
 
                         <input
@@ -1573,7 +2244,7 @@ select:focus {
                     type="submit"
                     class="search-btn"
                 >
-                    🏢 ठेका की Jobs खोजें
+                    🏢 Contractor की Jobs खोजें
                 </button>
 
             </form>
@@ -1583,9 +2254,10 @@ select:focus {
     </div>
 
 
-    <!-- =================================================
+
+    <!-- =====================================================
          RESULTS
-    ================================================= -->
+    ===================================================== -->
 
     <div class="results-area">
 
@@ -1610,9 +2282,12 @@ select:focus {
 
             <div class="message-box">
 
-                👆 ऊपर से अपना Search तरीका चुनें
+                🔎 ऊपर अपनी जानकारी भरें
+
                 <br>
-                और Job खोजें।
+
+                और JOBNEX पर उपलब्ध
+                <b>Job Opportunities</b> खोजें।
 
             </div>
 
@@ -1623,9 +2298,10 @@ select:focus {
 </div>
 
 
-<!-- =================================================
+
+<!-- =========================================================
      APPLY MODAL
-===================================================== -->
+========================================================= -->
 
 <div
     id="applyModal"
@@ -1683,7 +2359,7 @@ select:focus {
 
             <div
                 class="field"
-                style="margin-top:12px;"
+                style="margin-top:13px;"
             >
 
                 <label>
@@ -1703,7 +2379,7 @@ select:focus {
 
             <div
                 class="field"
-                style="margin-top:12px;"
+                style="margin-top:13px;"
             >
 
                 <label>
@@ -1722,7 +2398,7 @@ select:focus {
 
             <div
                 class="field"
-                style="margin-top:12px;"
+                style="margin-top:13px;"
             >
 
                 <label>
@@ -1741,7 +2417,7 @@ select:focus {
 
             <div
                 class="field"
-                style="margin-top:12px;"
+                style="margin-top:13px;"
             >
 
                 <label>
@@ -1760,7 +2436,7 @@ select:focus {
 
             <div
                 class="field"
-                style="margin-top:12px;"
+                style="margin-top:13px;"
             >
 
                 <label>
@@ -1778,7 +2454,7 @@ select:focus {
 
             <div
                 class="field"
-                style="margin-top:12px;"
+                style="margin-top:13px;"
             >
 
                 <label>
@@ -1808,37 +2484,44 @@ select:focus {
 </div>
 
 
-<!-- =================================================
+
+<!-- =========================================================
      FOOTER
-===================================================== -->
+========================================================= -->
 
 <div class="footer">
-    © 2026 JOBNEX • Job & Worker Network
+
+    © 2026 JOBNEX
+    <br>
+    Professional Job & Worker Network
+
 </div>
+
 
 
 <script>
 
-/* =====================================================
+/* =========================================================
    API
-===================================================== */
+========================================================= */
 
 const API_URL =
     "https://industrial-contractor-job-network.onrender.com/api";
 
 
-/* =====================================================
+/* =========================================================
    JOB CACHE
-===================================================== */
+========================================================= */
 
-const jobCache = new Map();
+const jobCache =
+    new Map();
 
 
-/* =====================================================
+/* =========================================================
    SEARCH MODE
-===================================================== */
+========================================================= */
 
-function switchSearchMode(mode) {
+function switchSearchMode(mode){
 
     const workerSection =
         document.getElementById(
@@ -1860,47 +2543,82 @@ function switchSearchMode(mode) {
             "contractorModeBtn"
         );
 
-    if (mode === "worker") {
 
-        workerSection.classList.add("active");
-        contractorSection.classList.remove("active");
+    if(mode === "worker"){
 
-        workerBtn.classList.add("active");
-        contractorBtn.classList.remove("active");
+        workerSection.classList.add(
+            "active"
+        );
 
-    } else {
+        contractorSection.classList.remove(
+            "active"
+        );
 
-        contractorSection.classList.add("active");
-        workerSection.classList.remove("active");
+        workerBtn.classList.add(
+            "active"
+        );
 
-        contractorBtn.classList.add("active");
-        workerBtn.classList.remove("active");
+        contractorBtn.classList.remove(
+            "active"
+        );
+
+    }else{
+
+        contractorSection.classList.add(
+            "active"
+        );
+
+        workerSection.classList.remove(
+            "active"
+        );
+
+        contractorBtn.classList.add(
+            "active"
+        );
+
+        workerBtn.classList.remove(
+            "active"
+        );
 
     }
 
-    document.getElementById("results").innerHTML = `
+
+    document.getElementById(
+        "results"
+    ).innerHTML = `
+
         <div class="message-box">
-            👆 अपनी जानकारी भरकर
+
+            🔎 अपनी जानकारी भरकर
+
             <br>
+
             Job खोजें।
+
         </div>
+
     `;
+
 
     document.getElementById(
         "resultCount"
-    ).style.display = "none";
+    ).style.display =
+        "none";
+
 }
 
 
-/* =====================================================
+/* =========================================================
    WORKER SEARCH
-===================================================== */
+========================================================= */
 
 document
-    .getElementById("workerSearchForm")
+    .getElementById(
+        "workerSearchForm"
+    )
     .addEventListener(
         "submit",
-        async function(event) {
+        async function(event){
 
             event.preventDefault();
 
@@ -1910,47 +2628,67 @@ document
     );
 
 
-async function searchWorkerJobs() {
+async function searchWorkerJobs(){
 
     const qualification =
         document
-            .getElementById("qualification")
+            .getElementById(
+                "qualification"
+            )
             .value
             .trim();
+
 
     const trade =
         document
-            .getElementById("trade")
+            .getElementById(
+                "trade"
+            )
             .value
             .trim();
+
 
     const preferredJob =
         document
-            .getElementById("preferredJob")
+            .getElementById(
+                "preferredJob"
+            )
             .value
             .trim();
+
 
     const location =
         document
-            .getElementById("preferredLocation")
+            .getElementById(
+                "preferredLocation"
+            )
             .value
             .trim();
+
 
     const experience =
         document
-            .getElementById("experience")
+            .getElementById(
+                "experience"
+            )
             .value
             .trim();
+
 
     const gender =
         document
-            .getElementById("gender")
+            .getElementById(
+                "gender"
+            )
             .value
             .trim();
 
+
     const skills =
         document
-            .getElementById("skills")
+            .getElementById(
+                "skills"
+            )
             .value
             .trim();
 
@@ -1964,15 +2702,18 @@ async function searchWorkerJobs() {
         qualification
     );
 
+
     params.set(
         "trade",
         trade
     );
 
+
     params.set(
         "location",
         location
     );
+
 
     params.set(
         "gender",
@@ -1980,7 +2721,7 @@ async function searchWorkerJobs() {
     );
 
 
-    if (preferredJob) {
+    if(preferredJob){
 
         params.set(
             "preferredJob",
@@ -1990,7 +2731,7 @@ async function searchWorkerJobs() {
     }
 
 
-    if (experience !== "") {
+    if(experience !== ""){
 
         params.set(
             "experience",
@@ -2000,7 +2741,7 @@ async function searchWorkerJobs() {
     }
 
 
-    if (skills) {
+    if(skills){
 
         params.set(
             "skills",
@@ -2021,15 +2762,17 @@ async function searchWorkerJobs() {
 }
 
 
-/* =====================================================
+/* =========================================================
    CONTRACTOR SEARCH
-===================================================== */
+========================================================= */
 
 document
-    .getElementById("contractorSearchForm")
+    .getElementById(
+        "contractorSearchForm"
+    )
     .addEventListener(
         "submit",
-        async function(event) {
+        async function(event){
 
             event.preventDefault();
 
@@ -2039,16 +2782,18 @@ document
     );
 
 
-async function searchContractorJobs() {
+async function searchContractorJobs(){
 
     const contractorName =
         document
-            .getElementById("contractorName")
+            .getElementById(
+                "contractorName"
+            )
             .value
             .trim();
 
 
-    if (!contractorName) {
+    if(!contractorName){
 
         alert(
             "कृपया ठेका का नाम लिखें।"
@@ -2080,19 +2825,20 @@ async function searchContractorJobs() {
 }
 
 
-/* =====================================================
+/* =========================================================
    COMMON SEARCH
-===================================================== */
+========================================================= */
 
 async function performSearch(
     url,
     searchType
-) {
+){
 
     const results =
         document.getElementById(
             "results"
         );
+
 
     const resultCount =
         document.getElementById(
@@ -2101,9 +2847,13 @@ async function performSearch(
 
 
     results.innerHTML = `
+
         <div class="loading">
+
             ⏳ Jobs खोजी जा रही हैं...
+
         </div>
+
     `;
 
 
@@ -2111,7 +2861,7 @@ async function performSearch(
         "none";
 
 
-    try {
+    try{
 
         const response =
             await fetch(url);
@@ -2121,7 +2871,7 @@ async function performSearch(
             await response.json();
 
 
-        if (!response.ok) {
+        if(!response.ok){
 
             throw new Error(
                 data.message ||
@@ -2131,11 +2881,11 @@ async function performSearch(
         }
 
 
-        if (
+        if(
             !data.success ||
             !Array.isArray(data.jobs) ||
             data.jobs.length === 0
-        ) {
+        ){
 
             results.innerHTML = `
 
@@ -2145,15 +2895,23 @@ async function performSearch(
                         searchType === "contractor"
 
                         ? `
-                            🏢 इस ठेका की
+
+                            🏢 इस Contractor की
+
                             <br>
+
                             अभी कोई Available Job नहीं मिली।
+
                           `
 
                         : `
+
                             😔 आपकी जानकारी के अनुसार
+
                             <br>
+
                             अभी कोई Available Job नहीं मिली।
+
                           `
                     }
 
@@ -2186,7 +2944,7 @@ async function performSearch(
         window.scrollTo({
 
             top:
-                results.offsetTop - 80,
+                results.offsetTop - 90,
 
             behavior:
                 "smooth"
@@ -2194,7 +2952,7 @@ async function performSearch(
         });
 
 
-    } catch (error) {
+    }catch(error){
 
         console.error(
             "JOB SEARCH ERROR:",
@@ -2224,11 +2982,11 @@ async function performSearch(
 }
 
 
-/* =====================================================
+/* =========================================================
    RENDER JOB
-===================================================== */
+========================================================= */
 
-function renderJob(job) {
+function renderJob(job){
 
     const id =
         String(job._id);
@@ -2267,9 +3025,9 @@ function renderJob(job) {
     let skillsHtml = "";
 
 
-    if (
+    if(
         Array.isArray(job.skills)
-    ) {
+    ){
 
         skillsHtml =
             job.skills
@@ -2277,19 +3035,21 @@ function renderJob(job) {
                     skill => `
 
                         <span class="skill-tag">
+
                             ${escapeHtml(
                                 String(skill)
                             )}
+
                         </span>
 
                     `
                 )
                 .join("");
 
-    } else if (
+    }else if(
         typeof job.skills === "string" &&
         job.skills.trim()
-    ) {
+    ){
 
         skillsHtml =
             job.skills
@@ -2298,9 +3058,11 @@ function renderJob(job) {
                     skill => `
 
                         <span class="skill-tag">
+
                             ${escapeHtml(
                                 skill.trim()
                             )}
+
                         </span>
 
                     `
@@ -2317,7 +3079,8 @@ function renderJob(job) {
 
             <div class="contractor-name">
 
-                🏢 ठेका:
+                🏢 Contractor:
+
                 ${escapeHtml(
                     job.contractorName
                 )}
@@ -2339,21 +3102,26 @@ function renderJob(job) {
                 <div>
 
                     <h3 class="job-title">
+
                         ${escapeHtml(
                             job.jobTitle ||
                             "Job Opportunity"
                         )}
+
                     </h3>
+
 
                     <div class="company-name">
 
                         🏭
+
                         ${escapeHtml(
                             job.companyName ||
                             "Company"
                         )}
 
                     </div>
+
 
                     ${contractorHtml}
 
@@ -2376,12 +3144,14 @@ function renderJob(job) {
             </div>
 
 
+
             <div class="job-details">
 
 
                 <div class="detail">
 
                     📍
+
                     <strong>
                         जगह:
                     </strong>
@@ -2396,6 +3166,7 @@ function renderJob(job) {
                 <div class="detail">
 
                     💰
+
                     <strong>
                         Salary:
                     </strong>
@@ -2410,6 +3181,7 @@ function renderJob(job) {
                 <div class="detail">
 
                     🎓
+
                     <strong>
                         Qualification:
                     </strong>
@@ -2425,6 +3197,7 @@ function renderJob(job) {
                 <div class="detail">
 
                     🔧
+
                     <strong>
                         Trade:
                     </strong>
@@ -2440,6 +3213,7 @@ function renderJob(job) {
                 <div class="detail">
 
                     🧑‍🔧
+
                     <strong>
                         Experience:
                     </strong>
@@ -2454,6 +3228,7 @@ function renderJob(job) {
                 <div class="detail">
 
                     👤
+
                     <strong>
                         Gender:
                     </strong>
@@ -2474,6 +3249,7 @@ function renderJob(job) {
                         <div class="detail">
 
                             🏢
+
                             <strong>
                                 Department:
                             </strong>
@@ -2498,6 +3274,7 @@ function renderJob(job) {
                         <div class="detail">
 
                             📋
+
                             <strong>
                                 Job Type:
                             </strong>
@@ -2515,6 +3292,7 @@ function renderJob(job) {
 
 
             </div>
+
 
 
             ${
@@ -2540,16 +3318,16 @@ function renderJob(job) {
             }
 
 
+
             ${
                 job.benefits
 
                 ? `
 
-                    <div
-                        class="detail benefit-detail"
-                    >
+                    <div class="detail benefit-detail">
 
                         🎁
+
                         <strong>
                             Benefits:
                         </strong>
@@ -2564,6 +3342,7 @@ function renderJob(job) {
 
                 : ""
             }
+
 
 
             <button
@@ -2584,11 +3363,11 @@ function renderJob(job) {
 }
 
 
-/* =====================================================
+/* =========================================================
    OPEN APPLY
-===================================================== */
+========================================================= */
 
-function openApplyById(id) {
+function openApplyById(id){
 
     const job =
         jobCache.get(
@@ -2596,7 +3375,7 @@ function openApplyById(id) {
         );
 
 
-    if (!job) {
+    if(!job){
 
         alert(
             "Job information उपलब्ध नहीं है। दोबारा Search करें।"
@@ -2612,7 +3391,7 @@ function openApplyById(id) {
 }
 
 
-function openApply(job) {
+function openApply(job){
 
     document.getElementById(
         "applyJobId"
@@ -2634,6 +3413,7 @@ function openApply(job) {
         </strong>
 
         🏭
+
         ${escapeHtml(
             job.companyName ||
             "Company"
@@ -2642,6 +3422,7 @@ function openApply(job) {
         <br>
 
         📍
+
         ${escapeHtml(
             job.companyLocation ||
             job.industrialArea ||
@@ -2673,6 +3454,7 @@ function openApply(job) {
     document.getElementById(
         "applySkills"
     ).value =
+
         Array.isArray(job.skills)
 
         ? job.skills.join(", ")
@@ -2690,33 +3472,39 @@ function openApply(job) {
 
     document.getElementById(
         "applyModal"
-    ).classList.add("show");
+    ).classList.add(
+        "show"
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    CLOSE MODAL
-===================================================== */
+========================================================= */
 
-function closeApplyModal() {
+function closeApplyModal(){
 
     document.getElementById(
         "applyModal"
-    ).classList.remove("show");
+    ).classList.remove(
+        "show"
+    );
 
 }
 
 
-/* =====================================================
+/* =========================================================
    APPLY FORM
-===================================================== */
+========================================================= */
 
 document
-    .getElementById("applyForm")
+    .getElementById(
+        "applyForm"
+    )
     .addEventListener(
         "submit",
-        async function(event) {
+        async function(event){
 
             event.preventDefault();
 
@@ -2792,10 +3580,10 @@ document
                     .trim();
 
 
-            if (
+            if(
                 !/^[6-9]\d{9}$/
                     .test(workerMobile)
-            ) {
+            ){
 
                 alert(
                     "कृपया सही 10 अंकों का मोबाइल नंबर डालें।"
@@ -2812,13 +3600,15 @@ document
                 );
 
 
-            submitBtn.disabled = true;
+            submitBtn.disabled =
+                true;
+
 
             submitBtn.textContent =
                 "⏳ आवेदन जमा हो रहा है...";
 
 
-            try {
+            try{
 
                 const response =
                     await fetch(
@@ -2830,11 +3620,9 @@ document
                             method:
                                 "POST",
 
-                            headers: {
-
+                            headers:{
                                 "Content-Type":
                                     "application/json"
-
                             },
 
                             body:
@@ -2854,9 +3642,11 @@ document
                                     experience:
 
                                         experience
+
                                         ? Number(
                                             experience
                                         )
+
                                         : null,
 
                                     skills,
@@ -2874,7 +3664,7 @@ document
                     await response.json();
 
 
-                if (!response.ok) {
+                if(!response.ok){
 
                     throw new Error(
 
@@ -2886,9 +3676,9 @@ document
                 }
 
 
-                if (
+                if(
                     data.trackingToken
-                ) {
+                ){
 
                     localStorage.setItem(
 
@@ -2916,9 +3706,9 @@ document
                     .reset();
 
 
-                if (
+                if(
                     data.trackingToken
-                ) {
+                ){
 
                     window.location.href =
 
@@ -2929,7 +3719,7 @@ document
                 }
 
 
-            } catch (error) {
+            }catch(error){
 
                 console.error(
                     "APPLICATION ERROR:",
@@ -2945,7 +3735,7 @@ document
 
                 );
 
-            } finally {
+            }finally{
 
                 submitBtn.disabled =
                     false;
@@ -2959,19 +3749,21 @@ document
     );
 
 
-/* =====================================================
+/* =========================================================
    MODAL OUTSIDE CLICK
-===================================================== */
+========================================================= */
 
 document
-    .getElementById("applyModal")
+    .getElementById(
+        "applyModal"
+    )
     .addEventListener(
         "click",
-        function(event) {
+        function(event){
 
-            if (
+            if(
                 event.target === this
-            ) {
+            ){
 
                 closeApplyModal();
 
@@ -2981,17 +3773,17 @@ document
     );
 
 
-/* =====================================================
+/* =========================================================
    ESCAPE KEY
-===================================================== */
+========================================================= */
 
 document.addEventListener(
     "keydown",
-    function(event) {
+    function(event){
 
-        if (
+        if(
             event.key === "Escape"
-        ) {
+        ){
 
             closeApplyModal();
 
@@ -3001,32 +3793,33 @@ document.addEventListener(
 );
 
 
-/* =====================================================
+/* =========================================================
    SALARY
-===================================================== */
+========================================================= */
 
 function formatSalary(
     min,
     max
-) {
+){
 
     const format =
         value => {
 
-            if (
+            if(
                 value === null ||
                 value === undefined ||
                 value === ""
-            ) {
+            ){
 
                 return null;
 
             }
 
             return "₹" +
-                Number(value).toLocaleString(
-                    "en-IN"
-                );
+                Number(value)
+                    .toLocaleString(
+                        "en-IN"
+                    );
 
         };
 
@@ -3034,14 +3827,15 @@ function formatSalary(
     const minValue =
         format(min);
 
+
     const maxValue =
         format(max);
 
 
-    if (
+    if(
         minValue &&
         maxValue
-    ) {
+    ){
 
         return `${minValue} - ${maxValue}`;
 
@@ -3055,41 +3849,41 @@ function formatSalary(
 }
 
 
-/* =====================================================
+/* =========================================================
    EXPERIENCE
-===================================================== */
+========================================================= */
 
 function formatExperience(
     min,
     max
-) {
+){
 
-    if (
+    if(
         min !== null &&
         min !== undefined &&
         max !== null &&
         max !== undefined
-    ) {
+    ){
 
         return `${min} - ${max} Years`;
 
     }
 
 
-    if (
+    if(
         min !== null &&
         min !== undefined
-    ) {
+    ){
 
         return `${min}+ Years`;
 
     }
 
 
-    if (
+    if(
         max !== null &&
         max !== undefined
-    ) {
+    ){
 
         return `Up to ${max} Years`;
 
@@ -3101,16 +3895,16 @@ function formatExperience(
 }
 
 
-/* =====================================================
+/* =========================================================
    ESCAPE HTML
-===================================================== */
+========================================================= */
 
-function escapeHtml(value) {
+function escapeHtml(value){
 
-    if (
+    if(
         value === null ||
         value === undefined
-    ) {
+    ){
 
         return "";
 
