@@ -1,4 +1,4 @@
-<script>
+
 (() => {
   "use strict";
 
@@ -546,4 +546,4 @@
   loadJobs();
 
 })();
-</script>
+
