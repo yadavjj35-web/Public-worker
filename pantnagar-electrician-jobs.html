@@ -92,6 +92,364 @@
   <footer>
     <p>JOBNEX पर प्रकाशित जानकारी संबंधित भर्ती विवरण के अधीन है। आवेदन से पहले नौकरी की उपलब्धता और सभी शर्तें जाँचें।</p>
   </footer>
-  <script src="jobnex-seo-jobs.js" defer></script>
+  <script>
+(() => {
+  "use strict";
+
+  const API_URL =
+    "https://industrial-contractor-job-network.onrender.com/api/jobs/public-all";
+
+  const LIMIT = 10;
+  const MAX_SCAN_PAGES = 10;
+
+  const grid = document.getElementById("jnxJobsGrid");
+  const count = document.getElementById("jnxJobsCount");
+  const moreBtn = document.getElementById("jnxMoreJobsBtn");
+  const message = document.getElementById("jnxJobsMessage");
+
+  if (!grid || !count || !moreBtn || !message) {
+    console.error("JOBNEX: Job listing HTML elements nahi mile.");
+    return;
+  }
+
+  let page = 1;
+  let loading = false;
+  let hasMore = true;
+  let scannedPages = 0;
+  let loadedJobs = [];
+  const seen = new Set();
+
+  const fileName = location.pathname
+    .split("/")
+    .pop()
+    .replace(/\.html?$/i, "")
+    .toLowerCase();
+
+  const pageText = (
+    document.querySelector("main h1")?.textContent || ""
+  ).toLowerCase();
+
+  const locationTerms = fileName.includes("pantnagar")
+    ? ["pantnagar", "pant nagar"]
+    : fileName.includes("rudrapur")
+    ? ["rudrapur"]
+    : fileName.includes("sidcul")
+    ? ["sidcul", "rudrapur", "pantnagar", "pant nagar"]
+    : fileName.includes("uttarakhand")
+    ? [
+        "uttarakhand", "rudrapur", "pantnagar",
+        "pant nagar", "sidcul", "kashipur",
+        "haldwani", "dehradun", "haridwar", "roorkee"
+      ]
+    : [];
+
+  const categoryMap = [
+    ["electrician", ["electrician", "electrical", "wireman"]],
+    ["technician", ["technician", "maintenance technician"]],
+    ["helper", ["helper", "general worker", "unskilled"]],
+    ["iti", ["iti", "industrial training institute"]],
+    ["diploma", ["diploma", "polytechnic"]],
+    ["fresher", ["fresher", "freshers", "entry level"]],
+    ["maintenance", ["maintenance", "mechanic", "fitter"]],
+    ["production", ["production", "operator", "assembly"]],
+    ["supervisor", ["supervisor", "line leader"]],
+    ["factory", ["factory", "plant", "manufacturing"]],
+    ["private", ["private", "company", "industrial"]]
+  ];
+
+  const category = categoryMap.find(([key]) =>
+    fileName.includes(key) || pageText.includes(key)
+  );
+
+  const categoryTerms = category ? category[1] : [];
+
+  function safe(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]);
+  }
+
+  function getLocation(job) {
+    const contractor =
+      job.contractorId && typeof job.contractorId === "object"
+        ? job.contractorId
+        : {};
+
+    return [
+      job.companyLocation,
+      job.industrialArea,
+      job.location,
+      job.city,
+      job.address,
+      job.workLocation,
+      contractor.industrialArea,
+      contractor.city,
+      contractor.location
+    ].filter(Boolean).join(" ");
+  }
+
+  function getTitle(job) {
+    return job.jobTitle || job.title ||
+      job.position || job.designation || "Job Opportunity";
+  }
+
+  function getCompany(job) {
+    const contractor =
+      job.contractorId && typeof job.contractorId === "object"
+        ? job.contractorId
+        : {};
+
+    return job.companyName || contractor.companyName ||
+      job.contractorName || job.company || "Hiring Company";
+  }
+
+  function isActive(job) {
+    const status = String(job.status || "").toLowerCase();
+
+    if (job.isClosedByAdmin === true || job.isActive === false) {
+      return false;
+    }
+
+    if (["closed", "inactive", "expired", "filled", "cancelled"].includes(status)) {
+      return false;
+    }
+
+    if (
+      job.workersRemaining != null &&
+      Number(job.workersRemaining) <= 0
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function matches(job) {
+    if (!isActive(job)) return false;
+
+    const location = getLocation(job).toLowerCase();
+
+    const searchableText = [
+      getTitle(job),
+      getCompany(job),
+      location,
+      job.qualification,
+      job.trade,
+      job.department,
+      job.jobType,
+      job.skills
+    ].flat().filter(Boolean).join(" ").toLowerCase();
+
+    if (
+      locationTerms.length &&
+      !locationTerms.some(term => location.includes(term))
+    ) {
+      return false;
+    }
+
+    if (
+      categoryTerms.length &&
+      !categoryTerms.some(term => searchableText.includes(term))
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  function getSalary(job) {
+    const min = job.salaryMin ?? job.minSalary;
+    const max = job.salaryMax ?? job.maxSalary;
+
+    const format = value =>
+      Number(value).toLocaleString("en-IN");
+
+    if (min != null && max != null) {
+      return "₹" + format(min) + " - ₹" + format(max);
+    }
+
+    if (min != null) return "₹" + format(min) + "+";
+    if (max != null) return "Up to ₹" + format(max);
+
+    return job.salary || "वेतन की जानकारी उपलब्ध नहीं";
+  }
+
+  function renderJob(job) {
+    const id = job._id || job.id || job.jobId || "";
+    const title = safe(getTitle(job));
+    const company = safe(getCompany(job));
+    const location = safe(getLocation(job) || "विवरण देखें");
+    const salary = safe(getSalary(job));
+    const qualification = safe(
+      job.qualification || job.trade || "निर्दिष्ट नहीं"
+    );
+
+    let experience = "जानकारी उपलब्ध नहीं";
+
+    const minExp = job.experienceMin ?? job.minExperience;
+    const maxExp = job.experienceMax ?? job.maxExperience;
+
+    if (minExp != null && maxExp != null) {
+      experience = minExp + " - " + maxExp + " वर्ष";
+    } else if (minExp != null) {
+      experience = minExp + "+ वर्ष";
+    } else if (maxExp != null) {
+      experience = "अधिकतम " + maxExp + " वर्ष";
+    }
+
+    const detailsURL = id
+      ? "job.html?id=" + encodeURIComponent(id)
+      : "index.html";
+
+    return `
+      <article class="jnx-job-card">
+        <div class="jnx-job-top">
+          <div>
+            <h3 class="jnx-job-title">${title}</h3>
+            <p class="jnx-company">🏭 ${company}</p>
+          </div>
+          <span class="jnx-badge">Active</span>
+        </div>
+
+        <div class="jnx-job-meta">
+          <div class="jnx-meta">
+            <small>📍 Location</small>
+            <span>${location}</span>
+          </div>
+          <div class="jnx-meta">
+            <small>💰 Salary</small>
+            <span>${salary}</span>
+          </div>
+          <div class="jnx-meta">
+            <small>🎓 Qualification</small>
+            <span>${qualification}</span>
+          </div>
+          <div class="jnx-meta">
+            <small>🧰 Experience</small>
+            <span>${safe(experience)}</span>
+          </div>
+          <div class="jnx-meta">
+            <small>👥 Vacancies</small>
+            <span>${safe(job.workersRemaining ?? job.vacancies ?? "Details देखें")}</span>
+          </div>
+        </div>
+
+        <div class="jnx-card-actions">
+          <a class="jnx-btn jnx-btn-primary"
+             href="${safe(detailsURL)}">
+            View Details & Apply →
+          </a>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderJobs() {
+    if (!loadedJobs.length) {
+      grid.innerHTML = `
+        <div class="jnx-load-state">
+          <strong>अभी matching active jobs नहीं मिलीं।</strong>
+          दूसरे pages की उपलब्ध listings जाँची जा रही हैं।
+        </div>`;
+    } else {
+      grid.innerHTML = loadedJobs.map(renderJob).join("");
+    }
+
+    count.textContent = loadedJobs.length + " Jobs";
+  }
+
+  async function loadJobs() {
+    if (loading || !hasMore) return;
+
+    loading = true;
+    moreBtn.disabled = true;
+    moreBtn.textContent = "⏳ Jobs लोड हो रही हैं...";
+
+    try {
+      while (hasMore && scannedPages < MAX_SCAN_PAGES) {
+        const response = await fetch(
+          `${API_URL}?page=${page}&limit=${LIMIT}`,
+          { headers: { Accept: "application/json" } }
+        );
+
+        if (!response.ok) {
+          throw new Error("API HTTP error: " + response.status);
+        }
+
+        const data = await response.json();
+
+        const jobs = Array.isArray(data)
+          ? data
+          : data.jobs || data.data?.jobs || data.results || [];
+
+        if (!Array.isArray(jobs)) {
+          throw new Error("API response mein jobs array nahi mila.");
+        }
+
+        console.log("JOBNEX API page:", page, "jobs:", jobs.length);
+
+        const apiHasMore = data.hasMore ?? data.data?.hasMore;
+
+        hasMore = typeof apiHasMore === "boolean"
+          ? apiHasMore
+          : jobs.length >= LIMIT;
+
+        if (!jobs.length) hasMore = false;
+
+        for (const job of jobs) {
+          if (!job) continue;
+
+          const id = String(
+            job._id || job.id || job.jobId ||
+            [getTitle(job), getCompany(job), getLocation(job)].join("-")
+          );
+
+          if (seen.has(id)) continue;
+          seen.add(id);
+
+          if (matches(job)) loadedJobs.push(job);
+        }
+
+        page++;
+        scannedPages++;
+
+        renderJobs();
+
+        if (loadedJobs.length > 0) break;
+      }
+
+      if (loadedJobs.length) {
+        message.textContent = "API se available jobs load ki gayi hain.";
+      } else {
+        message.textContent =
+          "Jobs nahi miliं. API data aur location/category fields check karein.";
+      }
+
+      moreBtn.style.display = hasMore ? "inline-flex" : "none";
+      moreBtn.textContent = "⬇ More Jobs देखें";
+
+    } catch (error) {
+      console.error("JOBNEX jobs error:", error);
+
+      message.textContent =
+        "Jobs load nahi ho sakin. Browser Console mein error check karein.";
+
+      moreBtn.style.display = "inline-flex";
+      moreBtn.textContent = "🔄 Dobara try karein";
+
+    } finally {
+      loading = false;
+      moreBtn.disabled = false;
+    }
+  }
+
+  moreBtn.addEventListener("click", loadJobs);
+  loadJobs();
+})();
+</script>
 </body>
 </html>
