@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://YOUR-DOMAIN/rudrapur-iti-jobs.html">
   -->
   <meta name="robots" content="index,follow">
-  <link rel="stylesheet" href="/jobnex-seo.css">
+  <link rel="stylesheet" href="jobnex-seo.css">
 </head>
 <body>
   <header>
@@ -26,14 +26,21 @@
     <h1>Rudrapur में ITI उम्मीदवारों के लिए Jobs</h1>
     <p>ITI ट्रेड और आवश्यक अनुभव के अनुसार Rudrapur की नौकरी लिस्टिंग देखें। आवेदन से पहले ट्रेड, प्रमाणपत्र और अन्य पात्रता शर्तें जाँचें।</p>
 
-    <section aria-labelledby="job-listings">
-      <h2 id="job-listings">Rudrapur ITI Jobs – उपलब्ध नौकरी लिस्टिंग</h2>
-      <p>यहाँ अपनी वेबसाइट/API से इस पेज से संबंधित वास्तविक और वर्तमान नौकरियाँ दिखाएँ। नीचे दिया गया नमूना कार्ड केवल placeholder है; प्रकाशित करने से पहले इसे वास्तविक listing data से बदलें।</p>
-      <!-- TODO: API/backend से इस keyword/location के अनुरूप active jobs render करें। -->
-      <article>
-        <h3>नौकरी की जानकारी जल्द देखें</h3>
-        <p>वर्तमान में इस नमूना HTML में live job data कनेक्ट नहीं है। वास्तविक पद, कंपनी, वेतन और आवेदन लिंक उपलब्ध होने पर ही दिखाएँ।</p>
-      </article>
+    <section class="jnx-job-section" aria-labelledby="job-listings">
+      <div class="jnx-section-head">
+        <div>
+          <h2 id="job-listings">Rudrapur ITI Jobs – उपलब्ध नौकरी लिस्टिंग</h2>
+          <p>API से उपलब्ध सक्रिय नौकरियाँ — पद, कंपनी, वेतन और लोकेशन की जानकारी देखें।</p>
+        </div>
+        <span id="jnxJobsCount" class="jnx-count" aria-live="polite">Jobs लोड हो रही हैं…</span>
+      </div>
+      <div id="jnxJobsGrid" class="jnx-jobs-grid" aria-live="polite">
+        <div class="jnx-load-state"><strong>नौकरियाँ लोड हो रही हैं…</strong>JOBNEX API से वर्तमान लिस्टिंग प्राप्त की जा रही हैं।</div>
+      </div>
+      <div class="jnx-more-wrap">
+        <button type="button" id="jnxMoreJobsBtn" class="jnx-more-btn" style="display:none">⬇ More Jobs देखें</button>
+        <div id="jnxJobsMessage" class="jnx-note" role="status"></div>
+      </div>
     </section>
 
     <section>
@@ -85,5 +92,6 @@
   <footer>
     <p>JOBNEX पर प्रकाशित जानकारी संबंधित भर्ती विवरण के अधीन है। आवेदन से पहले नौकरी की उपलब्धता और सभी शर्तें जाँचें।</p>
   </footer>
+  <script src="jobnex-seo-jobs.js" defer></script>
 </body>
 </html>
