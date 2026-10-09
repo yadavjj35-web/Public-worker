@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta name="theme-color" content="#0f172a">
+
+    <meta
+        name="description"
+        content="JOBNEX पर नौकरी की पूरी जानकारी देखें और अपनी योग्यता के अनुसार नौकरी के लिए आवेदन करें।"
+    >
+
+    <meta name="robots" content="index, follow">
+
+    <title>Job Details | JOBNEX</title>
+
+    <link
+        rel="canonical"
+        href="https://rudrapurjob.online/job.html"
+        id="canonicalUrl"
+    >
+
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --background: #f1f5f9;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --success: #15803d;
+            --danger: #b91c1c;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background: #0f172a;
+            color: white;
+            padding: 18px 16px;
+        }
+
+        .header-inner {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 24px auto;
+            padding: 0 15px 40px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
+        }
+
+        .job-title {
+            margin: 0 0 8px;
+            font-size: clamp(24px, 4vw, 34px);
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
+
+        .company {
+            font-size: 17px;
+            color: var(--muted);
+            margin: 0 0 16px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .detail {
+            padding: 14px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            min-width: 0;
+        }
+
+        .detail-label {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        h2 {
+            font-size: 21px;
+            margin: 0 0 15px;
+        }
+
+        .description {
+            white-space: pre-line;
+            overflow-wrap: anywhere;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill {
+            background: #eef2ff;
+            color: #3730a3;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 13px;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            width: 100%;
+            border: 0;
+            background: var(--primary);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .primary-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .primary-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .secondary-btn {
+            display: inline-block;
+            width: 100%;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text);
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        form {
+            display: grid;
+            gap: 14px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 9px;
+            font-size: 15px;
+            background: white;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 2px solid #c7d2fe;
+            border-color: var(--primary);
+        }
+
+        .message {
+            padding: 13px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            overflow-wrap: anywhere;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .info {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px 15px;
+            color: var(--muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px 16px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 18px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brand {
+                font-size: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="header-inner">
+
+        <a class="brand" href="/">
+            JOBNEX
+        </a>
+
+        <a class="back-link" href="/">
+            ← सभी Jobs
+        </a>
+
+    </div>
+</header>
+
+<main>
+
+    <div id="loading" class="card loading">
+        नौकरी की जानकारी लोड हो रही है...
+    </div>
+
+    <div id="errorBox" class="message error hidden"></div>
+
+    <section id="jobContent" class="hidden">
+
+        <article class="card">
+
+            <span id="jobStatus" class="badge">
+                Active Vacancy
+            </span>
+
+            <h1 id="jobTitle" class="job-title"></h1>
+
+            <p id="companyName" class="company"></p>
+
+            <div class="grid">
+
+                <div class="detail">
+                    <span class="detail-label">Job Location</span>
+                    <span id="jobLocation" class="detail-value"></span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Qualification</span>
+                    <span id="qualification" class="detail-value"></span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Trade</span>
+                    <span id="trade" class="detail-value"></span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Experience</span>
+                    <span id="experience" class="detail-value"></span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Salary</span>
+                    <span id="salary" class="detail-value"></span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Job Type</span>
+                    <span id="jobType" class="detail-value"></span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Department</span>
+                    <span id="department" class="detail-value"></span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Gender</span>
+                    <span id="gender" class="detail-value"></span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Vacancies Remaining</span>
+                    <span id="workersRemaining" class="detail-value"></span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Last Date</span>
+                    <span id="lastDate" class="detail-value"></span>
+                </div>
+
+            </div>
+
+        </article>
+
+        <article class="card">
+            <h2>Job Description</h2>
+            <div id="description" class="description"></div>
+        </article>
+
+        <article id="skillsCard" class="card hidden">
+            <h2>Required Skills</h2>
+            <div id="skills" class="skills"></div>
+        </article>
+
+        <article id="benefitsCard" class="card hidden">
+            <h2>Benefits</h2>
+            <div id="benefits" class="description"></div>
+        </article>
+
+        <article class="card">
+            <h2>Apply for This Job</h2>
+
+            <p>
+                नीचे अपनी सही जानकारी भरकर आवेदन करें।
+            </p>
+
+            <div id="applyMessage" class="message hidden"></div>
+
+            <form id="applyForm">
+
+                <div>
+                    <label for="workerName">पूरा नाम *</label>
+                    <input
+                        id="workerName"
+                        name="workerName"
+                        type="text"
+                        autocomplete="name"
+                        maxlength="100"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="workerMobile">मोबाइल नंबर *</label>
+                    <input
+                        id="workerMobile"
+                        name="workerMobile"
+                        type="tel"
+                        inputmode="numeric"
+                        autocomplete="tel"
+                        maxlength="15"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="workerQualification">Qualification *</label>
+                    <input
+                        id="workerQualification"
+                        name="qualification"
+                        type="text"
+                        maxlength="150"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="workerTrade">Trade *</label>
+                    <input
+                        id="workerTrade"
+                        name="trade"
+                        type="text"
+                        maxlength="150"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="workerExperience">Experience (Years) *</label>
+                    <input
+                        id="workerExperience"
+                        name="experience"
+                        type="number"
+                        min="0"
+                        max="80"
+                        step="0.5"
+                        value="0"
+                        required
+                    >
+                </div>
+
+                <div>
+                    <label for="workerSkills">Skills</label>
+                    <input
+                        id="workerSkills"
+                        name="skills"
+                        type="text"
+                        maxlength="500"
+                        placeholder="जैसे: SMT, PLC, Maintenance"
+                    >
+                </div>
+
+                <div>
+                    <label for="preferredLocation">Preferred Location *</label>
+                    <input
+                        id="preferredLocation"
+                        name="preferredLocation"
+                        type="text"
+                        maxlength="150"
+                        required
+                    >
+                </div>
+
+                <button
+                    id="applyButton"
+                    class="primary-btn"
+                    type="submit"
+                >
+                    इस Job के लिए Apply करें
+                </button>
+
+            </form>
+
+            <a class="secondary-btn" href="/">
+                वापस JOBNEX पर जाएँ
+            </a>
+
+        </article>
+
+    </section>
+
+</main>
+
+<footer>
+    JOBNEX — Find Jobs According to Your Qualification
+</footer>
+
+<script>
+"use strict";
+
+/*
+=========================================================
+JOBNEX JOB DETAILS
+
+Existing backend routes are not modified.
+
+Public jobs API:
+GET /api/jobs/public-all
+
+Application API:
+POST /api/public-worker/apply
+=========================================================
+*/
+
+const API_URL =
+    "https://industrial-contractor-job-network.onrender.com/api";
+
+const SITE_URL =
+    "https://rudrapurjob.online";
+
+const loadingElement =
+    document.getElementById("loading");
+
+const errorElement =
+    document.getElementById("errorBox");
+
+const contentElement =
+    document.getElementById("jobContent");
+
+const applyForm =
+    document.getElementById("applyForm");
+
+let currentJob = null;
+
+
+/* =========================================================
+SAFE TEXT OUTPUT
+========================================================= */
+
+function setText(id, value) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) return;
+
+    element.textContent =
+        value === null ||
+        value === undefined ||
+        value === ""
+            ? "जानकारी उपलब्ध नहीं"
+            : String(value);
+}
+
+
+/* =========================================================
+FORMATTERS
+========================================================= */
+
+function formatDate(value) {
+
+    if (!value) {
+        return "निर्धारित नहीं";
+    }
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+        return "निर्धारित नहीं";
+    }
+
+    return date.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
+}
+
+
+function formatExperience(min, max) {
+
+    const minimum = Number(min || 0);
+
+    const maximum =
+        max === null ||
+        max === undefined ||
+        max === ""
+            ? null
+            : Number(max);
+
+    if (maximum === null) {
+        return minimum + "+ years";
+    }
+
+    if (minimum === maximum) {
+        return minimum + " years";
+    }
+
+    if (maximum >= 99) {
+        return minimum + "+ years";
+    }
+
+    return minimum + " - " + maximum + " years";
+}
+
+
+function formatSalary(job) {
+
+    const min = Number(job.salaryMin || 0);
+    const max = Number(job.salaryMax || 0);
+
+    if (min <= 0 && max <= 0) {
+        return "कंपनी द्वारा निर्धारित";
+    }
+
+    const formatter = new Intl.NumberFormat("en-IN", {
+        maximumFractionDigits: 0
+    });
+
+    if (min > 0 && max > 0 && min !== max) {
+        return "₹" + formatter.format(min) +
+            " - ₹" + formatter.format(max);
+    }
+
+    const amount = max > 0 ? max : min;
+
+    return "₹" + formatter.format(amount);
+}
+
+
+function getLocation(job) {
+
+    return [
+        job.companyLocation,
+        job.industrialArea,
+        job.contractorId &&
+            typeof job.contractorId === "object"
+            ? job.contractorId.city
+            : ""
+    ]
+    .filter(Boolean)
+    .filter((value, index, array) =>
+        array.indexOf(value) === index
+    )
+    .join(", ");
+}
+
+
+/* =========================================================
+ERROR DISPLAY
+========================================================= */
+
+function showError(message) {
+
+    loadingElement.classList.add("hidden");
+    contentElement.classList.add("hidden");
+
+    errorElement.textContent = message;
+
+    errorElement.classList.remove("hidden");
+}
+
+
+/* =========================================================
+GET JOB ID
+========================================================= */
+
+function getJobId() {
+
+    const params =
+        new URLSearchParams(window.location.search);
+
+    return params.get("id") || "";
+}
+
+
+/* =========================================================
+FETCH A PUBLIC JOB
+
+The existing endpoint returns up to 10 jobs per page.
+========================================================= */
+
+async function fetchPublicJob(jobId) {
+
+    const firstResponse = await fetch(
+        API_URL + "/jobs/public-all?page=1&limit=10"
+    );
+
+    if (!firstResponse.ok) {
+        throw new Error(
+            "Jobs server अभी उपलब्ध नहीं है। कृपया थोड़ी देर बाद प्रयास करें।"
+        );
+    }
+
+    const firstData = await firstResponse.json();
+
+    if (
+        !firstData ||
+        firstData.success !== true ||
+        !Array.isArray(firstData.jobs)
+    ) {
+        throw new Error(
+            "Jobs की जानकारी प्राप्त नहीं हो सकी।"
+        );
+    }
+
+    let job = firstData.jobs.find(
+        item => String(item._id) === String(jobId)
+    );
+
+    if (job) return job;
+
+    const total = Number(firstData.total || 0);
+
+    const totalPages =
+        Math.ceil(total / 10);
+
+    /*
+      Search only as many pages as the API reports.
+      This keeps the existing pagination intact.
+    */
+
+    for (let page = 2; page <= totalPages; page++) {
+
+        const response = await fetch(
+            API_URL +
+            "/jobs/public-all?page=" +
+            page +
+            "&limit=10"
+        );
+
+        if (!response.ok) continue;
+
+        const data = await response.json();
+
+        if (!Array.isArray(data.jobs)) continue;
+
+        job = data.jobs.find(
+            item => String(item._id) === String(jobId)
+        );
+
+        if (job) return job;
+    }
+
+    return null;
+}
+
+
+/* =========================================================
+RENDER JOB DETAILS
+========================================================= */
+
+function renderJob(job) {
+
+    currentJob = job;
+
+    const title =
+        job.jobTitle || "Job Vacancy";
+
+    const company =
+        job.companyName &&
+        job.companyName !== "N/A"
+            ? job.companyName
+            : job.contractorName ||
+              (
+                  job.contractorId &&
+                  typeof job.contractorId === "object"
+                      ? job.contractorId.contractorName
+                      : ""
+              ) ||
+              "Company details available on request";
+
+    const location =
+        getLocation(job);
+
+    document.title =
+        title + " | " + company + " | JOBNEX";
+
+    const canonical =
+        SITE_URL +
+        "/job.html?id=" +
+        encodeURIComponent(String(job._id));
+
+    document.getElementById("canonicalUrl").href =
+        canonical;
+
+    setText("jobTitle", title);
+    setText("companyName", company);
+    setText("jobLocation", location);
+    setText("qualification", job.qualification);
+    setText("trade", job.trade);
+
+    setText(
+        "experience",
+        formatExperience(
+            job.experienceMin,
+            job.experienceMax
+        )
+    );
+
+    setText("salary", formatSalary(job));
+    setText("jobType", job.jobType || "Full Time");
+    setText("department", job.department);
+    setText("gender", job.gender || "Any");
+
+    setText(
+        "workersRemaining",
+        job.workersRemaining === null ||
+        job.workersRemaining === undefined
+            ? "कंपनी से संपर्क करें"
+            : job.workersRemaining
+    );
+
+    setText("lastDate", formatDate(job.lastDate));
+
+    const status =
+        document.getElementById("jobStatus");
+
+    status.textContent =
+        job.status || "Active Vacancy";
+
+    if (
+        job.status === "Closed" ||
+        job.isClosedByAdmin === true
+    ) {
+
+        applyForm.classList.add("hidden");
+
+        const applyMessage =
+            document.getElementById("applyMessage");
+
+        applyMessage.textContent =
+            "यह भर्ती फिलहाल बंद है।";
+
+        applyMessage.className =
+            "message error";
+
+    }
+
+    /*
+      Use actual job data only.
+      Do not invent job responsibilities.
+    */
+
+    const descriptionParts = [
+        "Job Title: " + title,
+        "Company: " + company,
+        "Location: " + (location || "Not specified"),
+        "Qualification: " + (job.qualification || "Not specified"),
+        "Trade: " + (job.trade || "Not specified"),
+        "Experience: " + formatExperience(
+            job.experienceMin,
+            job.experienceMax
+        ),
+        "Job Type: " + (job.jobType || "Full Time")
+    ];
+
+    if (job.department) {
+        descriptionParts.push(
+            "Department: " + job.department
+        );
+    }
+
+    if (job.benefits) {
+        descriptionParts.push(
+            "Benefits: " + job.benefits
+        );
+    }
+
+    document.getElementById("description").textContent =
+        descriptionParts.join("\n");
+
+    if (
+        Array.isArray(job.skills) &&
+        job.skills.length
+    ) {
+
+        const skillsContainer =
+            document.getElementById("skills");
+
+        skillsContainer.replaceChildren();
+
+        job.skills.forEach(skill => {
+
+            const span =
+                document.createElement("span");
+
+            span.className = "skill";
+            span.textContent = skill;
+
+            skillsContainer.appendChild(span);
+
+        });
+
+        document.getElementById("skillsCard")
+            .classList.remove("hidden");
+    }
+
+    if (job.benefits) {
+
+        setText("benefits", job.benefits);
+
+        document.getElementById("benefitsCard")
+            .classList.remove("hidden");
+    }
+
+    /*
+      Prefill form with known job requirements.
+      Applicants can still edit these fields.
+    */
+
+    document.getElementById("workerQualification").value =
+        job.qualification || "";
+
+    document.getElementById("workerTrade").value =
+        job.trade || "";
+
+    document.getElementById("preferredLocation").value =
+        location || "";
+
+    /*
+      Generate JobPosting structured data.
+    */
+
+    addJobPostingSchema(job, title, company, location);
+
+    loadingElement.classList.add("hidden");
+    errorElement.classList.add("hidden");
+    contentElement.classList.remove("hidden");
+}
+
+
+/* =========================================================
+JOBPOSTING STRUCTURED DATA
+========================================================= */
+
+function addJobPostingSchema(
+    job,
+    title,
+    company,
+    location
+) {
+
+    const previous =
+        document.getElementById("jobPostingSchema");
+
+    if (previous) previous.remove();
+
+    /*
+      Schema is generated from the current job data.
+      Salary is deliberately omitted because the model
+      does not specify whether its unit is hourly, monthly,
+      or yearly.
+    */
+
+    const description =
+        document.getElementById("description").textContent;
+
+    const posting = {
+        "@context": "https://schema.org",
+        "@type": "JobPosting",
+        "title": title,
+        "description": description,
+        "identifier": {
+            "@type": "PropertyValue",
+            "name": "JOBNEX",
+            "value": String(job._id)
+        },
+        "datePosted": job.createdAt
+            ? new Date(job.createdAt).toISOString()
+            : undefined,
+        "employmentType": mapEmploymentType(job.jobType),
+        "hiringOrganization": {
+            "@type": "Organization",
+            "name": company
+        },
+        "url":
+            SITE_URL +
+            "/job.html?id=" +
+            encodeURIComponent(String(job._id))
+    };
+
+    if (location) {
+
+        posting.jobLocation = {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": location,
+                "addressCountry": "IN"
+            }
+        };
+
+    }
+
+    if (job.lastDate) {
+
+        const validThrough =
+            new Date(job.lastDate);
+
+        if (!Number.isNaN(validThrough.getTime())) {
+            posting.validThrough =
+                validThrough.toISOString();
+        }
+
+    }
+
+    /*
+      Never advertise a closed vacancy as open.
+    */
+
+    if (
+        job.status === "Closed" ||
+        job.isClosedByAdmin === true ||
+        (
+            job.workersRemaining !== null &&
+            job.workersRemaining !== undefined &&
+            Number(job.workersRemaining) <= 0
+        )
+    ) {
+
+        return;
+
+    }
+
+    /*
+      Only include fields for which the source has
+      meaningful values.
+    */
+
+    Object.keys(posting).forEach(key => {
+
+        if (
+            posting[key] === undefined ||
+            posting[key] === null ||
+            posting[key] === ""
+        ) {
+            delete posting[key];
+        }
+
+    });
+
+    const script =
+        document.createElement("script");
+
+    script.id = "jobPostingSchema";
+    script.type = "application/ld+json";
+
+    script.textContent =
+        JSON.stringify(posting);
+
+    document.head.appendChild(script);
+}
+
+
+function mapEmploymentType(value) {
+
+    const type =
+        String(value || "").toLowerCase();
+
+    if (type.includes("full")) {
+        return "FULL_TIME";
+    }
+
+    if (type.includes("part")) {
+        return "PART_TIME";
+    }
+
+    if (type.includes("contract")) {
+        return "CONTRACTOR";
+    }
+
+    if (type.includes("temporary")) {
+        return "TEMPORARY";
+    }
+
+    /*
+      Do not invent an employment type if it is unknown.
+    */
+
+    return undefined;
+}
+
+
+/* =========================================================
+APPLY TO JOB
+========================================================= */
+
+applyForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    if (!currentJob || !currentJob._id) {
+
+        alert("Job की जानकारी उपलब्ध नहीं है।");
+        return;
+
+    }
+
+    if (
+        currentJob.status === "Closed" ||
+        currentJob.isClosedByAdmin === true
+    ) {
+
+        alert("यह Job बंद हो चुकी है।");
+        return;
+
+    }
+
+    const button =
+        document.getElementById("applyButton");
+
+    const message =
+        document.getElementById("applyMessage");
+
+    const mobile =
+        document.getElementById("workerMobile")
+            .value.trim();
+
+    const normalizedMobile =
+        mobile.replace(/\D/g, "");
+
+    if (
+        normalizedMobile.length < 10 ||
+        normalizedMobile.length > 15
+    ) {
+
+        message.textContent =
+            "कृपया सही मोबाइल नंबर दर्ज करें।";
+
+        message.className =
+            "message error";
+
+        return;
+
+    }
+
+    const experience =
+        Number(
+            document.getElementById("workerExperience")
+                .value
+        );
+
+    if (
+        !Number.isFinite(experience) ||
+        experience < 0 ||
+        experience > 80
+    ) {
+
+        message.textContent =
+            "कृपया सही Experience दर्ज करें।";
+
+        message.className =
+            "message error";
+
+        return;
+
+    }
+
+    const payload = {
+
+        jobId: String(currentJob._id),
+
+        workerName:
+            document.getElementById("workerName")
+                .value.trim(),
+
+        workerMobile: mobile,
+
+        qualification:
+            document.getElementById("workerQualification")
+                .value.trim(),
+
+        trade:
+            document.getElementById("workerTrade")
+                .value.trim(),
+
+        experience,
+
+        skills:
+            document.getElementById("workerSkills")
+                .value.trim(),
+
+        preferredLocation:
+            document.getElementById("preferredLocation")
+                .value.trim()
+
+    };
+
+    button.disabled = true;
+    button.textContent = "Submitting...";
+
+    message.classList.add("hidden");
+
+    try {
+
+        const response = await fetch(
+            API_URL + "/public-worker/apply",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(payload)
+            }
+        );
+
+        const data =
+            await response.json();
+
+        if (!response.ok || data.success === false) {
+
+            throw new Error(
+                data.message ||
+                "Application submit नहीं हो पाया।"
+            );
+
+        }
+
+        /*
+          Accept common token field names without assuming
+          that every backend response uses the same name.
+        */
+
+        const token =
+            data.token ||
+            data.trackingToken ||
+            data.applicationToken ||
+            (
+                data.application &&
+                (
+                    data.application.token ||
+                    data.application.trackingToken
+                )
+            );
+
+        if (token) {
+
+            try {
+                localStorage.setItem(
+                    "contractorHubTrackingToken",
+                    token
+                );
+            } catch (storageError) {
+                console.warn(
+                    "Tracking token could not be stored."
+                );
+            }
+
+            window.location.href =
+                "/status.html?token=" +
+                encodeURIComponent(token);
+
+            return;
+
+        }
+
+        message.textContent =
+            data.message ||
+            "आपका आवेदन प्राप्त हो गया।";
+
+        message.className =
+            "message info";
+
+        applyForm.reset();
+
+        /*
+          Restore known job requirements after reset.
+        */
+
+        document.getElementById("workerQualification").value =
+            currentJob.qualification || "";
+
+        document.getElementById("workerTrade").value =
+            currentJob.trade || "";
+
+        document.getElementById("preferredLocation").value =
+            getLocation(currentJob);
+
+    } catch (error) {
+
+        message.textContent =
+            error.message ||
+            "नेटवर्क समस्या के कारण आवेदन नहीं हो पाया।";
+
+        message.className =
+            "message error";
+
+    } finally {
+
+        button.disabled = false;
+
+        button.textContent =
+            "इस Job के लिए Apply करें";
+
+    }
+
+});
+
+
+/* =========================================================
+INITIALIZE
+========================================================= */
+
+async function init() {
+
+    const jobId = getJobId();
+
+    if (!/^[a-fA-F0-9]{24}$/.test(jobId)) {
+
+        showError(
+            "Job ID सही नहीं है। कृपया JOBNEX पर उपलब्ध Job खोलें।"
+        );
+
+        return;
+
+    }
+
+    try {
+
+        const job =
+            await fetchPublicJob(jobId);
+
+        if (!job) {
+
+            showError(
+                "यह Job उपलब्ध नहीं है। संभव है कि Vacancy बंद हो गई हो या Job हट गई हो।"
+            );
+
+            return;
+
+        }
+
+        if (
+            job.status === "Closed" ||
+            job.isClosedByAdmin === true
+        ) {
+
+            /*
+              Closed vacancies are not eligible for
+              Google JobPosting structured data.
+            */
+
+            renderJob(job);
+
+            return;
+
+        }
+
+        renderJob(job);
+
+    } catch (error) {
+
+        showError(
+            error.message ||
+            "Job की जानकारी लोड नहीं हो सकी।"
+        );
+
+    }
+
+}
+
+init();
+
+</script>
+
+</body>
+</html>
