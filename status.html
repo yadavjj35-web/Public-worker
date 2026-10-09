@@ -1,71 +1,296 @@
-<!doctype html>
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 
-<html lang="en">
+<meta name="theme-color" content="#0b1220">
 
-<head>
+<meta name="description"
+    content="Track your JOBNEX job applications, check application status, and view recruitment updates in one place.">
 
-  <meta charset="utf-8">
+<title>My Applications | JOBNEX</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1"
-  >
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <title>My Application Status</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    rel="stylesheet"
-    href="css/style.css"
-  >
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
-</head>
+<link rel="stylesheet" href="css/style.css">
 
+</head><body><div class="page-background"></div>
 
-<body>
+<header class="topbar">
 
+    <a href="index.html" class="brand">
 
-<header class="header">
+        <span class="brand-icon">J</span>
 
-  <div>
+        <span class="brand-text">
+            <strong>JOBNEX</strong>
+            <small>CAREER NETWORK</small>
+        </span>
 
-    <h1>ContractorHub</h1>
+    </a>
 
-    <p>
-      My Application Status
-    </p>
+    <nav class="topbar-actions">
 
-  </div>
+        <a href="index.html" class="nav-link">
+            <span>⌕</span>
+            Find Jobs
+        </a>
 
+        <button type="button" class="refresh-button" id="refreshApplications">
+            <span class="refresh-icon">↻</span>
+            <span>Refresh</span>
+        </button>
 
-  <a
-    href="index.html"
-    class="status-link"
-  >
-    Find Jobs
-  </a>
+    </nav>
 
 </header>
 
 
-<main class="container">
+<main class="dashboard">
+
+    <section class="welcome-section">
+
+        <div class="welcome-content">
+
+            <div class="eyebrow">
+                <span class="live-dot"></span>
+                CANDIDATE DASHBOARD
+            </div>
+
+            <h1>
+                My <span>Applications</span>
+            </h1>
+
+            <p class="welcome-description">
+                Track your job applications, monitor recruitment progress,
+                and stay updated at every step of your career journey.
+            </p>
+
+            <div class="welcome-note">
+                <span class="note-icon">✦</span>
+                Your applications. Your progress. One dashboard.
+            </div>
+
+        </div>
+
+        <div class="welcome-art" aria-hidden="true">
+
+            <div class="orbit orbit-one"></div>
+
+            <div class="orbit orbit-two"></div>
+
+            <div class="art-card">
+
+                <div class="art-card-top">
+                    <span class="art-document">▤</span>
+                    <span class="art-check">✓</span>
+                </div>
+
+                <div class="art-line art-line-long"></div>
+                <div class="art-line art-line-short"></div>
+
+                <div class="art-progress">
+                    <span></span>
+                </div>
+
+                <div class="art-caption">Career progress</div>
+
+            </div>
+
+            <span class="floating-star star-one">✦</span>
+            <span class="floating-star star-two">✧</span>
+
+        </div>
+
+    </section>
 
 
-<section class="status-box">
+    <section class="stats-grid" aria-label="Application summary">
 
-  <h2>
-    My Status
-  </h2>
+        <article class="stat-card">
+
+            <div class="stat-top">
+                <span class="stat-label">Total Applications</span>
+
+                <span class="stat-icon icon-blue">▤</span>
+            </div>
+
+            <div class="stat-value" id="totalApplications">—</div>
+
+            <div class="stat-footer">
+                <span class="stat-indicator blue-indicator"></span>
+                <span>Applications tracked</span>
+            </div>
+
+        </article>
 
 
-  <div id="statusArea">
+        <article class="stat-card">
 
-    Loading...
+            <div class="stat-top">
+                <span class="stat-label">Under Review</span>
 
-  </div>
+                <span class="stat-icon icon-orange">◷</span>
+            </div>
+
+            <div class="stat-value" id="pendingApplications">—</div>
+
+            <div class="stat-footer">
+                <span class="stat-indicator orange-indicator"></span>
+                <span>Pending or processing</span>
+            </div>
+
+        </article>
 
 
-</section>
+        <article class="stat-card">
 
+            <div class="stat-top">
+                <span class="stat-label">Accepted</span>
+
+                <span class="stat-icon icon-green">✓</span>
+            </div>
+
+            <div class="stat-value" id="acceptedApplications">—</div>
+
+            <div class="stat-footer">
+                <span class="stat-indicator green-indicator"></span>
+                <span>Applications accepted</span>
+            </div>
+
+        </article>
+
+
+        <article class="stat-card">
+
+            <div class="stat-top">
+                <span class="stat-label">Rejected</span>
+
+                <span class="stat-icon icon-red">×</span>
+            </div>
+
+            <div class="stat-value" id="rejectedApplications">—</div>
+
+            <div class="stat-footer">
+                <span class="stat-indicator red-indicator"></span>
+                <span>Application updates</span>
+            </div>
+
+        </article>
+
+    </section>
+
+
+    <section class="applications-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="section-kicker">YOUR CAREER JOURNEY</div>
+
+                <h2>Application Overview</h2>
+
+                <p class="section-description">
+                    View the latest status and details of each application.
+                </p>
+
+            </div>
+
+            <div class="update-indicator">
+                <span class="live-dot"></span>
+                <span id="lastUpdated">Connecting...</span>
+            </div>
+
+        </div>
+
+
+        <div class="filter-bar" id="applicationFilters">
+
+            <button class="filter-button active" data-filter="all" type="button">
+                All Applications
+                <span id="filterAllCount">0</span>
+            </button>
+
+            <button class="filter-button" data-filter="pending" type="button">
+                Pending
+                <span id="filterPendingCount">0</span>
+            </button>
+
+            <button class="filter-button" data-filter="processing" type="button">
+                Processing
+                <span id="filterProcessingCount">0</span>
+            </button>
+
+            <button class="filter-button" data-filter="accepted" type="button">
+                Accepted
+                <span id="filterAcceptedCount">0</span>
+            </button>
+
+            <button class="filter-button" data-filter="rejected" type="button">
+                Rejected
+                <span id="filterRejectedCount">0</span>
+            </button>
+
+        </div>
+
+
+        <div id="statusArea" aria-live="polite">
+
+            <div class="loading-state">
+
+                <div class="loading-spinner"></div>
+
+                <h3>Loading your applications</h3>
+
+                <p>Please wait while we retrieve your latest updates.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="help-banner">
+
+        <div class="help-icon">i</div>
+
+        <div class="help-content">
+
+            <h3>Need help with your application?</h3>
+
+            <p>
+                Check your application status regularly for the latest updates.
+                Keep your tracking information safe.
+            </p>
+
+        </div>
+
+        <a href="index.html" class="help-button">
+            Explore Jobs <span>→</span>
+        </a>
+
+    </section>
+
+
+    <footer class="dashboard-footer">
+
+        <a href="index.html" class="footer-brand">
+            <span class="footer-brand-icon">J</span>
+            JOBNEX
+        </a>
+
+        <p>Building connections between talent and opportunity.</p>
+
+        <span class="footer-copyright">
+            © <span id="currentYear"></span> JOBNEX
+        </span>
+
+    </footer>
 
 </main>
 
@@ -73,6 +298,4 @@
 <script src="js/config.js"></script>
 <script src="js/status.js"></script>
 
-</body>
-
-</html>
+</body></html>
