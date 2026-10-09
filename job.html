@@ -2455,26 +2455,56 @@ applyForm.addEventListener("submit", async function(event) {
 
         if (token) {
 
-            try {
+try {
+    const key = "jobnexApplicationTokens";
 
-                localStorage.setItem(
-                    "contractorHubTrackingToken",
-                    token
-                );
+    let tokens = [];
 
-            } catch (storageError) {
+    try {
+        tokens = JSON.parse(
+            localStorage.getItem(key) || "[]"
+        );
+    } catch (error) {
+        tokens = [];
+    }
 
-                console.warn(
-                    "Tracking token could not be stored."
-                );
-            }
+    if (!Array.isArray(tokens)) {
+        tokens = [];
+    }
 
-            window.location.href =
-                "/status.html?token=" +
-                encodeURIComponent(token);
+    // Nayi application ka token save karein
+    if (!tokens.includes(token)) {
+        tokens.unshift(token);
+    }
 
-            return;
-        }
+    // Maximum 100 applications
+    tokens = tokens.slice(0, 100);
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(tokens)
+    );
+
+    // Purane code ke saath compatibility
+    localStorage.setItem(
+        "contractorHubTrackingToken",
+        token
+    );
+
+} catch (storageError) {
+    console.warn(
+        "Tracking token could not be stored."
+    );
+}
+
+// Status dashboard par redirect
+window.location.href =
+    "/status.html?token=" +
+    encodeURIComponent(token);
+
+return;
+
+}
 
         showApplyMessage(
             data.message ||
