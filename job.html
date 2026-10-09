@@ -4,155 +4,596 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#080b14">
 
-    <meta
-        name="description"
-        content="JOBNEX पर नौकरी की पूरी जानकारी देखें और अपनी योग्यता के अनुसार नौकरी के लिए आवेदन करें।"
-    >
+    <meta name="description"
+          content="JOBNEX पर नौकरी की पूरी जानकारी देखें। Salary, qualification, experience, location और job requirements जानें और ऑनलाइन आवेदन करें।">
 
     <meta name="robots" content="index, follow">
 
     <title>Job Details | JOBNEX</title>
 
-    <link
-        rel="canonical"
-        href="https://rudrapurjob.online/job.html"
-        id="canonicalUrl"
-    >
+    <link rel="canonical"
+          href="https://rudrapurjob.online/job.html"
+          id="canonicalUrl">
 
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-dark: #3730a3;
-            --background: #f1f5f9;
-            --surface: #ffffff;
-            --text: #0f172a;
-            --muted: #64748b;
-            --border: #e2e8f0;
-            --success: #15803d;
-            --danger: #b91c1c;
+            color-scheme: dark;
+
+            --bg: #080b14;
+            --bg-soft: #0d1220;
+            --surface: #111827;
+            --surface-2: #151d2e;
+            --surface-3: #1b2539;
+
+            --primary: #8b5cf6;
+            --primary-2: #6366f1;
+            --cyan: #22d3ee;
+
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --border: rgba(148, 163, 184, .15);
+
+            --green: #34d399;
+            --red: #fb7185;
+            --yellow: #fbbf24;
+
+            --radius: 20px;
+            --shadow: 0 18px 55px rgba(0, 0, 0, .25);
         }
 
         * {
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.6;
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
         }
 
-        header {
-            background: #0f172a;
-            color: white;
-            padding: 18px 16px;
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+                         "Segoe UI", Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    ellipse at 15% 0%,
+                    rgba(99, 102, 241, .13),
+                    transparent 36%
+                ),
+                radial-gradient(
+                    ellipse at 90% 20%,
+                    rgba(34, 211, 238, .07),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid var(--cyan);
+            outline-offset: 3px;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 36px));
+            margin-inline: auto;
+        }
+
+        /* HEADER */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background: rgba(8, 11, 20, .88);
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
 
         .header-inner {
-            max-width: 1000px;
-            margin: auto;
+            min-height: 76px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 18px;
         }
 
         .brand {
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
             text-decoration: none;
             font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
+            font-weight: 900;
+            letter-spacing: -.8px;
         }
 
-        .back-link {
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+
+            border-radius: 13px;
+
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-2),
+                #2563eb
+            );
+
+            box-shadow: 0 5px 25px rgba(99, 102, 241, .3);
+
             color: white;
-            text-decoration: none;
-            font-size: 14px;
+            font-size: 21px;
         }
 
-        main {
-            max-width: 1000px;
-            margin: 24px auto;
-            padding: 0 15px 40px;
+        .brand-name span {
+            color: #a78bfa;
         }
 
-        .card {
-            background: var(--surface);
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-link,
+        .header-home {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 10px 15px;
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
-        }
+            border-radius: 12px;
 
-        .job-title {
-            margin: 0 0 8px;
-            font-size: clamp(24px, 4vw, 34px);
-            line-height: 1.3;
-            overflow-wrap: anywhere;
-        }
+            background: rgba(255, 255, 255, .035);
+            color: #e2e8f0;
 
-        .company {
-            font-size: 17px;
-            color: var(--muted);
-            margin: 0 0 16px;
-        }
-
-        .badge {
-            display: inline-block;
-            background: #dcfce7;
-            color: #166534;
-            padding: 5px 12px;
-            border-radius: 20px;
             font-size: 13px;
             font-weight: 700;
-            margin-bottom: 12px;
+            text-decoration: none;
+
+            transition: .2s ease;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px;
+        .back-link:hover,
+        .header-home:hover {
+            border-color: rgba(139, 92, 246, .6);
+            background: rgba(139, 92, 246, .1);
         }
 
-        .detail {
-            padding: 14px;
-            background: #f8fafc;
-            border: 1px solid var(--border);
-            border-radius: 10px;
+        /* MAIN */
+
+        main {
+            padding-top: 30px;
+            padding-bottom: 60px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 9px;
+
+            margin-bottom: 22px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .breadcrumb a {
+            color: #a5b4fc;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            color: white;
+        }
+
+        /* HERO */
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+
+            padding: clamp(23px, 4vw, 42px);
+
+            border: 1px solid rgba(139, 92, 246, .24);
+            border-radius: 26px;
+
+            background:
+                radial-gradient(
+                    circle at 95% 0%,
+                    rgba(139, 92, 246, .2),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #12182a,
+                    #0e1423 65%,
+                    #111827
+                );
+
+            box-shadow: var(--shadow);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            right: -100px;
+            bottom: -140px;
+
+            border: 1px solid rgba(139, 92, 246, .2);
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 25px rgba(139, 92, 246, .025),
+                0 0 0 50px rgba(139, 92, 246, .02);
+
+            pointer-events: none;
+        }
+
+        .hero-top {
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .hero-main {
             min-width: 0;
         }
 
-        .detail-label {
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 15px;
+
+            color: #c4b5fd;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 12px rgba(52, 211, 153, .7);
+        }
+
+        .job-title {
+            margin: 0 0 12px;
+
+            font-size: clamp(28px, 5vw, 43px);
+            line-height: 1.2;
+            letter-spacing: -1.3px;
+
+            overflow-wrap: anywhere;
+        }
+
+        .company-name {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 9px;
+
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .company-icon {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            background: var(--surface-3);
+        }
+
+        .hero-badge {
+            flex-shrink: 0;
+
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 8px 12px;
+            border: 1px solid rgba(52, 211, 153, .2);
+            border-radius: 30px;
+
+            background: rgba(52, 211, 153, .09);
+            color: #6ee7b7;
+
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .hero-bottom {
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-facts {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 22px;
+        }
+
+        .hero-fact {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        .fact-icon {
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--border);
+            border-radius: 11px;
+
+            background: rgba(255, 255, 255, .035);
+            font-size: 16px;
+        }
+
+        .hero-fact small {
             display: block;
             color: var(--muted);
-            font-size: 13px;
-            margin-bottom: 4px;
+            font-size: 11px;
+        }
+
+        .salary-highlight {
+            color: #86efac;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        /* BUTTONS */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            min-height: 48px;
+            padding: 12px 20px;
+
+            border: 1px solid transparent;
+            border-radius: 13px;
+
+            font-size: 14px;
+            font-weight: 800;
+            text-align: center;
+            text-decoration: none;
+
+            cursor: pointer;
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            color: white;
+
+            background: linear-gradient(
+                135deg,
+                #8b5cf6,
+                #6366f1
+            );
+
+            box-shadow: 0 8px 25px rgba(99, 102, 241, .22);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 12px 32px rgba(99, 102, 241, .35);
+        }
+
+        .btn-outline {
+            border-color: var(--border);
+            background: rgba(255, 255, 255, .035);
+            color: #e2e8f0;
+        }
+
+        .btn-outline:hover {
+            border-color: rgba(139, 92, 246, .55);
+        }
+
+        .btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* PAGE LAYOUT */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 320px;
+            align-items: start;
+            gap: 24px;
+
+            margin-top: 26px;
+        }
+
+        .main-column,
+        .sidebar {
+            min-width: 0;
+        }
+
+        .panel {
+            margin-bottom: 22px;
+            padding: 26px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: linear-gradient(
+                145deg,
+                rgba(17, 24, 39, .97),
+                rgba(13, 18, 32, .97)
+            );
+
+            box-shadow: 0 10px 35px rgba(0, 0, 0, .12);
+        }
+
+        .panel-heading {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            margin-bottom: 22px;
+        }
+
+        .heading-icon {
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid rgba(139, 92, 246, .2);
+            border-radius: 13px;
+
+            background: rgba(139, 92, 246, .12);
+            font-size: 19px;
+        }
+
+        .panel-heading h2 {
+            margin: 0;
+            font-size: 19px;
+            line-height: 1.4;
+        }
+
+        .panel-subtitle {
+            margin: 3px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* DETAILS */
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px;
+        }
+
+        .detail-item {
+            min-width: 0;
+            padding: 16px;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            background: rgba(255, 255, 255, .025);
+
+            transition:
+                border-color .2s ease,
+                background .2s ease;
+        }
+
+        .detail-item:hover {
+            border-color: rgba(139, 92, 246, .3);
+            background: rgba(139, 92, 246, .035);
+        }
+
+        .detail-label {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-bottom: 7px;
+            color: var(--muted);
+            font-size: 12px;
         }
 
         .detail-value {
             display: block;
-            font-size: 15px;
-            font-weight: 700;
+
+            color: #f1f5f9;
+            font-size: 14px;
+            font-weight: 750;
+            line-height: 1.55;
+
             overflow-wrap: anywhere;
         }
 
-        h2 {
-            font-size: 21px;
-            margin: 0 0 15px;
-        }
-
         .description {
+            color: #cbd5e1;
+            font-size: 14px;
+            line-height: 1.9;
             white-space: pre-line;
             overflow-wrap: anywhere;
         }
@@ -160,127 +601,627 @@
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 9px;
         }
 
         .skill {
-            background: #eef2ff;
-            color: #3730a3;
-            border-radius: 8px;
-            padding: 6px 10px;
-            font-size: 13px;
-        }
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
 
-        .primary-btn {
-            display: inline-block;
-            width: 100%;
-            border: 0;
-            background: var(--primary);
-            color: white;
-            padding: 14px 18px;
+            padding: 8px 12px;
+
+            border: 1px solid rgba(139, 92, 246, .2);
             border-radius: 10px;
-            font-size: 16px;
+
+            background: rgba(139, 92, 246, .09);
+            color: #c4b5fd;
+
+            font-size: 12px;
             font-weight: 700;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
         }
 
-        .primary-btn:hover {
-            background: var(--primary-dark);
+        /* SIDEBAR */
+
+        .sidebar .panel {
+            padding: 22px;
         }
 
-        .primary-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+        .salary-card {
+            overflow: hidden;
+            position: relative;
+
+            border-color: rgba(52, 211, 153, .2);
+
+            background:
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(52, 211, 153, .1),
+                    transparent 45%
+                ),
+                #101a23;
         }
 
-        .secondary-btn {
-            display: inline-block;
-            width: 100%;
-            border: 1px solid var(--border);
-            background: white;
-            color: var(--text);
-            padding: 12px;
-            border-radius: 10px;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 10px;
+        .salary-card .panel-heading {
+            margin-bottom: 14px;
         }
 
-        form {
-            display: grid;
-            gap: 14px;
+        .salary-card .heading-icon {
+            border-color: rgba(52, 211, 153, .2);
+            background: rgba(52, 211, 153, .09);
         }
 
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 9px;
-            font-size: 15px;
-            background: white;
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: 2px solid #c7d2fe;
-            border-color: var(--primary);
-        }
-
-        .message {
-            padding: 13px;
-            border-radius: 10px;
-            margin-bottom: 16px;
+        .salary-amount {
+            margin: 8px 0 5px;
+            color: #86efac;
+            font-size: clamp(23px, 3vw, 30px);
+            font-weight: 900;
+            line-height: 1.3;
             overflow-wrap: anywhere;
         }
 
-        .error {
-            background: #fee2e2;
-            color: var(--danger);
+        .salary-note {
+            color: var(--muted);
+            font-size: 12px;
         }
 
-        .info {
-            background: #e0e7ff;
-            color: #3730a3;
+        .sidebar-divider {
+            height: 1px;
+            margin: 19px 0;
+            background: var(--border);
+        }
+
+        .quick-fact {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+
+            padding: 10px 0;
+        }
+
+        .quick-fact span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .quick-fact strong {
+            max-width: 60%;
+            color: #e2e8f0;
+            font-size: 12px;
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .apply-panel {
+            border-color: rgba(139, 92, 246, .28);
+
+            background:
+                radial-gradient(
+                    circle at 100% 0%,
+                    rgba(99, 102, 241, .13),
+                    transparent 48%
+                ),
+                var(--surface);
+        }
+
+        .apply-intro {
+            margin: 0 0 20px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .apply-panel .btn {
+            width: 100%;
+        }
+
+        .trust-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .trust-icon {
+            color: var(--green);
+            font-size: 16px;
+        }
+
+        /* FORM */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 17px;
+        }
+
+        .form-field {
+            min-width: 0;
+        }
+
+        .form-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-field label {
+            display: block;
+            margin-bottom: 8px;
+
+            color: #e2e8f0;
+            font-size: 12px;
+            font-weight: 750;
+        }
+
+        .required {
+            color: var(--red);
+        }
+
+        .form-field input,
+        .form-field textarea {
+            display: block;
+            width: 100%;
+            min-width: 0;
+
+            padding: 13px 14px;
+
+            border: 1px solid #2b3549;
+            border-radius: 12px;
+
+            background: #0b1020;
+            color: white;
+
+            font-size: 14px;
+            outline: none;
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease;
+        }
+
+        .form-field input::placeholder,
+        .form-field textarea::placeholder {
+            color: #64748b;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, .12);
+        }
+
+        .form-field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-hint {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .form-actions {
+            margin-top: 23px;
+        }
+
+        .form-actions .btn {
+            width: 100%;
+            min-height: 53px;
+            font-size: 15px;
+        }
+
+        .form-message {
+            padding: 13px 15px;
+            margin-bottom: 18px;
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .message-success {
+            border-color: rgba(52, 211, 153, .25);
+            background: rgba(52, 211, 153, .08);
+            color: #6ee7b7;
+        }
+
+        .message-error {
+            border-color: rgba(251, 113, 133, .25);
+            background: rgba(251, 113, 133, .08);
+            color: #fda4af;
+        }
+
+        .message-info {
+            border-color: rgba(129, 140, 248, .25);
+            background: rgba(99, 102, 241, .1);
+            color: #c7d2fe;
         }
 
         .hidden {
             display: none !important;
         }
 
-        .loading {
+        /* LOADING */
+
+        .loading-card {
+            margin-top: 30px;
+            padding: 65px 20px;
+
+            border: 1px solid var(--border);
+            border-radius: 22px;
+
+            background: var(--surface);
             text-align: center;
-            padding: 50px 15px;
-            color: var(--muted);
         }
 
-        footer {
-            text-align: center;
-            padding: 24px 16px;
+        .loader {
+            width: 46px;
+            height: 46px;
+
+            margin: 0 auto 22px;
+
+            border: 3px solid rgba(139, 92, 246, .15);
+            border-top-color: var(--primary);
+
+            border-radius: 50%;
+
+            animation: spin .8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-title {
+            margin: 0 0 7px;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .loading-text {
+            margin: 0;
             color: var(--muted);
             font-size: 13px;
         }
 
-        @media (max-width: 600px) {
-            .card {
+        .error-card {
+            margin-top: 25px;
+            padding: 25px;
+
+            border: 1px solid rgba(251, 113, 133, .25);
+            border-radius: 18px;
+
+            background: rgba(251, 113, 133, .07);
+            color: #fda4af;
+
+            overflow-wrap: anywhere;
+        }
+
+        .error-card strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .error-card p {
+            margin: 0 0 18px;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid var(--border);
+            background: rgba(8, 11, 20, .8);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+
+        .footer-brand {
+            color: #e2e8f0;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        .footer-brand span {
+            color: #a78bfa;
+        }
+
+        .footer-text {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 17px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* MOBILE APPLY BAR */
+
+        .mobile-apply {
+            display: none;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: minmax(0, 1fr) 280px;
+                gap: 17px;
+            }
+
+            .panel {
+                padding: 21px;
+            }
+
+            .sidebar .panel {
                 padding: 18px;
             }
 
-            .grid {
-                grid-template-columns: 1fr;
+            .hero-facts {
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            main {
+                padding-top: 21px;
+                padding-bottom: 35px;
+            }
+
+            .content-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .sidebar {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                align-items: start;
+                gap: 15px;
+            }
+
+            .sidebar .panel {
+                margin-bottom: 0;
+            }
+
+            .apply-panel {
+                grid-column: 1 / -1;
+            }
+
+            .hero-bottom {
+                align-items: flex-start;
+            }
+
+            .hero-bottom > .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .container {
+                width: calc(100% - 24px);
+            }
+
+            .header-inner {
+                min-height: 65px;
             }
 
             .brand {
-                font-size: 21px;
+                gap: 8px;
+                font-size: 20px;
+            }
+
+            .brand-mark {
+                width: 36px;
+                height: 36px;
+                border-radius: 11px;
+                font-size: 18px;
+            }
+
+            .header-home {
+                display: none;
+            }
+
+            .back-link {
+                padding: 9px 11px;
+                font-size: 12px;
+            }
+
+            .breadcrumb {
+                font-size: 11px;
+                margin-bottom: 15px;
+            }
+
+            .hero {
+                padding: 22px 17px;
+                border-radius: 20px;
+            }
+
+            .hero-top {
+                flex-direction: column-reverse;
+                gap: 15px;
+            }
+
+            .hero-badge {
+                align-self: flex-start;
+            }
+
+            .job-title {
+                font-size: 29px;
+                letter-spacing: -.8px;
+            }
+
+            .company-name {
+                font-size: 14px;
+            }
+
+            .hero-bottom {
+                margin-top: 22px;
+                padding-top: 20px;
+                gap: 20px;
+            }
+
+            .hero-facts {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                width: 100%;
+                gap: 13px;
+            }
+
+            .hero-fact {
+                font-size: 11px;
+                gap: 7px;
+            }
+
+            .fact-icon {
+                width: 32px;
+                height: 32px;
+                flex-shrink: 0;
+                font-size: 14px;
+            }
+
+            .salary-highlight {
+                font-size: 17px;
+            }
+
+            .panel {
+                padding: 19px 15px;
+                border-radius: 17px;
+                margin-bottom: 15px;
+            }
+
+            .panel-heading {
+                gap: 10px;
+                margin-bottom: 18px;
+            }
+
+            .heading-icon {
+                width: 38px;
+                height: 38px;
+                border-radius: 11px;
+                font-size: 16px;
+            }
+
+            .panel-heading h2 {
+                font-size: 17px;
+            }
+
+            .details-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 9px;
+            }
+
+            .detail-item {
+                padding: 12px 10px;
+                border-radius: 11px;
+            }
+
+            .detail-label {
+                font-size: 10px;
+                gap: 4px;
+            }
+
+            .detail-value {
+                font-size: 12px;
+            }
+
+            .description {
+                font-size: 13px;
+            }
+
+            .sidebar {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .apply-panel {
+                grid-column: auto;
+            }
+
+            .form-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 14px;
+            }
+
+            .form-field.full-width {
+                grid-column: auto;
+            }
+
+            .form-field input,
+            .form-field textarea {
+                font-size: 16px;
+            }
+
+            .footer-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                padding-bottom: 85px;
+            }
+
+            .mobile-apply {
+                position: fixed;
+                z-index: 90;
+                right: 0;
+                bottom: 0;
+                left: 0;
+
+                display: block;
+                padding: 12px;
+
+                border-top: 1px solid var(--border);
+
+                background: rgba(8, 11, 20, .94);
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+            }
+
+            .mobile-apply .btn {
+                width: 100%;
+                min-height: 47px;
+            }
+
+            .mobile-apply:has(.hidden) {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
             }
         }
     </style>
@@ -288,228 +1229,519 @@
 
 <body>
 
-<header>
-    <div class="header-inner">
+<header class="topbar">
+    <div class="container header-inner">
 
-        <a class="brand" href="/">
-            JOBNEX
+        <a class="brand" href="/" aria-label="JOBNEX Home">
+            <span class="brand-mark">J</span>
+            <span class="brand-name">JOB<span>NEX</span></span>
         </a>
 
-        <a class="back-link" href="/">
-            ← सभी Jobs
-        </a>
+        <div class="header-actions">
+            <a class="header-home" href="/">⌂ Home</a>
+            <a class="back-link" href="/">← All Jobs</a>
+        </div>
 
     </div>
 </header>
 
-<main>
+<main class="container">
 
-    <div id="loading" class="card loading">
-        नौकरी की जानकारी लोड हो रही है...
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span>›</span>
+        <a href="/">Jobs</a>
+        <span>›</span>
+        <span>Job Details</span>
+    </nav>
+
+    <div id="loading" class="loading-card" role="status">
+        <div class="loader"></div>
+        <h2 class="loading-title">Finding Your Job Details</h2>
+        <p class="loading-text">
+            JOBNEX से नौकरी की जानकारी प्राप्त की जा रही है...
+        </p>
     </div>
 
-    <div id="errorBox" class="message error hidden"></div>
+    <div id="errorBox" class="error-card hidden" role="alert">
+        <strong>⚠️ Job Details नहीं मिल सकीं</strong>
+        <p id="errorText"></p>
+        <a href="/" class="btn btn-outline">← सभी Jobs देखें</a>
+    </div>
 
     <section id="jobContent" class="hidden">
 
-        <article class="card">
+        <!-- JOB HERO -->
 
-            <span id="jobStatus" class="badge">
-                Active Vacancy
-            </span>
+        <section class="hero">
 
-            <h1 id="jobTitle" class="job-title"></h1>
+            <div class="hero-top">
 
-            <p id="companyName" class="company"></p>
+                <div class="hero-main">
 
-            <div class="grid">
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        JOB OPPORTUNITY
+                    </div>
 
-                <div class="detail">
-                    <span class="detail-label">Job Location</span>
-                    <span id="jobLocation" class="detail-value"></span>
+                    <h1 id="jobTitle" class="job-title">
+                        Job Title
+                    </h1>
+
+                    <p class="company-name">
+                        <span class="company-icon">🏢</span>
+                        <span id="companyName">Company Name</span>
+                    </p>
+
                 </div>
 
-                <div class="detail">
-                    <span class="detail-label">Qualification</span>
-                    <span id="qualification" class="detail-value"></span>
-                </div>
-
-                <div class="detail">
-                    <span class="detail-label">Trade</span>
-                    <span id="trade" class="detail-value"></span>
-                </div>
-
-                <div class="detail">
-                    <span class="detail-label">Experience</span>
-                    <span id="experience" class="detail-value"></span>
-                </div>
-
-                <div class="detail">
-                    <span class="detail-label">Salary</span>
-                    <span id="salary" class="detail-value"></span>
-                </div>
-
-                <div class="detail">
-                    <span class="detail-label">Job Type</span>
-                    <span id="jobType" class="detail-value"></span>
-                </div>
-
-                <div class="detail">
-                    <span class="detail-label">Department</span>
-                    <span id="department" class="detail-value"></span>
-                </div>
-
-                <div class="detail">
-                    <span class="detail-label">Gender</span>
-                    <span id="gender" class="detail-value"></span>
-                </div>
-
-                <div class="detail">
-                    <span class="detail-label">Vacancies Remaining</span>
-                    <span id="workersRemaining" class="detail-value"></span>
-                </div>
-
-                <div class="detail">
-                    <span class="detail-label">Last Date</span>
-                    <span id="lastDate" class="detail-value"></span>
-                </div>
+                <span id="jobStatus" class="hero-badge">
+                    ● Active Vacancy
+                </span>
 
             </div>
 
-        </article>
+            <div class="hero-bottom">
 
-        <article class="card">
-            <h2>Job Description</h2>
-            <div id="description" class="description"></div>
-        </article>
+                <div class="hero-facts">
 
-        <article id="skillsCard" class="card hidden">
-            <h2>Required Skills</h2>
-            <div id="skills" class="skills"></div>
-        </article>
+                    <div class="hero-fact">
+                        <span class="fact-icon">📍</span>
+                        <div>
+                            <small>Job Location</small>
+                            <span id="heroLocation">Location</span>
+                        </div>
+                    </div>
 
-        <article id="benefitsCard" class="card hidden">
-            <h2>Benefits</h2>
-            <div id="benefits" class="description"></div>
-        </article>
+                    <div class="hero-fact">
+                        <span class="fact-icon">💼</span>
+                        <div>
+                            <small>Employment</small>
+                            <span id="heroJobType">Full Time</span>
+                        </div>
+                    </div>
 
-        <article class="card">
-            <h2>Apply for This Job</h2>
+                    <div class="hero-fact">
+                        <span class="fact-icon">💰</span>
+                        <div>
+                            <small>Salary</small>
+                            <span id="heroSalary" class="salary-highlight">As per company</span>
+                        </div>
+                    </div>
 
-            <p>
-                नीचे अपनी सही जानकारी भरकर आवेदन करें।
-            </p>
-
-            <div id="applyMessage" class="message hidden"></div>
-
-            <form id="applyForm">
-
-                <div>
-                    <label for="workerName">पूरा नाम *</label>
-                    <input
-                        id="workerName"
-                        name="workerName"
-                        type="text"
-                        autocomplete="name"
-                        maxlength="100"
-                        required
-                    >
                 </div>
 
-                <div>
-                    <label for="workerMobile">मोबाइल नंबर *</label>
-                    <input
-                        id="workerMobile"
-                        name="workerMobile"
-                        type="tel"
-                        inputmode="numeric"
-                        autocomplete="tel"
-                        maxlength="15"
-                        required
-                    >
-                </div>
+                <a href="#applyForm" class="btn btn-primary applyLink">
+                    Apply for This Job <span>→</span>
+                </a>
 
-                <div>
-                    <label for="workerQualification">Qualification *</label>
-                    <input
-                        id="workerQualification"
-                        name="qualification"
-                        type="text"
-                        maxlength="150"
-                        required
-                    >
-                </div>
+            </div>
 
-                <div>
-                    <label for="workerTrade">Trade *</label>
-                    <input
-                        id="workerTrade"
-                        name="trade"
-                        type="text"
-                        maxlength="150"
-                        required
-                    >
-                </div>
+        </section>
 
-                <div>
-                    <label for="workerExperience">Experience (Years) *</label>
-                    <input
-                        id="workerExperience"
-                        name="experience"
-                        type="number"
-                        min="0"
-                        max="80"
-                        step="0.5"
-                        value="0"
-                        required
-                    >
-                </div>
+        <!-- MAIN CONTENT -->
 
-                <div>
-                    <label for="workerSkills">Skills</label>
-                    <input
-                        id="workerSkills"
-                        name="skills"
-                        type="text"
-                        maxlength="500"
-                        placeholder="जैसे: SMT, PLC, Maintenance"
-                    >
-                </div>
+        <div class="content-grid">
 
-                <div>
-                    <label for="preferredLocation">Preferred Location *</label>
-                    <input
-                        id="preferredLocation"
-                        name="preferredLocation"
-                        type="text"
-                        maxlength="150"
-                        required
-                    >
-                </div>
+            <div class="main-column">
 
-                <button
-                    id="applyButton"
-                    class="primary-btn"
-                    type="submit"
-                >
-                    इस Job के लिए Apply करें
-                </button>
+                <!-- OVERVIEW -->
 
-            </form>
+                <article class="panel">
 
-            <a class="secondary-btn" href="/">
-                वापस JOBNEX पर जाएँ
-            </a>
+                    <div class="panel-heading">
+                        <span class="heading-icon">▦</span>
+                        <div>
+                            <h2>Job Overview</h2>
+                            <p class="panel-subtitle">
+                                Important information about this vacancy
+                            </p>
+                        </div>
+                    </div>
 
-        </article>
+                    <div class="details-grid">
+
+                        <div class="detail-item">
+                            <span class="detail-label">📍 Job Location</span>
+                            <span id="jobLocation" class="detail-value"></span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">🎓 Qualification</span>
+                            <span id="qualification" class="detail-value"></span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">🛠️ Trade</span>
+                            <span id="trade" class="detail-value"></span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">⏳ Experience</span>
+                            <span id="experience" class="detail-value"></span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">💰 Salary</span>
+                            <span id="salary" class="detail-value"></span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">💼 Job Type</span>
+                            <span id="jobType" class="detail-value"></span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">🏭 Department</span>
+                            <span id="department" class="detail-value"></span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">👤 Gender</span>
+                            <span id="gender" class="detail-value"></span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">👥 Vacancies Remaining</span>
+                            <span id="workersRemaining" class="detail-value"></span>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">📅 Last Date</span>
+                            <span id="lastDate" class="detail-value"></span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <!-- DESCRIPTION -->
+
+                <article class="panel">
+
+                    <div class="panel-heading">
+                        <span class="heading-icon">▤</span>
+                        <div>
+                            <h2>Job Description</h2>
+                            <p class="panel-subtitle">
+                                Vacancy information and job requirements
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="description" class="description"></div>
+
+                </article>
+
+                <!-- SKILLS -->
+
+                <article id="skillsCard" class="panel hidden">
+
+                    <div class="panel-heading">
+                        <span class="heading-icon">✦</span>
+                        <div>
+                            <h2>Required Skills</h2>
+                            <p class="panel-subtitle">
+                                Skills relevant to this position
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="skills" class="skills"></div>
+
+                </article>
+
+                <!-- BENEFITS -->
+
+                <article id="benefitsCard" class="panel hidden">
+
+                    <div class="panel-heading">
+                        <span class="heading-icon">✧</span>
+                        <div>
+                            <h2>Benefits & Facilities</h2>
+                            <p class="panel-subtitle">
+                                Benefits specified for this vacancy
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="benefits" class="description"></div>
+
+                </article>
+
+                <!-- APPLICATION FORM -->
+
+                <article id="applicationCard" class="panel apply-panel">
+
+                    <div class="panel-heading">
+                        <span class="heading-icon">✉</span>
+                        <div>
+                            <h2>Apply for This Job</h2>
+                            <p class="panel-subtitle">
+                                Fill in your details to submit your application
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="apply-intro">
+                        नीचे अपनी सही जानकारी भरें। आवेदन जमा करने से पहले
+                        सभी जानकारी जाँच लें।
+                    </p>
+
+                    <div id="applyMessage" class="form-message hidden"
+                         role="status" aria-live="polite"></div>
+
+                    <form id="applyForm">
+
+                        <div class="form-grid">
+
+                            <div class="form-field">
+                                <label for="workerName">
+                                    Full Name <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="workerName"
+                                    name="workerName"
+                                    type="text"
+                                    autocomplete="name"
+                                    maxlength="100"
+                                    placeholder="अपना पूरा नाम लिखें"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="workerMobile">
+                                    Mobile Number <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="workerMobile"
+                                    name="workerMobile"
+                                    type="tel"
+                                    inputmode="tel"
+                                    autocomplete="tel"
+                                    maxlength="15"
+                                    placeholder="अपना मोबाइल नंबर"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="workerQualification">
+                                    Qualification <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="workerQualification"
+                                    name="qualification"
+                                    type="text"
+                                    maxlength="150"
+                                    placeholder="जैसे ITI, Diploma, B.Tech"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="workerTrade">
+                                    Trade <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="workerTrade"
+                                    name="trade"
+                                    type="text"
+                                    maxlength="150"
+                                    placeholder="जैसे Electrician, Fitter"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-field">
+                                <label for="workerExperience">
+                                    Experience (Years) <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="workerExperience"
+                                    name="experience"
+                                    type="number"
+                                    min="0"
+                                    max="80"
+                                    step="0.5"
+                                    value="0"
+                                    required
+                                >
+
+                                <div class="form-hint">
+                                    Fresher हैं तो 0 रहने दें।
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="workerSkills">
+                                    Skills
+                                </label>
+
+                                <input
+                                    id="workerSkills"
+                                    name="skills"
+                                    type="text"
+                                    maxlength="500"
+                                    placeholder="जैसे PLC, Maintenance"
+                                >
+                            </div>
+
+                            <div class="form-field full-width">
+                                <label for="preferredLocation">
+                                    Preferred Location <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    id="preferredLocation"
+                                    name="preferredLocation"
+                                    type="text"
+                                    maxlength="150"
+                                    placeholder="आप किस शहर में काम करना चाहते हैं?"
+                                    required
+                                >
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+                            <button
+                                id="applyButton"
+                                class="btn btn-primary"
+                                type="submit"
+                            >
+                                Submit Application <span>→</span>
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <div class="trust-note">
+                        <span class="trust-icon">✓</span>
+                        <span>
+                            कृपया सही जानकारी दें। नौकरी और आवेदन से जुड़ी
+                            शर्तों की पुष्टि संबंधित कंपनी से करें।
+                        </span>
+                    </div>
+
+                </article>
+
+            </div>
+
+            <!-- SIDEBAR -->
+
+            <aside class="sidebar">
+
+                <article class="panel salary-card">
+
+                    <div class="panel-heading">
+                        <span class="heading-icon">₹</span>
+                        <div>
+                            <h2>Salary Details</h2>
+                            <p class="panel-subtitle">Compensation information</p>
+                        </div>
+                    </div>
+
+                    <div id="sidebarSalary" class="salary-amount">
+                        As per company
+                    </div>
+
+                    <div class="salary-note">
+                        वेतन की अंतिम पुष्टि कंपनी से करें।
+                    </div>
+
+                    <div class="sidebar-divider"></div>
+
+                    <div class="quick-fact">
+                        <span>Job Type</span>
+                        <strong id="sideJobType"></strong>
+                    </div>
+
+                    <div class="quick-fact">
+                        <span>Experience</span>
+                        <strong id="sideExperience"></strong>
+                    </div>
+
+                    <div class="quick-fact">
+                        <span>Vacancies</span>
+                        <strong id="sideVacancies"></strong>
+                    </div>
+
+                    <div class="quick-fact">
+                        <span>Last Date</span>
+                        <strong id="sideLastDate"></strong>
+                    </div>
+
+                </article>
+
+                <article class="panel apply-panel">
+
+                    <div class="panel-heading">
+                        <span class="heading-icon">⚡</span>
+                        <div>
+                            <h2>Interested?</h2>
+                            <p class="panel-subtitle">
+                                Start your application
+                            </p>
+                        </div>
+                    </div>
+
+                    <p class="apply-intro">
+                        अपनी योग्यता और अनुभव के अनुसार इस नौकरी के लिए आवेदन करें।
+                    </p>
+
+                    <a href="#applyForm" class="btn btn-primary applyLink">
+                        Apply Now <span>→</span>
+                    </a>
+
+                    <div class="trust-note">
+                        <span class="trust-icon">✓</span>
+                        <span>
+                            आवेदन करने से पहले नौकरी की जानकारी ध्यान से पढ़ें।
+                        </span>
+                    </div>
+
+                </article>
+
+            </aside>
+
+        </div>
 
     </section>
 
 </main>
 
 <footer>
-    JOBNEX — Find Jobs According to Your Qualification
+    <div class="container footer-inner">
+
+        <div>
+            <div class="footer-brand">JOB<span>NEX</span></div>
+            <p class="footer-text">
+                Find Jobs According to Your Qualification
+            </p>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer">
+            <a href="/">Home</a>
+            <a href="/">Browse Jobs</a>
+            <a href="/privacy-policy.html">Privacy Policy</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+
+    </div>
 </footer>
+
+<div id="mobileApplyBar" class="mobile-apply hidden">
+    <a href="#applyForm" class="btn btn-primary applyLink">
+        Apply for This Job <span>→</span>
+    </a>
+</div>
 
 <script>
 "use strict";
@@ -518,13 +1750,7 @@
 =========================================================
 JOBNEX JOB DETAILS
 
-Existing backend routes are not modified.
-
-Public jobs API:
-GET /api/jobs/public-all
-
-Application API:
-POST /api/public-worker/apply
+API endpoints and application payload retained.
 =========================================================
 */
 
@@ -555,8 +1781,7 @@ SAFE TEXT OUTPUT
 
 function setText(id, value) {
 
-    const element =
-        document.getElementById(id);
+    const element = document.getElementById(id);
 
     if (!element) return;
 
@@ -671,7 +1896,11 @@ function showError(message) {
     loadingElement.classList.add("hidden");
     contentElement.classList.add("hidden");
 
-    errorElement.textContent = message;
+    document.getElementById("mobileApplyBar")
+        .classList.add("hidden");
+
+    document.getElementById("errorText").textContent =
+        message;
 
     errorElement.classList.remove("hidden");
 }
@@ -691,9 +1920,7 @@ function getJobId() {
 
 
 /* =========================================================
-FETCH A PUBLIC JOB
-
-The existing endpoint returns up to 10 jobs per page.
+FETCH PUBLIC JOB
 ========================================================= */
 
 async function fetchPublicJob(jobId) {
@@ -727,14 +1954,7 @@ async function fetchPublicJob(jobId) {
     if (job) return job;
 
     const total = Number(firstData.total || 0);
-
-    const totalPages =
-        Math.ceil(total / 10);
-
-    /*
-      Search only as many pages as the API reports.
-      This keeps the existing pagination intact.
-    */
+    const totalPages = Math.ceil(total / 10);
 
     for (let page = 2; page <= totalPages; page++) {
 
@@ -786,77 +2006,86 @@ function renderJob(job) {
               ) ||
               "Company details available on request";
 
-    const location =
-        getLocation(job);
+    const location = getLocation(job);
+    const salary = formatSalary(job);
+    const experience = formatExperience(
+        job.experienceMin,
+        job.experienceMax
+    );
+    const jobType = job.jobType || "Full Time";
+    const lastDate = formatDate(job.lastDate);
 
     document.title =
         title + " | " + company + " | JOBNEX";
 
-    const canonical =
+    document.getElementById("canonicalUrl").href =
         SITE_URL +
         "/job.html?id=" +
         encodeURIComponent(String(job._id));
 
-    document.getElementById("canonicalUrl").href =
-        canonical;
-
     setText("jobTitle", title);
     setText("companyName", company);
     setText("jobLocation", location);
+    setText("heroLocation", location);
     setText("qualification", job.qualification);
     setText("trade", job.trade);
-
-    setText(
-        "experience",
-        formatExperience(
-            job.experienceMin,
-            job.experienceMax
-        )
-    );
-
-    setText("salary", formatSalary(job));
-    setText("jobType", job.jobType || "Full Time");
+    setText("experience", experience);
+    setText("salary", salary);
+    setText("heroSalary", salary);
+    setText("sidebarSalary", salary);
+    setText("jobType", jobType);
+    setText("heroJobType", jobType);
+    setText("sideJobType", jobType);
+    setText("sideExperience", experience);
     setText("department", job.department);
     setText("gender", job.gender || "Any");
+    setText("lastDate", lastDate);
+    setText("sideLastDate", lastDate);
 
-    setText(
-        "workersRemaining",
+    const remaining =
         job.workersRemaining === null ||
         job.workersRemaining === undefined
             ? "कंपनी से संपर्क करें"
-            : job.workersRemaining
-    );
+            : String(job.workersRemaining);
 
-    setText("lastDate", formatDate(job.lastDate));
+    setText("workersRemaining", remaining);
+    setText("sideVacancies", remaining);
 
-    const status =
+    const statusElement =
         document.getElementById("jobStatus");
 
-    status.textContent =
-        job.status || "Active Vacancy";
-
-    if (
+    const isClosed =
         job.status === "Closed" ||
-        job.isClosedByAdmin === true
-    ) {
+        job.isClosedByAdmin === true;
+
+    statusElement.textContent =
+        isClosed ? "● Vacancy Closed" : "● Active Vacancy";
+
+    if (isClosed) {
+
+        statusElement.style.background =
+            "rgba(251,113,133,.10)";
+
+        statusElement.style.color = "#fda4af";
+
+        statusElement.style.borderColor =
+            "rgba(251,113,133,.25)";
 
         applyForm.classList.add("hidden");
 
-        const applyMessage =
-            document.getElementById("applyMessage");
+        document.getElementById("applicationCard")
+            .classList.add("hidden");
 
-        applyMessage.textContent =
-            "यह भर्ती फिलहाल बंद है।";
+        document.getElementById("mobileApplyBar")
+            .classList.add("hidden");
 
-        applyMessage.className =
-            "message error";
+    } else {
 
+        document.getElementById("mobileApplyBar")
+            .classList.remove("hidden");
     }
 
-    /*
-      Use actual job data only.
-      Do not invent job responsibilities.
-    */
+    /* Description */
 
     const descriptionParts = [
         "Job Title: " + title,
@@ -864,11 +2093,8 @@ function renderJob(job) {
         "Location: " + (location || "Not specified"),
         "Qualification: " + (job.qualification || "Not specified"),
         "Trade: " + (job.trade || "Not specified"),
-        "Experience: " + formatExperience(
-            job.experienceMin,
-            job.experienceMax
-        ),
-        "Job Type: " + (job.jobType || "Full Time")
+        "Experience: " + experience,
+        "Job Type: " + jobType
     ];
 
     if (job.department) {
@@ -886,44 +2112,62 @@ function renderJob(job) {
     document.getElementById("description").textContent =
         descriptionParts.join("\n");
 
-    if (
-        Array.isArray(job.skills) &&
-        job.skills.length
-    ) {
+    /* Skills */
 
-        const skillsContainer =
-            document.getElementById("skills");
+    const skillsCard =
+        document.getElementById("skillsCard");
 
-        skillsContainer.replaceChildren();
+    const skillsContainer =
+        document.getElementById("skills");
 
-        job.skills.forEach(skill => {
+    skillsContainer.replaceChildren();
 
-            const span =
-                document.createElement("span");
+    let skillList = [];
+
+    if (Array.isArray(job.skills)) {
+        skillList = job.skills;
+    } else if (typeof job.skills === "string") {
+        skillList = job.skills
+            .split(",")
+            .map(skill => skill.trim())
+            .filter(Boolean);
+    }
+
+    if (skillList.length) {
+
+        skillList.forEach(skill => {
+
+            const span = document.createElement("span");
 
             span.className = "skill";
-            span.textContent = skill;
+            span.textContent = "✦ " + String(skill);
 
             skillsContainer.appendChild(span);
-
         });
 
-        document.getElementById("skillsCard")
-            .classList.remove("hidden");
+        skillsCard.classList.remove("hidden");
+
+    } else {
+
+        skillsCard.classList.add("hidden");
     }
+
+    /* Benefits */
+
+    const benefitsCard =
+        document.getElementById("benefitsCard");
 
     if (job.benefits) {
 
         setText("benefits", job.benefits);
+        benefitsCard.classList.remove("hidden");
 
-        document.getElementById("benefitsCard")
-            .classList.remove("hidden");
+    } else {
+
+        benefitsCard.classList.add("hidden");
     }
 
-    /*
-      Prefill form with known job requirements.
-      Applicants can still edit these fields.
-    */
+    /* Prefill application fields */
 
     document.getElementById("workerQualification").value =
         job.qualification || "";
@@ -934,9 +2178,7 @@ function renderJob(job) {
     document.getElementById("preferredLocation").value =
         location || "";
 
-    /*
-      Generate JobPosting structured data.
-    */
+    /* Structured data */
 
     addJobPostingSchema(job, title, company, location);
 
@@ -962,13 +2204,6 @@ function addJobPostingSchema(
 
     if (previous) previous.remove();
 
-    /*
-      Schema is generated from the current job data.
-      Salary is deliberately omitted because the model
-      does not specify whether its unit is hourly, monthly,
-      or yearly.
-    */
-
     const description =
         document.getElementById("description").textContent;
 
@@ -977,19 +2212,24 @@ function addJobPostingSchema(
         "@type": "JobPosting",
         "title": title,
         "description": description,
+
         "identifier": {
             "@type": "PropertyValue",
             "name": "JOBNEX",
             "value": String(job._id)
         },
+
         "datePosted": job.createdAt
             ? new Date(job.createdAt).toISOString()
             : undefined,
+
         "employmentType": mapEmploymentType(job.jobType),
+
         "hiringOrganization": {
             "@type": "Organization",
             "name": company
         },
+
         "url":
             SITE_URL +
             "/job.html?id=" +
@@ -1000,49 +2240,35 @@ function addJobPostingSchema(
 
         posting.jobLocation = {
             "@type": "Place",
+
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": location,
                 "addressCountry": "IN"
             }
         };
-
     }
 
     if (job.lastDate) {
 
-        const validThrough =
-            new Date(job.lastDate);
+        const validThrough = new Date(job.lastDate);
 
         if (!Number.isNaN(validThrough.getTime())) {
             posting.validThrough =
                 validThrough.toISOString();
         }
-
     }
 
-    /*
-      Never advertise a closed vacancy as open.
-    */
-
-    if (
+    const isClosed =
         job.status === "Closed" ||
         job.isClosedByAdmin === true ||
         (
             job.workersRemaining !== null &&
             job.workersRemaining !== undefined &&
             Number(job.workersRemaining) <= 0
-        )
-    ) {
+        );
 
-        return;
-
-    }
-
-    /*
-      Only include fields for which the source has
-      meaningful values.
-    */
+    if (isClosed) return;
 
     Object.keys(posting).forEach(key => {
 
@@ -1053,17 +2279,13 @@ function addJobPostingSchema(
         ) {
             delete posting[key];
         }
-
     });
 
-    const script =
-        document.createElement("script");
+    const script = document.createElement("script");
 
     script.id = "jobPostingSchema";
     script.type = "application/ld+json";
-
-    script.textContent =
-        JSON.stringify(posting);
+    script.textContent = JSON.stringify(posting);
 
     document.head.appendChild(script);
 }
@@ -1071,28 +2293,12 @@ function addJobPostingSchema(
 
 function mapEmploymentType(value) {
 
-    const type =
-        String(value || "").toLowerCase();
+    const type = String(value || "").toLowerCase();
 
-    if (type.includes("full")) {
-        return "FULL_TIME";
-    }
-
-    if (type.includes("part")) {
-        return "PART_TIME";
-    }
-
-    if (type.includes("contract")) {
-        return "CONTRACTOR";
-    }
-
-    if (type.includes("temporary")) {
-        return "TEMPORARY";
-    }
-
-    /*
-      Do not invent an employment type if it is unknown.
-    */
+    if (type.includes("full")) return "FULL_TIME";
+    if (type.includes("part")) return "PART_TIME";
+    if (type.includes("contract")) return "CONTRACTOR";
+    if (type.includes("temporary")) return "TEMPORARY";
 
     return undefined;
 }
@@ -1110,17 +2316,24 @@ applyForm.addEventListener("submit", async function(event) {
 
         alert("Job की जानकारी उपलब्ध नहीं है।");
         return;
-
     }
 
     if (
         currentJob.status === "Closed" ||
-        currentJob.isClosedByAdmin === true
+        currentJob.isClosedByAdmin === true ||
+        (
+            currentJob.workersRemaining !== null &&
+            currentJob.workersRemaining !== undefined &&
+            Number(currentJob.workersRemaining) <= 0
+        )
     ) {
 
-        alert("यह Job बंद हो चुकी है।");
-        return;
+        showApplyMessage(
+            "यह Job बंद हो चुकी है या इसमें फिलहाल vacancy उपलब्ध नहीं है।",
+            "error"
+        );
 
+        return;
     }
 
     const button =
@@ -1141,14 +2354,12 @@ applyForm.addEventListener("submit", async function(event) {
         normalizedMobile.length > 15
     ) {
 
-        message.textContent =
-            "कृपया सही मोबाइल नंबर दर्ज करें।";
-
-        message.className =
-            "message error";
+        showApplyMessage(
+            "कृपया सही मोबाइल नंबर दर्ज करें।",
+            "error"
+        );
 
         return;
-
     }
 
     const experience =
@@ -1163,14 +2374,12 @@ applyForm.addEventListener("submit", async function(event) {
         experience > 80
     ) {
 
-        message.textContent =
-            "कृपया सही Experience दर्ज करें।";
-
-        message.className =
-            "message error";
+        showApplyMessage(
+            "कृपया सही Experience दर्ज करें।",
+            "error"
+        );
 
         return;
-
     }
 
     const payload = {
@@ -1200,11 +2409,10 @@ applyForm.addEventListener("submit", async function(event) {
         preferredLocation:
             document.getElementById("preferredLocation")
                 .value.trim()
-
     };
 
     button.disabled = true;
-    button.textContent = "Submitting...";
+    button.textContent = "Submitting Application...";
 
     message.classList.add("hidden");
 
@@ -1223,8 +2431,7 @@ applyForm.addEventListener("submit", async function(event) {
             }
         );
 
-        const data =
-            await response.json();
+        const data = await response.json();
 
         if (!response.ok || data.success === false) {
 
@@ -1232,13 +2439,7 @@ applyForm.addEventListener("submit", async function(event) {
                 data.message ||
                 "Application submit नहीं हो पाया।"
             );
-
         }
-
-        /*
-          Accept common token field names without assuming
-          that every backend response uses the same name.
-        */
 
         const token =
             data.token ||
@@ -1255,11 +2456,14 @@ applyForm.addEventListener("submit", async function(event) {
         if (token) {
 
             try {
+
                 localStorage.setItem(
                     "contractorHubTrackingToken",
                     token
                 );
+
             } catch (storageError) {
+
                 console.warn(
                     "Tracking token could not be stored."
                 );
@@ -1270,21 +2474,15 @@ applyForm.addEventListener("submit", async function(event) {
                 encodeURIComponent(token);
 
             return;
-
         }
 
-        message.textContent =
+        showApplyMessage(
             data.message ||
-            "आपका आवेदन प्राप्त हो गया।";
-
-        message.className =
-            "message info";
+            "आपका आवेदन प्राप्त हो गया।",
+            "success"
+        );
 
         applyForm.reset();
-
-        /*
-          Restore known job requirements after reset.
-        */
 
         document.getElementById("workerQualification").value =
             currentJob.qualification || "";
@@ -1295,24 +2493,81 @@ applyForm.addEventListener("submit", async function(event) {
         document.getElementById("preferredLocation").value =
             getLocation(currentJob);
 
+        document.getElementById("workerExperience").value = "0";
+
     } catch (error) {
 
-        message.textContent =
+        showApplyMessage(
             error.message ||
-            "नेटवर्क समस्या के कारण आवेदन नहीं हो पाया।";
-
-        message.className =
-            "message error";
+            "नेटवर्क समस्या के कारण आवेदन नहीं हो पाया।",
+            "error"
+        );
 
     } finally {
 
         button.disabled = false;
 
-        button.textContent =
-            "इस Job के लिए Apply करें";
+        button.innerHTML =
+            "Submit Application <span>→</span>";
+    }
+});
 
+
+function showApplyMessage(text, type) {
+
+    const message =
+        document.getElementById("applyMessage");
+
+    message.textContent = text;
+
+    message.className = "form-message";
+
+    if (type === "success") {
+        message.classList.add("message-success");
+    } else if (type === "error") {
+        message.classList.add("message-error");
+    } else {
+        message.classList.add("message-info");
     }
 
+    message.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+}
+
+
+/* =========================================================
+APPLY BUTTONS
+========================================================= */
+
+document.querySelectorAll(".applyLink").forEach(link => {
+
+    link.addEventListener("click", function(event) {
+
+        if (!currentJob) {
+            event.preventDefault();
+            return;
+        }
+
+        if (
+            currentJob.status === "Closed" ||
+            currentJob.isClosedByAdmin === true ||
+            (
+                currentJob.workersRemaining !== null &&
+                currentJob.workersRemaining !== undefined &&
+                Number(currentJob.workersRemaining) <= 0
+            )
+        ) {
+
+            event.preventDefault();
+
+            showApplyMessage(
+                "यह Job फिलहाल आवेदन के लिए उपलब्ध नहीं है।",
+                "error"
+            );
+        }
+    });
 });
 
 
@@ -1327,42 +2582,23 @@ async function init() {
     if (!/^[a-fA-F0-9]{24}$/.test(jobId)) {
 
         showError(
-            "Job ID सही नहीं है। कृपया JOBNEX पर उपलब्ध Job खोलें।"
+            "Job ID सही नहीं है। कृपया JOBNEX पर उपलब्ध किसी Job को खोलें।"
         );
 
         return;
-
     }
 
     try {
 
-        const job =
-            await fetchPublicJob(jobId);
+        const job = await fetchPublicJob(jobId);
 
         if (!job) {
 
             showError(
-                "यह Job उपलब्ध नहीं है। संभव है कि Vacancy बंद हो गई हो या Job हट गई हो।"
+                "यह Job उपलब्ध नहीं है। संभव है कि Vacancy बंद हो गई हो या Job हटा दी गई हो।"
             );
 
             return;
-
-        }
-
-        if (
-            job.status === "Closed" ||
-            job.isClosedByAdmin === true
-        ) {
-
-            /*
-              Closed vacancies are not eligible for
-              Google JobPosting structured data.
-            */
-
-            renderJob(job);
-
-            return;
-
         }
 
         renderJob(job);
@@ -1373,9 +2609,7 @@ async function init() {
             error.message ||
             "Job की जानकारी लोड नहीं हो सकी।"
         );
-
     }
-
 }
 
 init();
