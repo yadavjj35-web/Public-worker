@@ -4,7 +4,7 @@
 
   // ==========================================
   // JOBNEX - ALL JOBS LISTING
-  // No location/category restrictions
+  // Premium Loader + All Available Jobs
   // ==========================================
 
   const API_URL =
@@ -21,6 +21,244 @@
     console.error("JOBNEX: Required HTML elements nahi mile.");
     return;
   }
+
+  // ==========================================
+  // CREATE LOADER AUTOMATICALLY
+  // HTML/CSS FILE CHANGE KARNE KI ZAROORAT NAHI
+  // ==========================================
+
+  const loaderStyle = document.createElement("style");
+
+  loaderStyle.textContent = `
+    #jnxAutoLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483647;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: #080d18;
+      color: #f8fafc;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                   "Segoe UI", sans-serif;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .35s ease, visibility .35s ease;
+    }
+
+    #jnxAutoLoader.jnx-loader-hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #jnxAutoLoader .jnx-loader-box {
+      width: 100%;
+      max-width: 430px;
+      text-align: center;
+    }
+
+    #jnxAutoLoader .jnx-loader-brand {
+      margin-bottom: 34px;
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #f8fafc;
+    }
+
+    #jnxAutoLoader .jnx-loader-brand span {
+      color: #60a5fa;
+    }
+
+    #jnxAutoLoader .jnx-loader-spinner {
+      width: 55px;
+      height: 55px;
+      margin: 0 auto 26px;
+      border: 4px solid #1e293b;
+      border-top-color: #60a5fa;
+      border-right-color: #818cf8;
+      border-radius: 50%;
+      animation: jnxLoaderSpin .8s linear infinite;
+    }
+
+    #jnxAutoLoader .jnx-loader-heading {
+      margin: 0 0 10px;
+      color: #f8fafc;
+      font-size: 22px;
+      font-weight: 750;
+    }
+
+    #jnxAutoLoader .jnx-loader-description {
+      max-width: 340px;
+      margin: 0 auto 25px;
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    #jnxAutoLoader .jnx-loader-track {
+      width: 100%;
+      height: 5px;
+      margin-bottom: 17px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #1e293b;
+    }
+
+    #jnxAutoLoader .jnx-loader-bar {
+      width: 35%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #60a5fa, #818cf8);
+      animation: jnxLoaderProgress 1.4s ease-in-out infinite;
+    }
+
+    #jnxAutoLoader .jnx-loader-status {
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    #jnxAutoLoader .jnx-loader-error {
+      display: none;
+      margin-top: 18px;
+      color: #fca5a5;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    #jnxAutoLoader .jnx-loader-retry {
+      display: none;
+      margin: 18px auto 0;
+      padding: 11px 23px;
+      border: 1px solid #3b82f6;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    #jnxAutoLoader .jnx-loader-retry:hover {
+      background: #1d4ed8;
+    }
+
+    #jnxAutoLoader.jnx-loader-failed .jnx-loader-spinner,
+    #jnxAutoLoader.jnx-loader-failed .jnx-loader-track {
+      display: none;
+    }
+
+    #jnxAutoLoader.jnx-loader-failed .jnx-loader-error,
+    #jnxAutoLoader.jnx-loader-failed .jnx-loader-retry {
+      display: block;
+    }
+
+    @keyframes jnxLoaderSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes jnxLoaderProgress {
+      0% { transform: translateX(-110%); }
+      100% { transform: translateX(310%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #jnxAutoLoader .jnx-loader-spinner,
+      #jnxAutoLoader .jnx-loader-bar {
+        animation-duration: 3s;
+      }
+    }
+  `;
+
+  document.head.appendChild(loaderStyle);
+
+  const pageLoader = document.createElement("div");
+
+  pageLoader.id = "jnxAutoLoader";
+
+  pageLoader.innerHTML = `
+    <div class="jnx-loader-box">
+
+      <div class="jnx-loader-brand">
+        JOB<span>NEX</span>
+      </div>
+
+      <div class="jnx-loader-spinner"></div>
+
+      <h2 class="jnx-loader-heading">
+        Jobs load ho rahi hain...
+      </h2>
+
+      <p class="jnx-loader-description">
+        Kripya intezar karein. Aapke liye available jobs
+        aur unki details taiyar ki ja rahi hain.
+      </p>
+
+      <div class="jnx-loader-track">
+        <div class="jnx-loader-bar"></div>
+      </div>
+
+      <div class="jnx-loader-status" id="jnxAutoLoaderStatus">
+        Server se connect ho raha hai...
+      </div>
+
+      <div class="jnx-loader-error" id="jnxAutoLoaderError"></div>
+
+      <button
+        type="button"
+        class="jnx-loader-retry"
+        id="jnxAutoLoaderRetry"
+      >
+        Dobara Try Karein
+      </button>
+
+    </div>
+  `;
+
+  document.body.appendChild(pageLoader);
+
+  const loaderStatus =
+    document.getElementById("jnxAutoLoaderStatus");
+
+  const loaderError =
+    document.getElementById("jnxAutoLoaderError");
+
+  const loaderRetry =
+    document.getElementById("jnxAutoLoaderRetry");
+
+  let initialLoadFinished = false;
+
+  function updateLoaderStatus(text) {
+    loaderStatus.textContent = text;
+  }
+
+  function hideLoader() {
+    pageLoader.classList.remove("jnx-loader-failed");
+    pageLoader.classList.add("jnx-loader-hide");
+
+    window.setTimeout(() => {
+      if (pageLoader.isConnected) {
+        pageLoader.remove();
+      }
+
+      if (loaderStyle.isConnected) {
+        loaderStyle.remove();
+      }
+    }, 400);
+  }
+
+  function showLoaderError(text) {
+    pageLoader.classList.add("jnx-loader-failed");
+
+    loaderStatus.textContent = "Connection nahi ho paya.";
+    loaderError.textContent = text;
+    loaderRetry.style.display = "block";
+  }
+
+  // ==========================================
+  // PAGINATION STATE
+  // ==========================================
 
   let page = 1;
   let loading = false;
@@ -129,7 +367,8 @@
         "inactive",
         "expired",
         "filled",
-        "cancelled"
+        "cancelled",
+        "canceled"
       ].includes(status)
     ) {
       return false;
@@ -207,8 +446,11 @@
     const min = job.experienceMin ?? job.minExperience;
     const max = job.experienceMax ?? job.maxExperience;
 
-    const hasMin = min !== null && min !== undefined;
-    const hasMax = max !== null && max !== undefined;
+    const hasMin =
+      min !== null && min !== undefined && min !== "";
+
+    const hasMax =
+      max !== null && max !== undefined && max !== "";
 
     if (hasMin && hasMax) {
       if (Number(min) === 0 && Number(max) === 0) {
@@ -402,7 +644,7 @@
   }
 
   // ==========================================
-  // LOAD ALL AVAILABLE PAGES
+  // LOAD JOBS
   // ==========================================
 
   async function loadJobs() {
@@ -414,24 +656,41 @@
     moreBtn.textContent = "⏳ Jobs लोड हो रही हैं...";
     message.textContent = "";
 
+    if (!initialLoadFinished) {
+      updateLoaderStatus("Server se jobs ki details mangi ja rahi hain...");
+    }
+
     try {
       const url =
         API_URL +
         "?page=" + page +
         "&limit=" + LIMIT;
 
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          Accept: "application/json"
-        }
-      });
+      const controller = new AbortController();
+
+      const timeoutId = setTimeout(() => {
+        controller.abort();
+      }, 25000);
+
+      let response;
+
+      try {
+        response = await fetch(url, {
+          method: "GET",
+          headers: {
+            Accept: "application/json"
+          },
+          signal: controller.signal
+        });
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       if (!response.ok) {
-        throw new Error(
-          "API Error: HTTP " + response.status
-        );
+        throw new Error("API Error: HTTP " + response.status);
       }
+
+      updateLoaderStatus("Job listings process ho rahi hain...");
 
       const data = await response.json();
 
@@ -454,7 +713,11 @@
       }
 
       if (data.total !== undefined) {
-        totalAvailable = Number(data.total);
+        const parsedTotal = Number(data.total);
+
+        if (Number.isFinite(parsedTotal)) {
+          totalAvailable = parsedTotal;
+        }
       }
 
       const apiHasMore =
@@ -483,7 +746,7 @@
         seen.add(id);
 
         // Koi location ya category filter nahi.
-        // Sirf closed/expired/filled jobs hide hongi.
+        // Sirf unavailable jobs hide hongi.
         if (isJobAvailable(job)) {
           loadedJobs.push(job);
         }
@@ -493,7 +756,14 @@
 
       page++;
 
+      // Pehle job cards render hongi.
       renderJobs();
+
+      // Initial jobs render hote hi loader hata dein.
+      if (!initialLoadFinished) {
+        initialLoadFinished = true;
+        hideLoader();
+      }
 
       if (hasMore) {
         moreBtn.style.display = "inline-flex";
@@ -517,18 +787,45 @@
     } catch (error) {
       console.error("JOBNEX jobs error:", error);
 
-      message.textContent =
-        "Jobs load nahi ho sakin: " +
-        (error.message || "Network ya API error.");
+      const errorText = error.name === "AbortError"
+        ? "Server se response aane mein zyada samay lag raha hai."
+        : "Jobs load nahi ho sakin. Internet connection ya server check karein.";
+
+      message.textContent = errorText;
 
       moreBtn.style.display = "inline-flex";
       moreBtn.textContent = "🔄 Dobara try karein";
+
+      if (!initialLoadFinished) {
+        showLoaderError(errorText);
+      }
 
     } finally {
       loading = false;
       moreBtn.disabled = false;
     }
   }
+
+  // ==========================================
+  // RETRY FROM LOADER
+  // ==========================================
+
+  loaderRetry.addEventListener("click", () => {
+    if (loading) return;
+
+    // Retry par loader phir se show karein.
+    pageLoader.classList.remove("jnx-loader-hide");
+    pageLoader.classList.remove("jnx-loader-failed");
+
+    loaderError.textContent = "";
+    loaderRetry.style.display = "none";
+
+    updateLoaderStatus("Server se dobara connect ho raha hai...");
+
+    hasMore = true;
+
+    loadJobs();
+  });
 
   // ==========================================
   // MORE JOBS / RETRY
@@ -542,8 +839,10 @@
     loadJobs();
   });
 
-  // Initial load
+  // ==========================================
+  // INITIAL LOAD
+  // ==========================================
+
   loadJobs();
 
 })();
-
