@@ -387,7 +387,201 @@ input::placeholder{color:#a1aab8}
 </div>
 
 <div class="footer">© 2026 JOBNEX<br>Professional Job &amp; Worker Network</div>
+<script>
+(() => {
+  "use strict";
 
+  // JOBNEX UNIVERSAL PAGE LOADER
+  // HTML aur CSS alag se banane ki zaroorat nahi.
+
+  if (window.__JOBNEX_LOADER_INITIALIZED__) return;
+  window.__JOBNEX_LOADER_INITIALIZED__ = true;
+
+  const style = document.createElement("style");
+
+  style.textContent = `
+    #jnxUniversalLoader {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483647;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #080d18;
+      color: #f8fafc;
+      font-family: Arial, sans-serif;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity .4s ease, visibility .4s ease;
+    }
+
+    #jnxUniversalLoader.jnx-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #jnxUniversalLoader .jnx-loader-inner {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    #jnxUniversalLoader .jnx-brand {
+      margin-bottom: 35px;
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    #jnxUniversalLoader .jnx-brand span {
+      color: #60a5fa;
+    }
+
+    #jnxUniversalLoader .jnx-spinner {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 25px;
+      border: 4px solid #1e293b;
+      border-top-color: #60a5fa;
+      border-right-color: #818cf8;
+      border-radius: 50%;
+      animation: jnxUniversalSpin .8s linear infinite;
+    }
+
+    #jnxUniversalLoader h2 {
+      margin: 0 0 12px;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    #jnxUniversalLoader p {
+      margin: 0 0 25px;
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    #jnxUniversalLoader .jnx-progress {
+      height: 5px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #1e293b;
+    }
+
+    #jnxUniversalLoader .jnx-progress-bar {
+      width: 35%;
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #60a5fa, #818cf8);
+      animation: jnxUniversalProgress 1.4s ease-in-out infinite;
+    }
+
+    #jnxUniversalLoader .jnx-status {
+      display: block;
+      margin-top: 16px;
+      color: #64748b;
+      font-size: 12px;
+    }
+
+    @keyframes jnxUniversalSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes jnxUniversalProgress {
+      from { transform: translateX(-110%); }
+      to { transform: translateX(310%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #jnxUniversalLoader .jnx-spinner,
+      #jnxUniversalLoader .jnx-progress-bar {
+        animation-duration: 3s;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
+
+  const loader = document.createElement("div");
+  loader.id = "jnxUniversalLoader";
+
+  loader.innerHTML = `
+    <div class="jnx-loader-inner">
+      <div class="jnx-brand">JOB<span>NEX</span></div>
+
+      <div class="jnx-spinner"></div>
+
+      <h2>Loading, please wait...</h2>
+
+      <p>
+        Hum aapke liye page aur zaroori information
+        taiyar kar rahe hain.
+      </p>
+
+      <div class="jnx-progress">
+        <div class="jnx-progress-bar"></div>
+      </div>
+
+      <span class="jnx-status">
+        Please wait...
+      </span>
+    </div>
+  `;
+
+  function insertLoader() {
+    if (!document.body || document.getElementById(loader.id)) {
+      return;
+    }
+
+    document.body.appendChild(loader);
+  }
+
+  if (document.body) {
+    insertLoader();
+  } else {
+    document.addEventListener("DOMContentLoaded", insertLoader, {
+      once: true
+    });
+  }
+
+  // Loader hide karne ke liye:
+  // window.hideJOBNEXLoader();
+
+  window.hideJOBNEXLoader = function () {
+    if (!loader.isConnected) return;
+
+    loader.classList.add("jnx-hidden");
+
+    setTimeout(() => {
+      loader.remove();
+      style.remove();
+    }, 450);
+  };
+
+  // Safety fallback:
+  // Agar hide function call nahi hua, toh loader 15 sec
+  // baad hat jayega.
+  const safetyTimer = setTimeout(() => {
+    window.hideJOBNEXLoader();
+  }, 15000);
+
+  window.hideJOBNEXLoader = function () {
+    clearTimeout(safetyTimer);
+
+    if (!loader.isConnected) return;
+
+    loader.classList.add("jnx-hidden");
+
+    setTimeout(() => {
+      loader.remove();
+      style.remove();
+    }, 450);
+  };
+
+})();
+</script>
 <script>
 "use strict";
 
