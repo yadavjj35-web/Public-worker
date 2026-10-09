@@ -1,112 +1,108 @@
-module.exports = async (req, res) => {
-const SITE_URL = "https://rudrapurjob.online";
-const API_URL = "https://industrial-contractor-job-network.onrender.com/api";
+const API_URL =
+  "https://industrial-contractor-job-network.onrender.com/api/jobs/public-all";
 
-try {
-    const allJobs = [];
+const SITE_URL = "https://rudrapurjob.online";
+
+module.exports = async (req, res) => {
+  try {
+    const urls = [
+      {
+        loc: `${SITE_URL}/`,
+        lastmod: new Date().toISOString()
+      },
+      {
+        loc: `${SITE_URL}/job.html`
+      }
+    ];
+
     let page = 1;
     const limit = 100;
-    let totalPages = 1;
+    let hasMore = true;
+    const seenIds = new Set();
 
-    // Backend se sabhi jobs page-by-page fetch karein
-    do {
-        const response = await fetch(
-            `${API_URL}/jobs/public-all?page=${page}&limit=${limit}`
-        );
+    while (hasMore && page <= 100) {
+      const response = await fetch(
+        `${API_URL}?page=${page}&limit=${limit}`
+      );
 
-        if (!response.ok) {
-            throw new Error(`Jobs API failed: ${response.status}`);
-        }
+      if (!response.ok) {
+        throw new Error(`Jobs API returned ${response.status}`);
+      }
 
-        const data = await response.json();
+      const data = await response.json();
 
-        if (!data.success || !Array.isArray(data.jobs)) {
-            throw new Error("Invalid Jobs API response");
-        }
+      if (!data.success || !Array.isArray(data.jobs)) {
+        throw new Error("Invalid Jobs API response");
+      }
 
-        allJobs.push(...data.jobs);
+      for (const job of data.jobs) {
+        if (!job._id || seenIds.has(job._id)) continue;
 
-        const total = Number(data.total || 0);
-        totalPages = Math.max(1, Math.ceil(total / limit));
+        seenIds.add(job._id);
 
-        if (data.hasMore === false) {
-            break;
-        }
-
-        page++;
-    } while (page <= totalPages);
-
-    // Sirf valid aur active jobs Sitemap mein rakhein
-    const activeJobs = allJobs.filter(job => {
-        if (!job || !job._id) return false;
-
-        const status = String(job.status || "").toLowerCase();
-
+        // Only include open jobs.
         if (
-            job.isClosedByAdmin === true ||
-            job.isActive === false ||
-            ["closed", "inactive", "expired"].includes(status)
+          job.isClosedByAdmin === true ||
+          !["Active", "Partially Filled"].includes(job.status)
         ) {
-            return false;
+          continue;
         }
 
+        // Exclude jobs whose application deadline has passed.
         if (
-            job.workersRemaining !== undefined &&
-            job.workersRemaining !== null &&
-            Number(job.workersRemaining) <= 0
+          job.lastDate &&
+          !Number.isNaN(Date.parse(job.lastDate)) &&
+          new Date(job.lastDate) < new Date()
         ) {
-            return false;
+          continue;
         }
 
-        return true;
-    });
+        urls.push({
+          loc: `${SITE_URL}/job.html?id=${encodeURIComponent(job._id)}`,
+          lastmod: job.updatedAt || job.createdAt
+        });
+      }
 
-    // Duplicate jobs hata dein
-    const uniqueJobs = [
-        ...new Map(
-            activeJobs.map(job => [String(job._id), job])
-        ).values()
-    ];
+      hasMore = data.hasMore === true;
+      page++;
+    }
 
-    // Homepage aur active job detail pages
-    const urls = [
-        `${SITE_URL}/`,
-        ...uniqueJobs.map(
-            job => `${SITE_URL}/job.html?id=${encodeURIComponent(job._id)}`
-        )
-    ];
+    const escapeXml = (value) =>
+      String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&apos;");
 
-    const escapeXml = value =>
-        String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&apos;");
+    const xmlUrls = urls
+      .map((item) => {
+        const lastmod = item.lastmod
+          ? `<lastmod>${escapeXml(
+              new Date(item.lastmod).toISOString()
+            )}</lastmod>`
+          : "";
 
-    const xmlUrls = urls.map(url => `
-<url>
-    <loc>${escapeXml(url)}</loc>
-</url>`).join("");
+        return `
+  <url>
+    <loc>${escapeXml(item.loc)}</loc>
+    ${lastmod}
+  </url>`;
+      })
+      .join("");
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${xmlUrls}
-</urlset>`;    res.setHeader("Content-Type", "application/xml; charset=utf-8");
-    res.setHeader(
-        "Cache-Control",
-        "public, s-maxage=300, stale-while-revalidate=600"
-    );
+</urlset>`;
 
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, s-maxage=300");
     return res.status(200).send(xml);
+  } catch (error) {
+    console.error("JOBNEX sitemap error:", error);
 
-} catch (error) {
-    console.error("JOBNEX SITEMAP ERROR:", error);
-
-    return res.status(500).send(
-        "Sitemap generate nahi ho saka. Jobs API check karein."
-    );
-}
-
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    return res.status(500).send("Unable to generate sitemap");
+  }
 };
