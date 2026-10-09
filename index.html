@@ -934,7 +934,9 @@ async function loadAllActiveJobs(reset = true) {
         currentJobsPage++;
 
         renderAllJobs();
-
+        if (window.hideJOBNEXLoader) {
+    window.hideJOBNEXLoader();
+        }
         if (data.hasMore) {
             button.textContent = "⬇️ More Jobs देखें";
             button.style.display = "inline-block";
