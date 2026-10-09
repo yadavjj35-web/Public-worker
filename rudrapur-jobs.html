@@ -26,15 +26,190 @@
     <h1>Rudrapur में उपलब्ध नई नौकरियाँ</h1>
     <p>Rudrapur में उपलब्ध सक्रिय नौकरी की जानकारी देखें। योग्यता, अनुभव, वेतन, कंपनी और आवेदन की अंतिम तारीख को हर लिस्टिंग में सत्यापित करें।</p>
 
-    <section aria-labelledby="job-listings">
-      <h2 id="job-listings">Rudrapur Jobs – उपलब्ध नौकरी लिस्टिंग</h2>
-      <p>यहाँ अपनी वेबसाइट/API से इस पेज से संबंधित वास्तविक और वर्तमान नौकरियाँ दिखाएँ। नीचे दिया गया नमूना कार्ड केवल placeholder है; प्रकाशित करने से पहले इसे वास्तविक listing data से बदलें।</p>
-      <!-- TODO: API/backend से इस keyword/location के अनुरूप active jobs render करें। -->
-      <article>
-        <h3>नौकरी की जानकारी जल्द देखें</h3>
-        <p>वर्तमान में इस नमूना HTML में live job data कनेक्ट नहीं है। वास्तविक पद, कंपनी, वेतन और आवेदन लिंक उपलब्ध होने पर ही दिखाएँ।</p>
-      </article>
-    </section>
+    <div class="jobs-section">
+  <div class="jobs-heading">
+    <span class="jobs-badge">● LIVE JOB UPDATES</span>
+    <h2>Rudrapur Jobs – उपलब्ध नौकरी लिस्टिंग</h2>
+    <p>Rudrapur, SIDCUL और Pantnagar में उपलब्ध नौकरियों की जानकारी देखें।</p>
+  </div>  <div class="jobs-toolbar">
+    <input
+      type="search"
+      id="jobSearch"
+      placeholder="कंपनी या नौकरी खोजें..."
+      aria-label="नौकरी खोजें"
+    >
+    <button type="button" id="refreshJobs">↻ Refresh</button>
+  </div>  <p id="jobsStatus" role="status" aria-live="polite">
+    नौकरियों की जानकारी लोड हो रही है...
+  </p>  <div id="jobsContainer" class="jobs-grid"></div>
+</div><script>
+(() => {
+  const API_URL =
+    "https://industrial-contractor-job-network.onrender.com/api/jobs/public-all";
+
+  const container = document.getElementById("jobsContainer");
+  const status = document.getElementById("jobsStatus");
+  const search = document.getElementById("jobSearch");
+  const refresh = document.getElementById("refreshJobs");
+
+  if (!container || !status || !search || !refresh) return;
+
+  let allJobs = [];
+
+  function getValue(job, keys, fallback = "जानकारी उपलब्ध नहीं") {
+    for (const key of keys) {
+      const value = job?.[key];
+
+      if (value !== undefined && value !== null && value !== "") {
+        if (typeof value === "object") {
+          return value.name || value.title || value.city || fallback;
+        }
+        return String(value);
+      }
+    }
+
+    return fallback;
+  }
+
+  function extractJobs(data) {
+    if (Array.isArray(data)) return data;
+    if (Array.isArray(data.jobs)) return data.jobs;
+    if (Array.isArray(data.data)) return data.data;
+    if (Array.isArray(data.results)) return data.results;
+    return null;
+  }
+
+  function renderJobs() {
+    const query = search.value.trim().toLowerCase();
+
+    const filtered = allJobs.filter(job => {
+      const text = [
+        getValue(job, ["title", "jobTitle", "position"], ""),
+        getValue(job, ["company", "companyName", "employer"], ""),
+        getValue(job, ["location", "city", "address"], ""),
+        getValue(job, ["jobType", "job_type", "employmentType"], "")
+      ].join(" ").toLowerCase();
+
+      return text.includes(query);
+    });
+
+    container.replaceChildren();
+
+    if (filtered.length === 0) {
+      status.textContent = allJobs.length
+        ? "आपकी खोज से मेल खाने वाली नौकरी नहीं मिली।"
+        : "अभी कोई नौकरी उपलब्ध नहीं है। बाद में दोबारा देखें।";
+      return;
+    }
+
+    status.textContent = `${filtered.length} नौकरी मिली।`;
+
+    filtered.forEach(job => {
+      const card = document.createElement("article");
+      card.className = "job-card";
+
+      const title = document.createElement("h3");
+      title.textContent = getValue(
+        job, ["title", "jobTitle", "position"], "पद का नाम उपलब्ध नहीं"
+      );
+
+      const company = document.createElement("p");
+      company.className = "job-company";
+      company.textContent = "🏢 कंपनी: " + getValue(
+        job, ["company", "companyName", "employer"]
+      );
+
+      const location = document.createElement("p");
+      location.textContent = "📍 स्थान: " + getValue(
+        job, ["location", "city", "address"]
+      );
+
+      const salary = document.createElement("p");
+      salary.textContent = "💰 वेतन: " + getValue(
+        job, ["salary", "salaryRange", "ctc"], "विवरण उपलब्ध नहीं"
+      );
+
+      const jobType = document.createElement("p");
+      jobType.textContent = "🕒 नौकरी का प्रकार: " + getValue(
+        job, ["jobType", "job_type", "employmentType", "type"]
+      );
+
+      card.append(title, company, location, salary, jobType);
+
+      const applyLink = getValue(
+        job,
+        ["applyUrl", "apply_url", "applicationUrl", "application_url", "url"],
+        ""
+      );
+
+      if (applyLink) {
+        try {
+          const url = new URL(applyLink, window.location.origin);
+
+          if (url.protocol === "https:" || url.protocol === "http:") {
+            const link = document.createElement("a");
+            link.className = "job-apply";
+            link.href = url.href;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "नौकरी देखें / Apply";
+            card.appendChild(link);
+          }
+        } catch (error) {
+          // अमान्य आवेदन लिंक को नहीं दिखाएँ।
+        }
+      }
+
+      container.appendChild(card);
+    });
+  }
+
+  async function loadJobs() {
+    refresh.disabled = true;
+    status.textContent = "नौकरियों की जानकारी लोड हो रही है...";
+
+    try {
+      const response = await fetch(API_URL, {
+        headers: { Accept: "application/json" }
+      });
+
+      if (!response.ok) {
+        throw new Error("API HTTP status: " + response.status);
+      }
+
+      const data = await response.json();
+      const jobs = extractJobs(data);
+
+      if (!jobs) {
+        throw new Error("API response में jobs array नहीं मिला।");
+      }
+
+      // Rudrapur, SIDCUL और Pantnagar से संबंधित नौकरियाँ दिखाएँ।
+      allJobs = jobs.filter(job => {
+        const location = getValue(
+          job, ["location", "city", "address", "workLocation"], ""
+        ).toLowerCase();
+
+        return /rudrapur|sidcul|pantnagar|pant nagar/.test(location);
+      });
+
+      renderJobs();
+    } catch (error) {
+      console.error("Jobs API error:", error);
+      container.replaceChildren();
+      status.textContent =
+        "Jobs अभी लोड नहीं हो सकीं। API connection या response format जाँचें।";
+    } finally {
+      refresh.disabled = false;
+    }
+  }
+
+  search.addEventListener("input", renderJobs);
+  refresh.addEventListener("click", loadJobs);
+
+  loadJobs();
+})();
+</script>
 
     <section>
       <h2>आवेदन करने से पहले ध्यान दें</h2>
