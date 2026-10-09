@@ -1,63 +1,119 @@
+(() => {
 "use strict";
+
+const API_BASE = (
+    window.API_URL ||
+    "https://industrial-contractor-job-network.onrender.com/api"
+).replace(/\/+$/, "");
+
+const STATUS_URL = `${API_BASE}/public-worker/status/`;
 
 const statusArea = document.getElementById("statusArea");
 
-let statusLoading = false;
-
-/* =========================================
-   GET TRACKING TOKEN
-========================================= */
-
-function getTrackingToken() {
-    return (
-        localStorage.getItem("contractorHubTrackingToken") ||
-        localStorage.getItem("publicWorkerTrackingToken") ||
-        localStorage.getItem("trackingToken") ||
-        new URLSearchParams(window.location.search).get("token") ||
-        ""
-    ).trim();
+if (!statusArea) {
+    console.error("JOBNEX: #statusArea element not found.");
+    return;
 }
 
-/* =========================================
-   LOAD APPLICATION STATUS
-========================================= */
+let loading = false;
 
-async function loadStatus() {
-    if (statusLoading) return;
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
 
-    const token = getTrackingToken();
-
-    if (!token) {
-        statusArea.innerHTML = `
-            <div class="empty">
-                <h3>Application Not Found</h3>
-                <p>
-                    Aapka tracking token nahi mila.
-                    Kripya job ke liye application submit karein.
-                </p>
-                <a href="index.html" class="primary button-link">
-                    Find Jobs
-                </a>
-            </div>
-        `;
-        return;
-    }
-
-    if (typeof API_URL === "undefined") {
-        statusArea.innerHTML = `
-            <div class="error">
-                API configuration nahi mili.
-                Kripya js/config.js check karein.
-            </div>
-        `;
-        return;
-    }
-
-    statusLoading = true;
+function getTokens() {
+    const key = "jobnexApplicationTokens";
+    let tokens = [];
 
     try {
+        const stored = JSON.parse(localStorage.getItem(key) || "[]");
+
+        if (Array.isArray(stored)) {
+            tokens = stored;
+        }
+    } catch (error) {
+        tokens = [];
+    }
+
+    // Purane version ka token bhi preserve karein
+    const legacyKeys = [
+        "contractorHubTrackingToken",
+        "publicWorkerTrackingToken",
+        "trackingToken"
+    ];
+
+    legacyKeys.forEach(storageKey => {
+        const token = localStorage.getItem(storageKey);
+
+        if (token && !tokens.includes(token)) {
+            tokens.push(token);
+        }
+    });
+
+    // URL mein token ho toh use bhi include karein
+    const urlToken = new URLSearchParams(
+        window.location.search
+    ).get("token");
+
+    if (urlToken && !tokens.includes(urlToken)) {
+        tokens.unshift(urlToken);
+    }
+
+    // Empty aur duplicate tokens hata dein
+    tokens = [...new Set(
+        tokens.filter(token =>
+            typeof token === "string" && token.trim()
+        )
+    )].slice(0, 100);
+
+    localStorage.setItem(key, JSON.stringify(tokens));
+
+    return tokens;
+}
+
+function getStatusInfo(status) {
+    const normalized = String(status || "Pending").toLowerCase();
+
+    const map = {
+        pending: {
+            label: "Pending",
+            color: "#f59e0b",
+            icon: "⏳",
+            description: "Aapki application review hone ka intezar kar rahi hai."
+        },
+        processing: {
+            label: "Processing",
+            color: "#3b82f6",
+            icon: "🔄",
+            description: "Aapki application par kaam chal raha hai."
+        },
+        accepted: {
+            label: "Accepted",
+            color: "#10b981",
+            icon: "✅",
+            description: "Aapki application accept kar li gayi hai."
+        },
+        rejected: {
+            label: "Rejected",
+            color: "#ef4444",
+            icon: "❌",
+            description: "Yeh application accept nahi hui."
+        }
+    };
+
+    return map[normalized] || map.pending;
+}
+
+async function fetchApplication(token) {
+    try {
         const response = await fetch(
-            `${API_URL}/public-worker/status/${encodeURIComponent(token)}`,
+            STATUS_URL + encodeURIComponent(token),
             {
                 method: "GET",
                 headers: {
@@ -67,264 +123,612 @@ async function loadStatus() {
             }
         );
 
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
 
-        if (!response.ok) {
-            throw new Error(
-                data.message || "Application status load nahi ho saka."
-            );
+        if (!response.ok || !data.success) {
+            return {
+                token,
+                success: false,
+                message: data.message || "Application status nahi mil saka."
+            };
         }
 
-        if (data.success === false) {
-            throw new Error(
-                data.message || "Application nahi mili."
-            );
-        }
-
-        // Backend direct object ya nested application bhej sakta hai.
-        const application =
-            data.application ||
-            data.request ||
-            data.data ||
-            data;
-
-        if (
-            !application ||
-            typeof application !== "object" ||
-            Array.isArray(application)
-        ) {
-            throw new Error("Server se valid application data nahi mila.");
-        }
-
-        renderStatus(application);
+        return {
+            token,
+            success: true,
+            ...data
+        };
 
     } catch (error) {
-        console.error("APPLICATION STATUS ERROR:", error);
-
-        statusArea.innerHTML = `
-            <div class="error">
-                <h3>Status Load Nahi Hua</h3>
-                <p>${escapeHtml(error.message)}</p>
-                <button
-                    type="button"
-                    class="primary"
-                    onclick="loadStatus()"
-                >
-                    Try Again
-                </button>
-            </div>
-        `;
-    } finally {
-        statusLoading = false;
+        return {
+            token,
+            success: false,
+            message: "Internet connection check karke dobara try karein."
+        };
     }
 }
 
-/* =========================================
-   RENDER APPLICATION STATUS
-========================================= */
-
-function renderStatus(data) {
-    const status = String(data.status || "Pending");
-
-    const workerName = data.workerName || "Worker";
-    const workerMobile = data.workerMobile || "";
-
-    const job = data.job || data.jobId || {};
-
-    const jobTitle =
-        typeof job === "object"
-            ? job.jobTitle || data.preferredJob || "Job Details"
-            : data.preferredJob || "Job Details";
-
-    const companyName =
-        typeof job === "object"
-            ? job.companyName || ""
-            : "";
-
-    const companyLocation =
-        typeof job === "object"
-            ? job.companyLocation || ""
-            : data.preferredLocation || "";
-
-    const steps = [
-        "Pending",
-        "Processing",
-        "Accepted"
-    ];
-
-    const normalizedStatus = status.toLowerCase();
-
-    const contractor =
-        data.contractor ||
-        data.contractorId ||
-        null;
-
-    let contractorHtml = "";
-
-    if (
-        normalizedStatus === "accepted" &&
-        contractor &&
-        typeof contractor === "object"
-    ) {
-        const contractorName =
-            contractor.contractorName || "Contractor";
-
-        const contractorMobile =
-            contractor.mobile || "";
-
-        contractorHtml = `
-            <div class="contractor-box">
-                <h3>Contractor Details</h3>
-
-                <p>
-                    <strong>Name:</strong>
-                    ${escapeHtml(contractorName)}
-                </p>
-
-                ${
-                    contractorMobile
-                        ? `
-                            <p>
-                                <strong>Mobile:</strong>
-                                <a href="tel:${escapeHtml(contractorMobile)}">
-                                    ${escapeHtml(contractorMobile)}
-                                </a>
-                            </p>
-                        `
-                        : ""
-                }
-            </div>
-        `;
-    }
-
-    const statusFlowHtml = steps.map((step, index) => {
-        let active = false;
-
-        if (normalizedStatus === "pending") {
-            active = index === 0;
-        } else if (normalizedStatus === "processing") {
-            active = index <= 1;
-        } else if (normalizedStatus === "accepted") {
-            active = true;
-        }
-
+function renderApplication(application, index) {
+    if (!application.success) {
         return `
-            ${
-                index > 0
-                    ? `<div class="arrow">↓</div>`
-                    : ""
-            }
+            <article class="jnx-app-card jnx-app-error">
+                <div class="jnx-app-card-top">
+                    <span class="jnx-app-number">
+                        Application ${index + 1}
+                    </span>
 
-            <div class="status-step ${active ? "active" : ""}">
-                <span>${active ? "✓" : "○"}</span>
-                <strong>${step}</strong>
-            </div>
-        `;
-    }).join("");
+                    <span class="jnx-app-badge jnx-error-badge">
+                        Unavailable
+                    </span>
+                </div>
 
-    let resultMessage = "";
-
-    if (normalizedStatus === "rejected") {
-        resultMessage = `
-            <div class="error">
-                <h3>Application Rejected</h3>
-                <p>
-                    Aapki application reject kar di gayi hai.
+                <p class="jnx-app-message">
+                    ${escapeHTML(application.message)}
                 </p>
-                ${
-                    data.adminNote || data.contractorNote
-                        ? `<p>${escapeHtml(data.adminNote || data.contractorNote)}</p>`
-                        : ""
-                }
-            </div>
-        `;
-    } else if (normalizedStatus === "accepted") {
-        resultMessage = `
-            <div class="success">
-                <h3>Application Accepted</h3>
-                <p>Aapki application accept ho gayi hai.</p>
-            </div>
-        `;
-    } else if (normalizedStatus === "processing") {
-        resultMessage = `
-            <div class="success">
-                <h3>Application Processing</h3>
-                <p>Aapki application par kaam chal raha hai.</p>
-            </div>
-        `;
-    } else if (normalizedStatus === "pending") {
-        resultMessage = `
-            <div class="status-message">
-                <p>Aapki application review hone ka intezar kar rahi hai.</p>
-            </div>
-        `;
-    } else {
-        resultMessage = `
-            <div class="status-message">
-                <strong>Current Status:</strong>
-                ${escapeHtml(status)}
-            </div>
+
+                <button
+                    type="button"
+                    class="jnx-retry-btn"
+                    data-retry="true"
+                >
+                    Retry
+                </button>
+            </article>
         `;
     }
 
-    statusArea.innerHTML = `
-        <div class="worker-info">
-            <h3>${escapeHtml(workerName)}</h3>
-            <p>
-                <strong>Mobile:</strong>
-                ${escapeHtml(workerMobile)}
-            </p>
-        </div>
+    const status = getStatusInfo(application.status);
+    const job = application.job || {};
 
-        <div class="job-info">
-            <h3>${escapeHtml(jobTitle)}</h3>
+    const jobTitle = job.jobTitle || application.preferredJob || "Job Application";
+    const company = job.companyName || "Company details unavailable";
+    const location = job.companyLocation || application.preferredLocation || "Location not specified";
 
-            ${
-                companyName
-                    ? `<p>${escapeHtml(companyName)}</p>`
-                    : ""
-            }
+    const contractor = application.contractor || {};
 
-            ${
-                companyLocation
-                    ? `<p>📍 ${escapeHtml(companyLocation)}</p>`
-                    : ""
-            }
-        </div>
+    return `
+        <article class="jnx-app-card">
+            <div class="jnx-app-card-top">
+                <span class="jnx-app-number">
+                    Application ${index + 1}
+                </span>
 
-        <div class="application-status">
-            <h3>Application Status</h3>
-            <div class="status-flow">
-                ${statusFlowHtml}
+                <span
+                    class="jnx-app-badge"
+                    style="--badge-color:${status.color}"
+                >
+                    ${status.icon} ${escapeHTML(status.label)}
+                </span>
             </div>
-        </div>
 
-        ${resultMessage}
-        ${contractorHtml}
+            <h3 class="jnx-app-job-title">
+                ${escapeHTML(jobTitle)}
+            </h3>
 
-        <p class="last-updated">
-            Status automatically refresh hota rahega.
-        </p>
+            <div class="jnx-app-info">
+                <div class="jnx-info-row">
+                    <span class="jnx-info-icon">🏢</span>
+                    <div>
+                        <small>Company</small>
+                        <p>${escapeHTML(company)}</p>
+                    </div>
+                </div>
+
+                <div class="jnx-info-row">
+                    <span class="jnx-info-icon">📍</span>
+                    <div>
+                        <small>Location</small>
+                        <p>${escapeHTML(location)}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jnx-app-status-box">
+                <span class="jnx-status-dot"
+                      style="background:${status.color}"></span>
+
+                <p>${escapeHTML(status.description)}</p>
+            </div>
+
+            ${
+                application.status === "Accepted" &&
+                (contractor.contractorName || contractor.mobile)
+                ? `
+                    <div class="jnx-contractor-box">
+                        <h4>Contractor Details</h4>
+
+                        <p>
+                            <strong>Name:</strong>
+                            ${escapeHTML(contractor.contractorName || "Not available")}
+                        </p>
+
+                        <p>
+                            <strong>Mobile:</strong>
+                            ${
+                                contractor.mobile
+                                ? `<a href="tel:${escapeHTML(contractor.mobile)}">${escapeHTML(contractor.mobile)}</a>`
+                                : "Not available"
+                            }
+                        </p>
+                    </div>
+                `
+                : ""
+            }
+
+            <details class="jnx-tracking-details">
+                <summary>Tracking details</summary>
+                <p>
+                    <strong>Tracking ID:</strong>
+                    <span>${escapeHTML(application.token)}</span>
+                </p>
+            </details>
+        </article>
     `;
 }
 
-/* =========================================
-   HTML SAFETY
-========================================= */
+function renderDashboard(applications) {
+    const successfulCount = applications.filter(
+        app => app.success
+    ).length;
 
-function escapeHtml(value) {
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    const pendingCount = applications.filter(
+        app => app.success &&
+            ["Pending", "Processing"].includes(app.status)
+    ).length;
+
+    const acceptedCount = applications.filter(
+        app => app.success && app.status === "Accepted"
+    ).length;
+
+    statusArea.innerHTML = `
+        <section class="jnx-dashboard">
+
+            <header class="jnx-dashboard-header">
+                <div>
+                    <span class="jnx-eyebrow">JOBNEX CAREER CENTER</span>
+                    <h2>My Applications</h2>
+                    <p>Apni sabhi job applications ka status ek jagah dekhein.</p>
+                </div>
+
+                <button
+                    type="button"
+                    class="jnx-refresh-btn"
+                    id="jnxRefresh"
+                >
+                    ↻ Refresh
+                </button>
+            </header>
+
+            <div class="jnx-summary-grid">
+                <div class="jnx-summary-card">
+                    <span>Total Applications</span>
+                    <strong>${applications.length}</strong>
+                </div>
+
+                <div class="jnx-summary-card">
+                    <span>Under Review</span>
+                    <strong>${pendingCount}</strong>
+                </div>
+
+                <div class="jnx-summary-card">
+                    <span>Accepted</span>
+                    <strong>${acceptedCount}</strong>
+                </div>
+            </div>
+
+            ${
+                successfulCount === 0
+                ? `
+                    <div class="jnx-empty-state">
+                        <div class="jnx-empty-icon">📋</div>
+                        <h3>Applications load nahi ho sakin</h3>
+                        <p>Internet check karein aur Refresh par click karein.</p>
+                    </div>
+                `
+                : `
+                    <div class="jnx-app-list">
+                        ${applications.map(renderApplication).join("")}
+                    </div>
+                `
+            }
+
+            <footer class="jnx-dashboard-footer">
+                <span>JOBNEX • Application Tracking</span>
+                <span>Auto-refresh: 30 seconds</span>
+            </footer>
+        </section>
+
+        <style>
+            #statusArea {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .jnx-dashboard {
+                --jnx-text: #e5e7eb;
+                --jnx-muted: #94a3b8;
+                --jnx-border: rgba(148,163,184,.18);
+                max-width: 1000px;
+                margin: 20px auto;
+                padding: 22px;
+                color: var(--jnx-text);
+                background: #0b1120;
+                border: 1px solid var(--jnx-border);
+                border-radius: 24px;
+                box-sizing: border-box;
+                font-family: Inter, system-ui, sans-serif;
+            }
+
+            .jnx-dashboard-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+                flex-wrap: wrap;
+                margin-bottom: 24px;
+            }
+
+            .jnx-eyebrow {
+                color: #38bdf8;
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 2px;
+            }
+
+            .jnx-dashboard-header h2 {
+                margin: 8px 0;
+                font-size: clamp(24px, 5vw, 34px);
+                color: #fff;
+            }
+
+            .jnx-dashboard-header p {
+                margin: 0;
+                color: var(--jnx-muted);
+                line-height: 1.6;
+            }
+
+            .jnx-refresh-btn,
+            .jnx-retry-btn {
+                padding: 11px 16px;
+                border: 1px solid #334155;
+                border-radius: 12px;
+                background: #172033;
+                color: #fff;
+                font-weight: 700;
+                cursor: pointer;
+            }
+
+            .jnx-summary-grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 12px;
+                margin-bottom: 24px;
+            }
+
+            .jnx-summary-card {
+                padding: 18px;
+                border: 1px solid var(--jnx-border);
+                border-radius: 16px;
+                background: #111b2d;
+            }
+
+            .jnx-summary-card span {
+                display: block;
+                color: var(--jnx-muted);
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .jnx-summary-card strong {
+                display: block;
+                margin-top: 8px;
+                color: #fff;
+                font-size: 28px;
+            }
+
+            .jnx-app-list {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 16px;
+            }
+
+            .jnx-app-card {
+                min-width: 0;
+                padding: 20px;
+                background: linear-gradient(145deg, #131e31, #0f1728);
+                border: 1px solid var(--jnx-border);
+                border-radius: 18px;
+                box-sizing: border-box;
+            }
+
+            .jnx-app-card-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .jnx-app-number {
+                color: var(--jnx-muted);
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            .jnx-app-badge {
+                color: var(--badge-color, #f59e0b);
+                background: color-mix(in srgb, var(--badge-color, #f59e0b) 12%, transparent);
+                border: 1px solid color-mix(in srgb, var(--badge-color, #f59e0b) 35%, transparent);
+                padding: 7px 10px;
+                border-radius: 30px;
+                font-size: 12px;
+                font-weight: 800;
+            }
+
+            .jnx-app-job-title {
+                color: #fff;
+                font-size: 21px;
+                line-height: 1.4;
+                overflow-wrap: anywhere;
+                margin: 18px 0;
+            }
+
+            .jnx-app-info {
+                display: grid;
+                gap: 14px;
+            }
+
+            .jnx-info-row {
+                display: flex;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .jnx-info-icon {
+                width: 36px;
+                height: 36px;
+                flex-shrink: 0;
+                display: grid;
+                place-items: center;
+                background: #1e293b;
+                border-radius: 11px;
+            }
+
+            .jnx-info-row small {
+                color: var(--jnx-muted);
+                font-size: 11px;
+            }
+
+            .jnx-info-row p {
+                margin: 4px 0 0;
+                color: #e2e8f0;
+                overflow-wrap: anywhere;
+            }
+
+            .jnx-app-status-box {
+                display: flex;
+                gap: 10px;
+                align-items: flex-start;
+                margin-top: 20px;
+                padding: 13px;
+                background: #0b1220;
+                border-radius: 12px;
+            }
+
+            .jnx-app-status-box p {
+                margin: 0;
+                color: #cbd5e1;
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .jnx-status-dot {
+                width: 9px;
+                height: 9px;
+                flex-shrink: 0;
+                margin-top: 5px;
+                border-radius: 50%;
+            }
+
+            .jnx-contractor-box {
+                margin-top: 16px;
+                padding: 15px;
+                border: 1px solid rgba(16,185,129,.3);
+                background: rgba(16,185,129,.07);
+                border-radius: 12px;
+            }
+
+            .jnx-contractor-box h4 {
+                margin: 0 0 12px;
+                color: #6ee7b7;
+            }
+
+            .jnx-contractor-box p {
+                margin: 7px 0;
+                color: #d1fae5;
+                overflow-wrap: anywhere;
+            }
+
+            .jnx-contractor-box a {
+                color: #6ee7b7;
+            }
+
+            .jnx-tracking-details {
+                margin-top: 16px;
+                color: var(--jnx-muted);
+                font-size: 12px;
+            }
+
+            .jnx-tracking-details summary {
+                cursor: pointer;
+            }
+
+            .jnx-tracking-details span {
+                display: block;
+                margin-top: 5px;
+                overflow-wrap: anywhere;
+                color: #cbd5e1;
+            }
+
+            .jnx-empty-state {
+                text-align: center;
+                padding: 40px 15px;
+                border: 1px dashed #334155;
+                border-radius: 18px;
+            }
+
+            .jnx-empty-icon {
+                font-size: 38px;
+            }
+
+            .jnx-empty-state h3 {
+                color: #fff;
+            }
+
+            .jnx-empty-state p {
+                color: var(--jnx-muted);
+                line-height: 1.7;
+            }
+
+            .jnx-dashboard-footer {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 24px;
+                padding-top: 16px;
+                border-top: 1px solid var(--jnx-border);
+                color: #64748b;
+                font-size: 11px;
+            }
+
+            @media (max-width: 650px) {
+                .jnx-dashboard {
+                    padding: 15px;
+                    border-radius: 18px;
+                }
+
+                .jnx-summary-grid {
+                    gap: 8px;
+                }
+
+                .jnx-summary-card {
+                    padding: 12px 10px;
+                }
+
+                .jnx-summary-card span {
+                    font-size: 10px;
+                }
+
+                .jnx-summary-card strong {
+                    font-size: 23px;
+                }
+
+                .jnx-app-list {
+                    grid-template-columns: 1fr;
+                }
+
+                .jnx-app-card {
+                    padding: 17px;
+                }
+
+                .jnx-dashboard-header {
+                    align-items: flex-start;
+                }
+            }
+        </style>
+    `;
+
+    document.getElementById("jnxRefresh")?.addEventListener(
+        "click",
+        loadApplications
+    );
+
+    statusArea.querySelectorAll("[data-retry]").forEach(button => {
+        button.addEventListener("click", loadApplications);
+    });
 }
 
-/* =========================================
-   INITIAL LOAD + AUTO REFRESH
-========================================= */
+async function loadApplications() {
+    if (loading) return;
 
-loadStatus();
+    loading = true;
 
-setInterval(loadStatus, 30000);
+    const tokens = getTokens();
+
+    if (!tokens.length) {
+        statusArea.innerHTML = `
+            <div style="
+                max-width:650px;
+                margin:30px auto;
+                padding:30px 20px;
+                text-align:center;
+                background:#0b1120;
+                color:#e5e7eb;
+                border:1px solid #334155;
+                border-radius:20px;
+                font-family:system-ui,sans-serif;
+            ">
+                <div style="font-size:42px">📋</div>
+                <h2>My Applications</h2>
+                <p style="color:#94a3b8;line-height:1.7">
+                    Abhi koi saved application nahi mili.
+                    Job ke liye apply karne ke baad aapki application
+                    yahan dikhai degi.
+                </p>
+                <a href="index.html" style="
+                    display:inline-block;
+                    margin-top:10px;
+                    padding:12px 20px;
+                    background:#0284c7;
+                    color:#fff;
+                    text-decoration:none;
+                    border-radius:10px;
+                    font-weight:700;
+                ">Find Jobs</a>
+            </div>
+        `;
+
+        loading = false;
+        return;
+    }
+
+    statusArea.innerHTML = `
+        <div style="
+            padding:30px;
+            text-align:center;
+            color:#94a3b8;
+            font-family:system-ui,sans-serif;
+        ">
+            Applications load ho rahi hain...
+        </div>
+    `;
+
+    try {
+        const applications = await Promise.all(
+            tokens.map(fetchApplication)
+        );
+
+        renderDashboard(applications);
+    } catch (error) {
+        statusArea.innerHTML = `
+            <p style="padding:20px;color:#ef4444">
+                Applications load nahi ho sakin. Dobara try karein.
+            </p>
+            <button id="jnxRetryLoad" type="button">Retry</button>
+        `;
+
+        document.getElementById("jnxRetryLoad")?.addEventListener(
+            "click",
+            loadApplications
+        );
+    } finally {
+        loading = false;
+    }
+}
+
+loadApplications();
+
+window.setInterval(loadApplications, 30000);
+
+})();
