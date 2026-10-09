@@ -1126,11 +1126,38 @@ document.getElementById("applyForm").addEventListener("submit", async function(e
         }
 
         if (data.trackingToken) {
-            localStorage.setItem(
-                "contractorHubTrackingToken",
-                data.trackingToken
-            );
-        }
+const token = data.trackingToken;
+const key = "jobnexApplicationTokens";
+
+let tokens = [];
+
+try {
+    tokens = JSON.parse(localStorage.getItem(key) || "[]");
+} catch (error) {
+    tokens = [];
+}
+
+if (!Array.isArray(tokens)) {
+    tokens = [];
+}
+
+// Duplicate token ko dobara save nahi karna
+if (!tokens.includes(token)) {
+    tokens.unshift(token);
+}
+
+// Maximum 100 applications save hongi
+tokens = tokens.slice(0, 100);
+
+localStorage.setItem(key, JSON.stringify(tokens));
+
+// Purane code ke saath compatibility
+localStorage.setItem(
+    "contractorHubTrackingToken",
+    token
+);
+
+}
 
         alert("✅ आपका आवेदन सफलतापूर्वक जमा हो गया है!");
 
