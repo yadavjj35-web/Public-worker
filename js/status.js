@@ -259,43 +259,93 @@ function contractorHTML(app) {
     if (!contractor.contractorName && !contractor.mobile) {
         return `
             <div class="accepted-banner">
-                <h4>✓ Application Accepted</h4>
+                <h4>✓ आपका आवेदन स्वीकार कर लिया गया है!</h4>
+
                 <p>
-                    Your application has been accepted.
-                    Contractor contact details are not available yet.
+                    बधाई हो! आपका आवेदन स्वीकार कर लिया गया है।
                 </p>
+
+                <div class="contact-note">
+                    <strong>📞 अब आगे क्या करें?</strong>
+
+                    <p>
+                        अभी कॉन्ट्रैक्टर की संपर्क जानकारी उपलब्ध नहीं है।
+                        जानकारी उपलब्ध होने पर आप यहाँ देख सकेंगे।
+                    </p>
+
+                    <p>
+                        यदि कॉन्ट्रैक्टर की ओर से कॉल नहीं आता है,
+                        तो संपर्क जानकारी उपलब्ध होने पर आप खुद भी
+                        कॉल करके नौकरी के बारे में पूछ सकते हैं।
+                    </p>
+                </div>
             </div>
         `;
     }
 
     const mobile = String(contractor.mobile || "");
 
-    // Only create a tel link for a plausible phone-number string.
     const telLink = /^[+\d][\d\s()-]{5,24}$/.test(mobile)
         ? `tel:${mobile.replace(/[^\d+]/g, "")}`
         : "";
 
     return `
         <div class="accepted-banner">
-            <h4>✓ Application Accepted</h4>
+
+            <h4>✓ आपका आवेदन स्वीकार कर लिया गया है!</h4>
 
             <p>
-                <strong>Contractor:</strong>
-                ${escapeHTML(contractor.contractorName || "Not available")}
+                <strong>कॉन्ट्रैक्टर का नाम:</strong>
+                ${escapeHTML(contractor.contractorName || "उपलब्ध नहीं")}
             </p>
 
             <p>
-                <strong>Mobile:</strong>
+                <strong>मोबाइल नंबर:</strong>
                 ${
                     telLink
                         ? `<a href="${escapeHTML(telLink)}">${escapeHTML(mobile)}</a>`
-                        : escapeHTML(mobile || "Not available")
+                        : escapeHTML(mobile || "उपलब्ध नहीं")
                 }
             </p>
+
+            <div class="contact-note">
+
+                <strong>📞 अब आगे क्या करें?</strong>
+
+                <p>
+                    आपका आवेदन स्वीकार कर लिया गया है।
+                    अब कॉन्ट्रैक्टर की ओर से कॉल आने का इंतज़ार करें।
+                </p>
+
+                <p>
+                    <strong>कॉन्ट्रैक्टर की ओर से कॉल नहीं आया?</strong>
+                    कोई बात नहीं! आप ऊपर दिए गए मोबाइल नंबर पर खुद भी
+                    कॉल करके नौकरी, वेतन और आगे की प्रक्रिया के बारे में
+                    जानकारी प्राप्त कर सकते हैं।
+                </p>
+
+                ${
+                    telLink
+                        ? `
+                            <a
+                                class="contractor-call-button"
+                                href="${escapeHTML(telLink)}"
+                            >
+                                📞 कॉन्ट्रैक्टर को कॉल करें
+                            </a>
+                        `
+                        : ""
+                }
+
+                <small>
+                    महत्वपूर्ण सूचना: आगे बढ़ने से पहले नौकरी, वेतन,
+                    काम की जगह और अन्य जरूरी जानकारियों की पुष्टि अवश्य करें।
+                </small>
+
+            </div>
         </div>
     `;
 }
-
 function renderApplication(app, index) {
     if (!app.success) {
         return `
