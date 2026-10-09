@@ -4,1265 +4,218 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0f172a">
-
 <meta name="description" content="JOBNEX पर ITI, Diploma, Electrician, Fitter, Technician और अन्य नौकरियाँ खोजें। अपनी Qualification, Trade और Location के अनुसार Job देखें और ऑनलाइन Apply करें।">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://rudrapurjob.online/">
-
 <title>JOBNEX | Find Your Job</title>
-
 <style>
-:root{
-    --navy:#0f172a;
-    --navy-2:#111827;
-    --primary:#4f46e5;
-    --primary-2:#6366f1;
-    --blue:#2563eb;
-    --blue-light:#eff6ff;
-    --purple-light:#eef2ff;
-    --green:#16a34a;
-    --green-light:#ecfdf5;
-    --red:#dc2626;
-    --orange:#f97316;
-    --text:#0f172a;
-    --text-2:#334155;
-    --muted:#64748b;
-    --muted-2:#94a3b8;
-    --border:#e2e8f0;
-    --border-light:#eef2f7;
-    --background:#f6f8fc;
-    --white:#ffffff;
-    --radius-sm:10px;
-    --radius-md:14px;
-    --radius-lg:20px;
-    --radius-xl:26px;
-    --shadow-sm:0 2px 8px rgba(15,23,42,.04);
-    --shadow:0 10px 35px rgba(15,23,42,.07);
-    --shadow-lg:0 20px 60px rgba(15,23,42,.12);
-}
-
-*{box-sizing:border-box}
-
-html{scroll-behavior:smooth}
-
-body{
-    margin:0;
-    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    background:linear-gradient(180deg,#f8fafc 0%,#f5f7fb 100%);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-}
-
-button,input,select{font-family:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
-a{color:inherit}
-
-.app-header{
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:rgba(15,23,42,.96);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-    box-shadow:0 5px 25px rgba(15,23,42,.12);
-}
-
-.header-inner{
-    width:92%;
-    max-width:1180px;
-    min-height:72px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-}
-
-.brand-wrap{display:flex;align-items:center;gap:11px;min-width:0}
-
-.brand-icon{
-    width:42px;height:42px;flex:none;
-    display:flex;align-items:center;justify-content:center;
-    border-radius:13px;
-    background:linear-gradient(135deg,#6366f1,#2563eb);
-    box-shadow:0 8px 22px rgba(79,70,229,.30);
-    font-size:20px;
-    border:1px solid rgba(255,255,255,.16);
-}
-
-.brand{color:white;font-size:20px;line-height:1;font-weight:950;letter-spacing:.8px}
-.brand-sub{color:rgba(255,255,255,.48);font-size:9px;letter-spacing:1.6px;font-weight:700;margin-top:5px}
-
-.status-btn{
-    text-decoration:none;
-    display:flex;align-items:center;gap:7px;
-    padding:10px 14px;
-    border-radius:11px;
-    color:white;font-size:12px;font-weight:800;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.14);
-    transition:.2s ease;white-space:nowrap;
-}
-
-.status-btn:hover{background:rgba(255,255,255,.14);transform:translateY(-1px)}
-
-.hero{
-    position:relative;overflow:hidden;
-    padding:54px 20px 66px;
-    background:
-        radial-gradient(circle at 15% 20%,rgba(99,102,241,.25),transparent 30%),
-        radial-gradient(circle at 85% 20%,rgba(37,99,235,.20),transparent 28%),
-        linear-gradient(135deg,#0f172a,#172554);
-    color:white;
-}
-
-.hero::before{
-    content:"";position:absolute;width:350px;height:350px;
-    right:-160px;bottom:-190px;border-radius:50%;
-    background:rgba(99,102,241,.16);filter:blur(3px);
-}
-
-.hero::after{
-    content:"";position:absolute;width:240px;height:240px;
-    left:-130px;top:-130px;border-radius:50%;
-    background:rgba(37,99,235,.13);
-}
-
-.hero-inner{position:relative;z-index:2;max-width:900px;margin:auto;text-align:center}
-
-.hero-badge{
-    display:inline-flex;align-items:center;gap:7px;
-    padding:7px 13px;border-radius:30px;color:#dbeafe;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.14);
-    font-size:11px;font-weight:800;letter-spacing:.2px;
-    backdrop-filter:blur(10px);
-}
-
-.hero h1{
-    margin:18px 0 12px;
-    font-size:clamp(32px,5vw,52px);
-    line-height:1.08;letter-spacing:-1.5px;font-weight:950;
-}
-
-.hero h1 span{
-    display:inline-block;
-    background:linear-gradient(90deg,#a5b4fc,#60a5fa);
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-}
-
-.hero p{max-width:650px;margin:auto;color:rgba(255,255,255,.70);font-size:clamp(13px,2vw,15px);line-height:1.7}
-
-.hero-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:27px}
-
-.hero-stat{
-    min-width:125px;padding:9px 14px;border-radius:12px;
-    background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.10);
-    font-size:11px;color:rgba(255,255,255,.65);
-}
-
-.hero-stat strong{display:block;color:white;font-size:14px;margin-bottom:2px}
-
-.container{width:92%;max-width:1080px;margin:-30px auto 50px;position:relative;z-index:10}
-
-.search-card{
-    background:white;border:1px solid rgba(226,232,240,.9);
-    border-radius:var(--radius-xl);padding:27px;box-shadow:var(--shadow-lg);
-}
-
-.search-heading{text-align:center;margin-bottom:22px}
-.search-heading h2{margin:0 0 6px;font-size:22px;font-weight:950;letter-spacing:-.3px}
-.search-heading p{margin:0;color:var(--muted);font-size:12px}
-
-.search-modes{
-    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:12px;padding:5px;background:#f8fafc;
-    border:1px solid var(--border-light);border-radius:17px;margin-bottom:22px;
-}
-
-.mode-btn{
-    min-height:76px;border:1px solid transparent;border-radius:13px;
-    background:transparent;color:var(--text-2);cursor:pointer;
-    padding:12px 15px;text-align:left;font-size:14px;font-weight:900;transition:all .2s ease;
-}
-
-.mode-btn:hover{background:white;border-color:var(--border)}
-.mode-btn:active{transform:scale(.985)}
-.mode-btn span{display:block;margin-top:5px;color:var(--muted);font-size:11px;font-weight:500}
-
-.mode-btn.active{
-    color:white;background:linear-gradient(135deg,#4f46e5,#2563eb);
-    border-color:rgba(255,255,255,.15);box-shadow:0 8px 20px rgba(79,70,229,.22);
-}
-
-.mode-btn.active span{color:rgba(255,255,255,.78)}
-
-.search-section{display:none}
-.search-section.active{display:block;animation:fadeIn .25s ease}
-
-@keyframes fadeIn{
-    from{opacity:0;transform:translateY(5px)}
-    to{opacity:1;transform:translateY(0)}
-}
-
-.info-box{
-    position:relative;
-    background:linear-gradient(135deg,#f5f7ff,#eef4ff);
-    border:1px solid #dbe4ff;border-left:4px solid var(--primary);
-    border-radius:13px;padding:14px 16px;margin-bottom:20px;
-    color:#475569;font-size:12px;line-height:1.7;
-}
-
-.info-box strong{color:#312e81}
-
-.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
-.field{display:flex;flex-direction:column}
-.field.full{grid-column:1/-1}
-
-label{margin-bottom:7px;color:#1e293b;font-size:12px;font-weight:900}
-.field-help{margin-top:5px;color:#94a3b8;font-size:10px;line-height:1.4}
-
-input,select{
-    width:100%;min-height:46px;padding:11px 13px;
-    border:1px solid #d7dee9;border-radius:11px;outline:none;
-    background:white;color:#0f172a;font-size:13px;
-    transition:border .18s ease,box-shadow .18s ease,background .18s ease;
-}
-
-input:hover,select:hover{border-color:#b9c3d2}
-
-input:focus,select:focus{
-    border-color:var(--primary);background:#fff;
-    box-shadow:0 0 0 4px rgba(79,70,229,.09);
-}
-
-input::placeholder{color:#a1aab8}
-
-.search-example{
-    margin-top:19px;padding:14px 15px;border:1px dashed #cbd5e1;
-    border-radius:12px;background:#f8fafc;color:#64748b;font-size:11px;line-height:1.6;
-}
-
-.search-example strong{color:#334155;font-size:12px}
-.search-example p{margin:7px 0 0}
-
-.search-btn{
-    position:relative;width:100%;margin-top:20px;min-height:50px;
-    border:none;border-radius:12px;cursor:pointer;color:white;
-    background:linear-gradient(135deg,#4f46e5,#2563eb);
-    font-size:14px;font-weight:950;letter-spacing:.1px;
-    box-shadow:0 9px 22px rgba(79,70,229,.20);transition:all .2s ease;
-}
-
-.search-btn:hover{transform:translateY(-1px);box-shadow:0 12px 27px rgba(79,70,229,.26)}
-.search-btn:active{transform:translateY(0) scale(.99)}
-
-.results-area{margin-top:31px}
-
-.results-header{
-    display:flex;align-items:center;justify-content:space-between;
-    gap:12px;margin-bottom:15px;padding:0 2px;
-}
-
-.results-header h2{margin:0;font-size:20px;font-weight:950;letter-spacing:-.3px}
-
-.result-count{
-    padding:6px 11px;border-radius:30px;color:#3730a3;background:#eef2ff;
-    font-size:11px;font-weight:900;border:1px solid #e0e7ff;
-}
-
-.job-card{
-    position:relative;overflow:hidden;background:white;
-    border:1px solid #e3e8f0;border-radius:18px;padding:20px;margin-bottom:15px;
-    box-shadow:var(--shadow-sm);
-    transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
-    animation:cardIn .3s ease both;
-}
-
-.job-card::before{
-    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
-    background:linear-gradient(180deg,#4f46e5,#2563eb);
-}
-
-.job-card:hover{transform:translateY(-2px);border-color:#d7def0;box-shadow:var(--shadow)}
-
-@keyframes cardIn{
-    from{opacity:0;transform:translateY(7px)}
-    to{opacity:1;transform:translateY(0)}
-}
-
-.job-top{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:14px}
-.job-title{margin:0 0 6px;color:#0f172a;font-size:18px;line-height:1.35;font-weight:950}
-.company-name{color:#4f46e5;font-size:12px;font-weight:900}
-.contractor-name{margin-top:6px;color:#059669;font-size:11px;font-weight:900}
-
-.job-badge{
-    flex:none;padding:6px 10px;border-radius:30px;color:#166534;background:#dcfce7;
-    border:1px solid #bbf7d0;font-size:10px;font-weight:950;white-space:nowrap;
-}
-
-.job-details{
-    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;
-    margin:15px 0;padding:14px 0;border-top:1px solid #edf1f5;border-bottom:1px solid #edf1f5;
-}
-
-.detail{color:#64748b;font-size:11px;line-height:1.55}
-.detail strong{color:#334155;font-weight:850}
-
-.skills{margin-top:12px;color:#475569;font-size:11px}
-
-.skill-tag{
-    display:inline-flex;align-items:center;padding:5px 8px;margin:5px 3px 0 0;
-    border-radius:7px;color:#475569;background:#f1f5f9;
-    border:1px solid #e2e8f0;font-size:9px;font-weight:800;
-}
-
-.benefit-detail{
-    margin-top:12px;padding:10px 11px;border-radius:9px;color:#166534;
-    background:#f0fdf4;border:1px solid #dcfce7;
-}
-
-/* NEW: VIEW DETAILS + EXISTING APPLY BUTTON */
-
-.job-actions{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-    gap:10px;
-    margin-top:14px;
-}
-
-.view-details-btn,
-.apply-btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    text-decoration:none;
-    width:100%;
-    min-height:45px;
-    padding:10px 12px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:12px;
-    font-weight:900;
-    transition:all .18s ease;
-}
-
-.view-details-btn{
-    color:#3730a3;
-    background:#eef2ff;
-    border:1px solid #c7d2fe;
-}
-
-.view-details-btn:hover{
-    background:#e0e7ff;
-    transform:translateY(-1px);
-}
-
-.apply-btn{
-    margin-top:13px;
-    border:none;
-    background:#0f172a;
-    color:white;
-}
-
-.job-actions .apply-btn{margin-top:0}
-.apply-btn:hover{background:#1e293b;transform:translateY(-1px)}
-.apply-btn:active,.view-details-btn:active{transform:scale(.99)}
-
-.message-box{
-    padding:38px 20px;text-align:center;border:1px solid var(--border);
-    border-radius:17px;background:white;color:#64748b;font-size:12px;line-height:1.8;
-    box-shadow:var(--shadow-sm);
-}
-
-.loading{
-    padding:32px 20px;text-align:center;border:1px solid var(--border);
-    border-radius:17px;background:white;color:var(--primary);font-size:13px;
-    font-weight:900;box-shadow:var(--shadow-sm);
-}
-
-.modal{
-    position:fixed;inset:0;z-index:9999;display:none;align-items:flex-end;
-    justify-content:center;background:rgba(2,6,23,.68);
-    backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
-}
-
-.modal.show{display:flex;animation:modalBg .2s ease}
-
-@keyframes modalBg{
-    from{opacity:0}
-    to{opacity:1}
-}
-
-.modal-box{
-    width:100%;max-width:600px;max-height:94vh;overflow-y:auto;padding:23px;
-    background:white;border-radius:24px 24px 0 0;box-shadow:0 -15px 60px rgba(0,0,0,.20);
-    animation:modalUp .25s ease;
-}
-
-@keyframes modalUp{
-    from{transform:translateY(40px);opacity:0}
-    to{transform:translateY(0);opacity:1}
-}
-
-.modal-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:17px}
-.modal-header h2{margin:0;font-size:20px;font-weight:950}
-
-.close-btn{
-    width:37px;height:37px;flex:none;border:none;border-radius:50%;
-    background:#f1f5f9;color:#475569;cursor:pointer;font-size:21px;line-height:1;
-    transition:.18s ease;
-}
-
-.close-btn:hover{background:#e2e8f0}
-
-.selected-job{
-    padding:14px;margin-bottom:19px;border:1px solid #dbe4ff;border-radius:13px;
-    background:linear-gradient(135deg,#f5f7ff,#eff6ff);
-    color:#64748b;font-size:11px;line-height:1.7;
-}
-
-.selected-job strong{display:block;margin-bottom:4px;color:#0f172a;font-size:15px;font-weight:950}
-
-.submit-btn{
-    width:100%;min-height:48px;margin-top:19px;border:none;border-radius:11px;
-    background:linear-gradient(135deg,#16a34a,#059669);color:white;cursor:pointer;
-    font-size:13px;font-weight:950;box-shadow:0 8px 20px rgba(22,163,74,.18);
-    transition:all .18s ease;
-}
-
-.submit-btn:hover{transform:translateY(-1px);box-shadow:0 11px 25px rgba(22,163,74,.23)}
-.submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
-
-.footer{padding:8px 20px 35px;text-align:center;color:#94a3b8;font-size:10px;letter-spacing:.1px}
-
-@media(max-width:700px){
-    .header-inner{width:94%;min-height:64px}
-    .brand-icon{width:38px;height:38px;border-radius:11px;font-size:18px}
-    .brand{font-size:18px}
-    .brand-sub{display:none}
-    .status-btn{padding:9px 10px;font-size:10px}
-    .hero{padding:38px 17px 55px}
-    .hero h1{font-size:32px;letter-spacing:-1px}
-    .hero p{font-size:12px}
-    .hero-stat{min-width:110px}
-    .container{width:94%;margin:-24px auto 40px}
-    .search-card{padding:16px;border-radius:19px}
-    .search-heading h2{font-size:19px}
-    .search-modes{grid-template-columns:1fr;gap:7px;padding:4px}
-    .mode-btn{min-height:65px;padding:10px 12px}
-    .form-grid{grid-template-columns:1fr;gap:15px}
-    .field.full{grid-column:auto}
-    .job-details{grid-template-columns:1fr}
-    .job-top{flex-direction:column;gap:8px}
-    .job-badge{align-self:flex-start}
-    .job-card{padding:17px}
-    .job-title{font-size:17px}
-    .results-header h2{font-size:18px}
-    .modal-box{padding:19px;border-radius:22px 22px 0 0}
-}
-
-@media(min-width:701px){
-    .modal{align-items:center;padding:20px}
-    .modal-box{border-radius:20px}
-}
-
-@media(max-width:380px){
-    .status-btn{padding:8px;font-size:9px}
-    .hero h1{font-size:28px}
-    .hero-stats{gap:6px}
-    .hero-stat{min-width:100px;padding:8px}
-    .job-actions{grid-template-columns:1fr}
-}
-
-::-webkit-scrollbar{width:7px}
-::-webkit-scrollbar-track{background:#f1f5f9}
-::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px}
-::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+:root{--navy:#0f172a;--primary:#4f46e5;--blue:#2563eb;--green:#16a34a;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--bg:#f6f8fc;--white:#fff;--shadow:0 10px 35px rgba(15,23,42,.07)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#f8fafc,#f5f7fb);color:var(--text);-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit}
+.app-header{position:sticky;top:0;z-index:1000;background:rgba(15,23,42,.96);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 5px 25px rgba(15,23,42,.12)}
+.header-inner{width:92%;max-width:1180px;min-height:72px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand-wrap{display:flex;align-items:center;gap:11px;min-width:0}.brand-icon{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:linear-gradient(135deg,#6366f1,#2563eb);font-size:20px}.brand{color:#fff;font-size:20px;line-height:1;font-weight:950;letter-spacing:.8px}.brand-sub{color:rgba(255,255,255,.48);font-size:9px;letter-spacing:1.6px;font-weight:700;margin-top:5px}.status-btn{text-decoration:none;display:flex;align-items:center;gap:7px;padding:10px 14px;border-radius:11px;color:#fff;font-size:12px;font-weight:800;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);white-space:nowrap}
+.hero{position:relative;overflow:hidden;padding:54px 20px 66px;background:radial-gradient(circle at 15% 20%,rgba(99,102,241,.25),transparent 30%),radial-gradient(circle at 85% 20%,rgba(37,99,235,.20),transparent 28%),linear-gradient(135deg,#0f172a,#172554);color:#fff}.hero-inner{position:relative;z-index:2;max-width:900px;margin:auto;text-align:center}.hero-badge{display:inline-flex;padding:7px 13px;border-radius:30px;color:#dbeafe;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);font-size:11px;font-weight:800}.hero h1{margin:18px 0 12px;font-size:clamp(32px,5vw,52px);line-height:1.08;letter-spacing:-1.5px;font-weight:950}.hero h1 span{background:linear-gradient(90deg,#a5b4fc,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:650px;margin:auto;color:rgba(255,255,255,.7);font-size:14px;line-height:1.7}.hero-stats{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:27px}.hero-stat{min-width:125px;padding:9px 14px;border-radius:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);font-size:11px;color:rgba(255,255,255,.65)}.hero-stat strong{display:block;color:#fff;font-size:14px;margin-bottom:2px}
+.container{width:92%;max-width:1080px;margin:-30px auto 50px;position:relative;z-index:10}.search-card{background:#fff;border:1px solid rgba(226,232,240,.9);border-radius:26px;padding:27px;box-shadow:0 20px 60px rgba(15,23,42,.12)}.search-heading{text-align:center;margin-bottom:22px}.search-heading h2{margin:0 0 6px;font-size:22px;font-weight:950}.search-heading p{margin:0;color:var(--muted);font-size:12px}.search-modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:5px;background:#f8fafc;border:1px solid #eef2f7;border-radius:17px;margin-bottom:22px}.mode-btn{min-height:76px;border:1px solid transparent;border-radius:13px;background:transparent;color:#334155;cursor:pointer;padding:12px 15px;text-align:left;font-size:14px;font-weight:900}.mode-btn span{display:block;margin-top:5px;color:var(--muted);font-size:11px;font-weight:500}.mode-btn.active{color:#fff;background:linear-gradient(135deg,#4f46e5,#2563eb);box-shadow:0 8px 20px rgba(79,70,229,.22)}.mode-btn.active span{color:rgba(255,255,255,.78)}.search-section{display:none}.search-section.active{display:block;animation:fadeIn .25s ease}@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}.info-box{background:linear-gradient(135deg,#f5f7ff,#eef4ff);border:1px solid #dbe4ff;border-left:4px solid var(--primary);border-radius:13px;padding:14px 16px;margin-bottom:20px;color:#475569;font-size:12px;line-height:1.7}.info-box strong{color:#312e81}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.field{display:flex;flex-direction:column}.field.full{grid-column:1/-1}label{margin-bottom:7px;color:#1e293b;font-size:12px;font-weight:900}.field-help{margin-top:5px;color:#94a3b8;font-size:10px;line-height:1.4}input,select{width:100%;min-height:46px;padding:11px 13px;border:1px solid #d7dee9;border-radius:11px;outline:none;background:#fff;color:#0f172a;font-size:13px}input:focus,select:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(79,70,229,.09)}input::placeholder{color:#a1aab8}.search-example{margin-top:19px;padding:14px 15px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fafc;color:#64748b;font-size:11px;line-height:1.6}.search-example strong{color:#334155;font-size:12px}.search-example p{margin:7px 0 0}.search-btn{width:100%;margin-top:20px;min-height:50px;border:0;border-radius:12px;cursor:pointer;color:#fff;background:linear-gradient(135deg,#4f46e5,#2563eb);font-size:14px;font-weight:950;box-shadow:0 9px 22px rgba(79,70,229,.2)}
+.results-area{margin-top:31px}.results-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px;padding:0 2px}.results-header h2{margin:0;font-size:20px;font-weight:950}.result-count{padding:6px 11px;border-radius:30px;color:#3730a3;background:#eef2ff;font-size:11px;font-weight:900;border:1px solid #e0e7ff}
+.job-card{position:relative;overflow:hidden;background:#fff;border:1px solid #e3e8f0;border-radius:16px;padding:17px;margin-bottom:14px;box-shadow:0 2px 8px rgba(15,23,42,.04);min-width:0}.job-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#4f46e5,#2563eb)}.job-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}.job-title{margin:0 0 6px;color:#0f172a;font-size:16px;line-height:1.35;font-weight:950;overflow-wrap:anywhere}.company-name{color:#4f46e5;font-size:11px;font-weight:900;overflow-wrap:anywhere}.contractor-name{margin-top:5px;color:#059669;font-size:10px;font-weight:900;overflow-wrap:anywhere}.job-badge{flex:none;padding:5px 8px;border-radius:30px;color:#166534;background:#dcfce7;border:1px solid #bbf7d0;font-size:9px;font-weight:950;white-space:normal;text-align:center}.job-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0;padding:12px 0;border-top:1px solid #edf1f5;border-bottom:1px solid #edf1f5}.detail{color:#64748b;font-size:10px;line-height:1.55;overflow-wrap:anywhere}.detail strong{color:#334155;font-weight:850}.skills{margin-top:10px;color:#475569;font-size:10px}.skill-tag{display:inline-flex;padding:4px 6px;margin:4px 2px 0 0;border-radius:7px;color:#475569;background:#f1f5f9;border:1px solid #e2e8f0;font-size:9px;font-weight:800}.benefit-detail{margin-top:10px;padding:9px;border-radius:9px;color:#166534;background:#f0fdf4;border:1px solid #dcfce7;font-size:10px;line-height:1.5}
+.job-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:13px}.view-details-btn,.apply-btn{display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;width:100%;min-height:40px;padding:8px 7px;border-radius:9px;cursor:pointer;font-size:11px;font-weight:900;transition:all .18s ease}.view-details-btn{color:#3730a3;background:#eef2ff;border:1px solid #c7d2fe}.apply-btn{margin:0;border:0;background:#0f172a;color:#fff}.message-box,.loading{padding:30px 17px;text-align:center;border:1px solid var(--border);border-radius:16px;background:#fff;color:#64748b;font-size:12px;line-height:1.8;box-shadow:0 2px 8px rgba(15,23,42,.04)}.loading{color:var(--primary);font-weight:900}
+.all-jobs-section{margin-top:34px}.all-jobs-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:15px}.all-jobs-heading h2{margin:0;font-size:21px;font-weight:950}.all-jobs-heading p{margin:6px 0 0;color:#64748b;font-size:11px;line-height:1.5}.all-jobs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.all-jobs-grid .job-card{margin:0;height:100%;display:flex;flex-direction:column}.all-jobs-grid .job-details{grid-template-columns:1fr}.all-jobs-grid .job-actions{margin-top:auto;padding-top:12px}.more-jobs-wrap{text-align:center;margin-top:18px}.more-jobs-btn{min-width:190px;min-height:46px;padding:11px 22px;border:0;border-radius:12px;background:linear-gradient(135deg,#4f46e5,#2563eb);color:#fff;font-size:13px;font-weight:950;box-shadow:0 8px 20px rgba(79,70,229,.18);cursor:pointer}.more-jobs-btn:disabled{opacity:.6;cursor:wait}.section-note{margin-top:10px;color:#94a3b8;text-align:center;font-size:10px}
+.modal{position:fixed;inset:0;z-index:9999;display:none;align-items:flex-end;justify-content:center;background:rgba(2,6,23,.68);backdrop-filter:blur(5px)}.modal.show{display:flex}.modal-box{width:100%;max-width:600px;max-height:94vh;overflow-y:auto;padding:23px;background:#fff;border-radius:24px 24px 0 0;box-shadow:0 -15px 60px rgba(0,0,0,.2)}.modal-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:17px}.modal-header h2{margin:0;font-size:20px;font-weight:950}.close-btn{width:37px;height:37px;border:0;border-radius:50%;background:#f1f5f9;color:#475569;cursor:pointer;font-size:21px}.selected-job{padding:14px;margin-bottom:19px;border:1px solid #dbe4ff;border-radius:13px;background:linear-gradient(135deg,#f5f7ff,#eff6ff);color:#64748b;font-size:11px;line-height:1.7}.selected-job strong{display:block;margin-bottom:4px;color:#0f172a;font-size:15px;font-weight:950}.submit-btn{width:100%;min-height:48px;margin-top:19px;border:0;border-radius:11px;background:linear-gradient(135deg,#16a34a,#059669);color:#fff;cursor:pointer;font-size:13px;font-weight:950}.submit-btn:disabled{opacity:.6;cursor:not-allowed}.footer{padding:8px 20px 35px;text-align:center;color:#94a3b8;font-size:10px}
+@media(max-width:700px){.header-inner{width:94%;min-height:64px}.brand-icon{width:38px;height:38px;font-size:18px}.brand{font-size:18px}.brand-sub{display:none}.status-btn{padding:9px 10px;font-size:10px}.hero{padding:38px 17px 55px}.hero h1{font-size:32px;letter-spacing:-1px}.hero p{font-size:12px}.hero-stat{min-width:110px}.container{width:94%;margin:-24px auto 40px}.search-card{padding:16px;border-radius:19px}.search-heading h2{font-size:19px}.search-modes{grid-template-columns:1fr;gap:7px;padding:4px}.mode-btn{min-height:65px;padding:10px 12px}.form-grid{grid-template-columns:1fr;gap:15px}.field.full{grid-column:auto}.job-top{flex-direction:column;gap:8px}.job-badge{align-self:flex-start}.job-card{padding:13px}.job-title{font-size:14px}.job-details{grid-template-columns:1fr;gap:7px}.results-header h2{font-size:18px}.all-jobs-heading h2{font-size:18px}.all-jobs-grid{gap:9px}.all-jobs-grid .job-card{padding:11px}.all-jobs-grid .job-title{font-size:13px}.all-jobs-grid .company-name,.all-jobs-grid .contractor-name{font-size:9px}.all-jobs-grid .job-details{gap:7px;padding:9px 0}.all-jobs-grid .detail{font-size:9px}.all-jobs-grid .job-badge{font-size:8px;padding:4px 6px}.all-jobs-grid .job-actions{grid-template-columns:1fr;gap:6px}.all-jobs-grid .view-details-btn,.all-jobs-grid .apply-btn{min-height:36px;font-size:10px}.modal-box{padding:19px;border-radius:22px 22px 0 0}}
+@media(max-width:350px){.all-jobs-grid{grid-template-columns:1fr}.job-actions{grid-template-columns:1fr}}
+@media(min-width:701px){.modal{align-items:center;padding:20px}.modal-box{border-radius:20px}}
 </style>
 </head>
-
 <body>
-
-<header class="app-header">
-    <div class="header-inner">
-        <div class="brand-wrap">
-            <div class="brand-icon">💼</div>
-            <div>
-                <div class="brand">JOBNEX</div>
-                <div class="brand-sub">JOB • WORK • CAREER</div>
-            </div>
-        </div>
-
-        <a href="status.html" class="status-btn">
-            📋 मेरा आवेदन
-        </a>
-    </div>
-</header>
-
-<section class="hero">
-    <div class="hero-inner">
-        <div class="hero-badge">✦ Smart Job Search Platform</div>
-
-        <h1>
-            आपकी अगली
-            <span>Job यहीं है</span>
-        </h1>
-
-        <p>
-            अपनी Qualification, Trade, Experience और
-            Location के अनुसार बेहतर Job Opportunities खोजें।
-        </p>
-
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <strong>🔎 Smart Search</strong>
-                Qualification Based
-            </div>
-            <div class="hero-stat">
-                <strong>🏢 Real Jobs</strong>
-                Contractor Opportunities
-            </div>
-            <div class="hero-stat">
-                <strong>⚡ Easy Apply</strong>
-                Simple Application
-            </div>
-        </div>
-    </div>
+<header class="app-header"><div class="header-inner"><div class="brand-wrap"><div class="brand-icon">💼</div><div><div class="brand">JOBNEX</div><div class="brand-sub">JOB • WORK • CAREER</div></div></div><a href="status.html" class="status-btn">📋 मेरा आवेदन</a></div></header>
+<section class="hero"><div class="hero-inner"><div class="hero-badge">✦ Smart Job Search Platform</div><h1>आपकी अगली <span>Job यहीं है</span></h1><p>अपनी Qualification, Trade, Experience और Location के अनुसार बेहतर Job Opportunities खोजें।</p><div class="hero-stats"><div class="hero-stat"><strong>🔎 Smart Search</strong>Qualification Based</div><div class="hero-stat"><strong>🏢 Real Jobs</strong>Contractor Opportunities</div><div class="hero-stat"><strong>⚡ Easy Apply</strong>Simple Application</div></div></div></section>
+<div class="container">
+<section class="search-card">
+<div class="search-heading"><h2>🔎 Job Search करें</h2><p>अपने लिए सही Job खोजने का तरीका चुनें</p></div>
+<div class="search-modes"><button type="button" id="workerModeBtn" class="mode-btn active" onclick="switchSearchMode('worker')">👷 अपनी योग्यता से Job<span>Qualification, Trade और Location के आधार पर खोजें</span></button><button type="button" id="contractorModeBtn" class="mode-btn" onclick="switchSearchMode('contractor')">🏢 ठेके के नाम से खोजें<span>किसी खास Contractor की Jobs देखें</span></button></div>
+<div id="workerSearchSection" class="search-section active"><div class="info-box">👷 <strong>अपनी Qualification के अनुसार Job खोजें</strong><br>अपनी Qualification, Trade, Location और Experience भरें। JOBNEX उपलब्ध Jobs को आपके लिए दिखाएगा।</div>
+<form id="workerSearchForm"><div class="form-grid">
+<div class="field"><label>🎓 Qualification *</label><input type="text" id="qualification" placeholder="जैसे: 10th, 12th, ITI, Diploma" required><div class="field-help">अपनी सबसे बड़ी qualification लिखें।</div></div>
+<div class="field"><label>🔧 Trade / काम *</label><input type="text" id="trade" placeholder="जैसे: Electrician, Fitter, Helper" required><div class="field-help">जिस काम में आप Job चाहते हैं।</div></div>
+<div class="field"><label>💼 Preferred Job</label><input type="text" id="preferredJob" placeholder="जैसे: Technician, Operator"><div class="field-help">Job का नाम पता हो तो लिखें।</div></div>
+<div class="field"><label>📍 Preferred Location *</label><input type="text" id="preferredLocation" placeholder="जैसे: Pantnagar, Rudrapur, Delhi" required><div class="field-help">जिस जगह या शहर के पास Job चाहिए।</div></div>
+<div class="field"><label>🧑‍🔧 Experience</label><input type="number" id="experience" min="0" placeholder="जैसे: 0, 1, 2, 5"><div class="field-help">संबंधित काम का अनुभव वर्षों में।</div></div>
+<div class="field"><label>👤 Gender *</label><select id="gender" required><option value="">अपना विकल्प चुनें</option><option value="Male">👨 पुरुष</option><option value="Female">👩 महिला</option><option value="Any">👥 कोई भी</option></select></div>
+<div class="field full"><label>🛠️ Additional Skills</label><input type="text" id="skills" placeholder="जैसे: Wiring, Welding, PLC, Computer, Machine"><div class="field-help">अन्य skills comma से लिख सकते हैं।</div></div>
+</div><div class="search-example"><strong>💡 Search Example</strong><p>Qualification: <b>Diploma</b><br>Trade: <b>Electrician</b><br>Job: <b>Technician</b><br>Location: <b>Pantnagar</b><br>Experience: <b>2 Years</b></p></div><button type="submit" class="search-btn">🔎 मेरी Job खोजें</button></form></div>
+<div id="contractorSearchSection" class="search-section"><div class="info-box">🏢 <strong>किसी खास Contractor की Jobs खोजें</strong><br>Contractor या ठेके के नाम का कोई भी हिस्सा लिखें और उसकी उपलब्ध Jobs देखें।<br><br><strong>Example:</strong> अगर Contractor का नाम <strong>Digital Engineering</strong> है, तो आप केवल <strong>Digital</strong> भी लिख सकते हैं।</div><form id="contractorSearchForm"><div class="form-grid"><div class="field full"><label>🏢 Contractor / ठेका का नाम *</label><input type="text" id="contractorName" placeholder="जैसे: Digital" autocomplete="off" required><div class="field-help">नाम का कोई हिस्सा भी लिख सकते हैं।</div></div></div><button type="submit" class="search-btn">🏢 Contractor की Jobs खोजें</button></form></div>
 </section>
 
-<div class="container">
+<!-- EXISTING SEARCH RESULTS: cards intentionally have Apply only, no View Details -->
+<section class="results-area"><div class="results-header"><h2>📋 Search Results</h2><span id="resultCount" class="result-count" style="display:none">0 Jobs</span></div><div id="results"><div class="message-box">🔎 ऊपर अपनी जानकारी भरें<br>और JOBNEX पर उपलब्ध <b>Job Opportunities</b> खोजें।</div></div></section>
 
-    <div class="search-card">
-        <div class="search-heading">
-            <h2>🔎 Job Search करें</h2>
-            <p>अपने लिए सही Job खोजने का तरीका चुनें</p>
-        </div>
-
-        <div class="search-modes">
-            <button
-                type="button"
-                id="workerModeBtn"
-                class="mode-btn active"
-                onclick="switchSearchMode('worker')"
-            >
-                👷 अपनी योग्यता से Job
-                <span>Qualification, Trade और Location के आधार पर खोजें</span>
-            </button>
-
-            <button
-                type="button"
-                id="contractorModeBtn"
-                class="mode-btn"
-                onclick="switchSearchMode('contractor')"
-            >
-                🏢 ठेके के नाम से खोजें
-                <span>किसी खास Contractor की Jobs देखें</span>
-            </button>
-        </div>
-
-        <div id="workerSearchSection" class="search-section active">
-            <div class="info-box">
-                👷 <strong>अपनी Qualification के अनुसार Job खोजें</strong>
-                <br>
-                अपनी Qualification, Trade, Location और Experience भरें।
-                JOBNEX उपलब्ध Jobs को आपके लिए दिखाएगा।
-            </div>
-
-            <form id="workerSearchForm">
-                <div class="form-grid">
-                    <div class="field">
-                        <label>🎓 Qualification *</label>
-                        <input type="text" id="qualification" placeholder="जैसे: 10th, 12th, ITI, Diploma" required>
-                        <div class="field-help">अपनी सबसे बड़ी qualification लिखें।</div>
-                    </div>
-
-                    <div class="field">
-                        <label>🔧 Trade / काम *</label>
-                        <input type="text" id="trade" placeholder="जैसे: Electrician, Fitter, Helper" required>
-                        <div class="field-help">जिस काम में आप Job चाहते हैं।</div>
-                    </div>
-
-                    <div class="field">
-                        <label>💼 Preferred Job</label>
-                        <input type="text" id="preferredJob" placeholder="जैसे: Technician, Operator">
-                        <div class="field-help">Job का नाम पता हो तो लिखें।</div>
-                    </div>
-
-                    <div class="field">
-                        <label>📍 Preferred Location *</label>
-                        <input type="text" id="preferredLocation" placeholder="जैसे: Pantnagar, Rudrapur, Delhi" required>
-                        <div class="field-help">जिस जगह या शहर के पास Job चाहिए।</div>
-                    </div>
-
-                    <div class="field">
-                        <label>🧑‍🔧 Experience</label>
-                        <input type="number" id="experience" min="0" placeholder="जैसे: 0, 1, 2, 5">
-                        <div class="field-help">संबंधित काम का अनुभव वर्षों में।</div>
-                    </div>
-
-                    <div class="field">
-                        <label>👤 Gender *</label>
-                        <select id="gender" required>
-                            <option value="">अपना विकल्प चुनें</option>
-                            <option value="Male">👨 पुरुष</option>
-                            <option value="Female">👩 महिला</option>
-                            <option value="Any">👥 कोई भी</option>
-                        </select>
-                    </div>
-
-                    <div class="field full">
-                        <label>🛠️ Additional Skills</label>
-                        <input type="text" id="skills" placeholder="जैसे: Wiring, Welding, PLC, Computer, Machine">
-                        <div class="field-help">अन्य skills comma से लिख सकते हैं।</div>
-                    </div>
-                </div>
-
-                <div class="search-example">
-                    <strong>💡 Search Example</strong>
-                    <p>
-                        Qualification: <b>Diploma</b><br>
-                        Trade: <b>Electrician</b><br>
-                        Job: <b>Technician</b><br>
-                        Location: <b>Pantnagar</b><br>
-                        Experience: <b>2 Years</b>
-                    </p>
-                </div>
-
-                <button type="submit" class="search-btn">🔎 मेरी Job खोजें</button>
-            </form>
-        </div>
-
-        <div id="contractorSearchSection" class="search-section">
-            <div class="info-box">
-                🏢 <strong>किसी खास Contractor की Jobs खोजें</strong>
-                <br>
-                Contractor या ठेके के नाम का कोई भी हिस्सा लिखें और उसकी उपलब्ध Jobs देखें।
-                <br><br>
-                <strong>Example:</strong>
-                अगर Contractor का नाम <strong>Digital Engineering</strong> है,
-                तो आप केवल <strong>Digital</strong> भी लिख सकते हैं।
-            </div>
-
-            <form id="contractorSearchForm">
-                <div class="form-grid">
-                    <div class="field full">
-                        <label>🏢 Contractor / ठेका का नाम *</label>
-                        <input type="text" id="contractorName" placeholder="जैसे: Digital" autocomplete="off" required>
-                        <div class="field-help">नाम का कोई हिस्सा भी लिख सकते हैं।</div>
-                    </div>
-                </div>
-
-                <button type="submit" class="search-btn">🏢 Contractor की Jobs खोजें</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="results-area">
-        <div class="results-header">
-            <h2>📋 Available Jobs</h2>
-            <span id="resultCount" class="result-count" style="display:none;">0 Jobs</span>
-        </div>
-
-        <div id="results">
-            <div class="message-box">
-                🔎 ऊपर अपनी जानकारी भरें
-                <br>
-                और JOBNEX पर उपलब्ध <b>Job Opportunities</b> खोजें।
-            </div>
-        </div>
-    </div>
+<!-- NEW ALL ACTIVE JOBS SECTION: 2-column cards, first 10, then load 10 more -->
+<section class="all-jobs-section" id="allActiveJobsSection">
+<div class="all-jobs-heading"><div><h2>🔥 सभी Active Jobs</h2><p>सभी Contractors की उपलब्ध नौकरियाँ। शुरुआत में 10 Jobs दिखाई जाएँगी।</p></div><span id="allJobsCount" class="result-count">लोड हो रहा है...</span></div>
+<div id="allJobsGrid" class="all-jobs-grid"><div class="loading" style="grid-column:1/-1">⏳ सभी Active Jobs लोड हो रही हैं...</div></div>
+<div class="more-jobs-wrap"><button type="button" id="moreJobsBtn" class="more-jobs-btn" style="display:none" onclick="loadMoreJobs()">⬇️ More Jobs देखें</button><div id="moreJobsMessage" class="section-note"></div></div>
+</section>
 </div>
 
-<div id="applyModal" class="modal">
-    <div class="modal-box">
-        <div class="modal-header">
-            <h2>📝 Job Application</h2>
-            <button type="button" class="close-btn" onclick="closeApplyModal()">×</button>
-        </div>
-
-        <div id="selectedJob" class="selected-job"></div>
-
-        <form id="applyForm">
-            <input type="hidden" id="applyJobId">
-
-            <div class="field">
-                <label>👤 आपका नाम *</label>
-                <input type="text" id="workerName" required placeholder="अपना पूरा नाम">
-            </div>
-
-            <div class="field" style="margin-top:13px;">
-                <label>📱 Mobile Number *</label>
-                <input type="tel" id="workerMobile" maxlength="10" inputmode="numeric" required placeholder="10 अंकों का मोबाइल नंबर">
-            </div>
-
-            <div class="field" style="margin-top:13px;">
-                <label>🎓 Qualification *</label>
-                <input type="text" id="applyQualification" required placeholder="अपनी Qualification">
-            </div>
-
-            <div class="field" style="margin-top:13px;">
-                <label>🔧 Trade *</label>
-                <input type="text" id="applyTrade" required placeholder="अपना Trade">
-            </div>
-
-            <div class="field" style="margin-top:13px;">
-                <label>🧑‍🔧 Experience</label>
-                <input type="number" id="applyExperience" min="0" placeholder="Experience in Years">
-            </div>
-
-            <div class="field" style="margin-top:13px;">
-                <label>🛠️ Skills</label>
-                <input type="text" id="applySkills" placeholder="जैसे: PLC, AOI, SMT">
-            </div>
-
-            <div class="field" style="margin-top:13px;">
-                <label>📍 Preferred Location</label>
-                <input type="text" id="applyLocation" placeholder="पसंदीदा Job Location">
-            </div>
-
-            <button type="submit" class="submit-btn">✅ आवेदन जमा करें</button>
-        </form>
-    </div>
-</div>
-
-<div class="footer">
-    © 2026 JOBNEX
-    <br>
-    Professional Job & Worker Network
-</div>
+<div id="applyModal" class="modal"><div class="modal-box"><div class="modal-header"><h2>📝 Job Application</h2><button type="button" class="close-btn" onclick="closeApplyModal()">×</button></div><div id="selectedJob" class="selected-job"></div>
+<form id="applyForm"><input type="hidden" id="applyJobId">
+<div class="field"><label>👤 आपका नाम *</label><input type="text" id="workerName" required placeholder="अपना पूरा नाम"></div>
+<div class="field" style="margin-top:13px"><label>📱 Mobile Number *</label><input type="tel" id="workerMobile" maxlength="10" inputmode="numeric" required placeholder="10 अंकों का मोबाइल नंबर"></div>
+<div class="field" style="margin-top:13px"><label>🎓 Qualification *</label><input type="text" id="applyQualification" required placeholder="अपनी Qualification"></div>
+<div class="field" style="margin-top:13px"><label>🔧 Trade *</label><input type="text" id="applyTrade" required placeholder="अपना Trade"></div>
+<div class="field" style="margin-top:13px"><label>🧑‍🔧 Experience</label><input type="number" id="applyExperience" min="0" placeholder="Experience in Years"></div>
+<div class="field" style="margin-top:13px"><label>🛠️ Skills</label><input type="text" id="applySkills" placeholder="जैसे: PLC, AOI, SMT"></div>
+<div class="field" style="margin-top:13px"><label>📍 Preferred Location</label><input type="text" id="applyLocation" placeholder="पसंदीदा Job Location"></div>
+<button type="submit" class="submit-btn">✅ आवेदन जमा करें</button></form></div></div>
+<div class="footer">© 2026 JOBNEX<br>Professional Job &amp; Worker Network</div>
 
 <script>
 "use strict";
-
-/* =========================================================
-   API — EXISTING API PRESERVED
-========================================================= */
-
-const API_URL =
-    "https://industrial-contractor-job-network.onrender.com/api";
-
-/* =========================================================
-   JOB CACHE
-========================================================= */
-
-const jobCache = new Map();
-
-/* =========================================================
-   SEARCH MODE
-========================================================= */
+const API_URL="https://industrial-contractor-job-network.onrender.com/api";
+const jobCache=new Map();
+let allActiveJobs=[];
+let visibleAllJobs=10;
+const JOBS_PER_PAGE=10;
 
 function switchSearchMode(mode){
-    const workerSection = document.getElementById("workerSearchSection");
-    const contractorSection = document.getElementById("contractorSearchSection");
-    const workerBtn = document.getElementById("workerModeBtn");
-    const contractorBtn = document.getElementById("contractorModeBtn");
-
-    if(mode === "worker"){
-        workerSection.classList.add("active");
-        contractorSection.classList.remove("active");
-        workerBtn.classList.add("active");
-        contractorBtn.classList.remove("active");
-    }else{
-        contractorSection.classList.add("active");
-        workerSection.classList.remove("active");
-        contractorBtn.classList.add("active");
-        workerBtn.classList.remove("active");
-    }
-
-    document.getElementById("results").innerHTML = `
-        <div class="message-box">
-            🔎 अपनी जानकारी भरकर<br>Job खोजें।
-        </div>
-    `;
-
-    document.getElementById("resultCount").style.display = "none";
+ const ws=document.getElementById("workerSearchSection"),cs=document.getElementById("contractorSearchSection");
+ document.getElementById("workerModeBtn").classList.toggle("active",mode==="worker");
+ document.getElementById("contractorModeBtn").classList.toggle("active",mode==="contractor");
+ ws.classList.toggle("active",mode==="worker");cs.classList.toggle("active",mode==="contractor");
+ document.getElementById("results").innerHTML='<div class="message-box">🔎 अपनी जानकारी भरकर<br>Job खोजें।</div>';
+ document.getElementById("resultCount").style.display="none";
 }
-
-/* =========================================================
-   WORKER SEARCH
-========================================================= */
-
-document.getElementById("workerSearchForm").addEventListener("submit", async function(event){
-    event.preventDefault();
-    await searchWorkerJobs();
-});
-
+document.getElementById("workerSearchForm").addEventListener("submit",async e=>{e.preventDefault();await searchWorkerJobs()});
 async function searchWorkerJobs(){
-    const qualification = document.getElementById("qualification").value.trim();
-    const trade = document.getElementById("trade").value.trim();
-    const preferredJob = document.getElementById("preferredJob").value.trim();
-    const location = document.getElementById("preferredLocation").value.trim();
-    const experience = document.getElementById("experience").value.trim();
-    const gender = document.getElementById("gender").value.trim();
-    const skills = document.getElementById("skills").value.trim();
-
-    const params = new URLSearchParams();
-    params.set("qualification", qualification);
-    params.set("trade", trade);
-    params.set("location", location);
-    params.set("gender", gender);
-
-    if(preferredJob) params.set("preferredJob", preferredJob);
-    if(experience !== "") params.set("experience", experience);
-    if(skills) params.set("skills", skills);
-
-    await performSearch(
-        `${API_URL}/public-worker/jobs/search?${params.toString()}`,
-        "worker"
-    );
+ const qualification=document.getElementById("qualification").value.trim(),trade=document.getElementById("trade").value.trim(),preferredJob=document.getElementById("preferredJob").value.trim(),location=document.getElementById("preferredLocation").value.trim(),experience=document.getElementById("experience").value.trim(),gender=document.getElementById("gender").value.trim(),skills=document.getElementById("skills").value.trim();
+ const p=new URLSearchParams();p.set("qualification",qualification);p.set("trade",trade);p.set("location",location);p.set("gender",gender);
+ if(preferredJob)p.set("preferredJob",preferredJob);if(experience!=="")p.set("experience",experience);if(skills)p.set("skills",skills);
+ await performSearch(`${API_URL}/public-worker/jobs/search?${p.toString()}`,"worker");
 }
-
-/* =========================================================
-   CONTRACTOR SEARCH
-========================================================= */
-
-document.getElementById("contractorSearchForm").addEventListener("submit", async function(event){
-    event.preventDefault();
-    await searchContractorJobs();
-});
-
+document.getElementById("contractorSearchForm").addEventListener("submit",async e=>{e.preventDefault();await searchContractorJobs()});
 async function searchContractorJobs(){
-    const contractorName = document.getElementById("contractorName").value.trim();
-
-    if(!contractorName){
-        alert("कृपया ठेका का नाम लिखें।");
-        return;
-    }
-
-    const params = new URLSearchParams();
-    params.set("contractorName", contractorName);
-
-    await performSearch(
-        `${API_URL}/public-worker/jobs/search-by-contractor?${params.toString()}`,
-        "contractor"
-    );
+ const contractorName=document.getElementById("contractorName").value.trim();if(!contractorName){alert("कृपया ठेका का नाम लिखें।");return}
+ const p=new URLSearchParams();p.set("contractorName",contractorName);
+ await performSearch(`${API_URL}/public-worker/jobs/search-by-contractor?${p.toString()}`,"contractor");
 }
-
-/* =========================================================
-   COMMON SEARCH
-========================================================= */
-
-async function performSearch(url, searchType){
-    const results = document.getElementById("results");
-    const resultCount = document.getElementById("resultCount");
-
-    results.innerHTML = `<div class="loading">⏳ Jobs खोजी जा रही हैं...</div>`;
-    resultCount.style.display = "none";
-
-    try{
-        const response = await fetch(url);
-        const data = await response.json();
-
-        if(!response.ok){
-            throw new Error(data.message || "Search failed");
-        }
-
-        if(!data.success || !Array.isArray(data.jobs) || data.jobs.length === 0){
-            results.innerHTML = `
-                <div class="message-box">
-                    ${
-                        searchType === "contractor"
-                        ? "🏢 इस Contractor की<br>अभी कोई Available Job नहीं मिली।"
-                        : "😔 आपकी जानकारी के अनुसार<br>अभी कोई Available Job नहीं मिली।"
-                    }
-                    <br><br>
-                    <a href="jobs.html" style="color:#4f46e5;font-weight:800;">
-                        सभी उपलब्ध Jobs देखें
-                    </a>
-                </div>
-            `;
-            return;
-        }
-
-        resultCount.textContent = `${data.jobs.length} Job${data.jobs.length > 1 ? "s" : ""}`;
-        resultCount.style.display = "inline-block";
-
-        results.innerHTML = data.jobs.map(job => renderJob(job)).join("");
-
-        window.scrollTo({
-            top: results.getBoundingClientRect().top + window.scrollY - 90,
-            behavior: "smooth"
-        });
-
-    }catch(error){
-        console.error("JOB SEARCH ERROR:", error);
-
-        results.innerHTML = `
-            <div class="message-box">
-                ❌ Job Search में समस्या हुई।
-                <br><br>
-                ${escapeHtml(error.message || "कृपया दोबारा कोशिश करें।")}
-                <br><br>
-                <button type="button" class="view-details-btn" onclick="location.reload()">
-                    🔄 दोबारा कोशिश करें
-                </button>
-            </div>
-        `;
-    }
+async function performSearch(url,type){
+ const results=document.getElementById("results"),count=document.getElementById("resultCount");
+ results.innerHTML='<div class="loading">⏳ Jobs खोजी जा रही हैं...</div>';count.style.display="none";
+ try{
+  const response=await fetch(url);const data=await response.json();if(!response.ok)throw new Error(data.message||"Search failed");
+  if(!data.success||!Array.isArray(data.jobs)||!data.jobs.length){results.innerHTML=`<div class="message-box">${type==="contractor"?"🏢 इस Contractor की<br>अभी कोई Available Job नहीं मिली।":"😔 आपकी जानकारी के अनुसार<br>अभी कोई Available Job नहीं मिली।"}<br><br><a href="#allActiveJobsSection" style="color:#4f46e5;font-weight:800">नीचे सभी Active Jobs देखें ↓</a></div>`;return}
+  count.textContent=`${data.jobs.length} Job${data.jobs.length>1?"s":""}`;count.style.display="inline-block";
+  results.innerHTML=data.jobs.map(job=>renderSearchJob(job)).join("");
+  window.scrollTo({top:results.getBoundingClientRect().top+window.scrollY-90,behavior:"smooth"});
+ }catch(err){console.error("JOB SEARCH ERROR:",err);results.innerHTML=`<div class="message-box">❌ Job Search में समस्या हुई।<br><br>${escapeHtml(err.message||"कृपया दोबारा कोशिश करें।")}<br><br><button type="button" class="view-details-btn" onclick="location.reload()">🔄 दोबारा कोशिश करें</button></div>`}
 }
-
-/* =========================================================
-   VIEW DETAILS URL
-   Requires job.html in the same website directory.
-========================================================= */
-
-function getJobDetailsUrl(id){
-    return `job.html?id=${encodeURIComponent(String(id || ""))}`;
+function renderSearchJob(job){
+ const id=String(job._id||"");if(!id)return "";jobCache.set(id,job);
+ return renderJobCard(job,{details:false,compact:false});
 }
-
-/* =========================================================
-   RENDER JOB
-========================================================= */
-
-function renderJob(job){
-    const id = String(job._id || "");
-
-    if(!id){
-        return "";
-    }
-
-    jobCache.set(id, job);
-
-    const salary = formatSalary(job.salaryMin, job.salaryMax);
-    const experience = formatExperience(job.experienceMin, job.experienceMax);
-    const location = job.companyLocation || job.industrialArea || "Location नहीं दी गई";
-    const remaining = job.workersRemaining;
-
-    let skillsHtml = "";
-
-    if(Array.isArray(job.skills)){
-        skillsHtml = job.skills.map(skill => `
-            <span class="skill-tag">${escapeHtml(String(skill))}</span>
-        `).join("");
-    }else if(typeof job.skills === "string" && job.skills.trim()){
-        skillsHtml = job.skills.split(",").map(skill => `
-            <span class="skill-tag">${escapeHtml(skill.trim())}</span>
-        `).join("");
-    }
-
-    const contractorHtml = job.contractorName ? `
-        <div class="contractor-name">
-            🏢 Contractor: ${escapeHtml(job.contractorName)}
-        </div>
-    ` : "";
-
-    const detailUrl = getJobDetailsUrl(id);
-
-    return `
-        <article class="job-card" data-job-id="${escapeHtml(id)}">
-            <div class="job-top">
-                <div>
-                    <h3 class="job-title">
-                        <a href="${detailUrl}" style="text-decoration:none;">
-                            ${escapeHtml(job.jobTitle || "Job Opportunity")}
-                        </a>
-                    </h3>
-
-                    <div class="company-name">
-                        🏭 ${escapeHtml(job.companyName || "Company")}
-                    </div>
-
-                    ${contractorHtml}
-                </div>
-
-                <div class="job-badge">
-                    ${
-                        remaining !== null && remaining !== undefined
-                        ? `${escapeHtml(remaining)} Vacancy`
-                        : "Available"
-                    }
-                </div>
-            </div>
-
-            <div class="job-details">
-                <div class="detail">
-                    📍 <strong>जगह:</strong>
-                    ${escapeHtml(location)}
-                </div>
-
-                <div class="detail">
-                    💰 <strong>Salary:</strong>
-                    ${escapeHtml(salary)}
-                </div>
-
-                <div class="detail">
-                    🎓 <strong>Qualification:</strong>
-                    ${escapeHtml(job.qualification || "Not specified")}
-                </div>
-
-                <div class="detail">
-                    🔧 <strong>Trade:</strong>
-                    ${escapeHtml(job.trade || "Not specified")}
-                </div>
-
-                <div class="detail">
-                    🧑‍🔧 <strong>Experience:</strong>
-                    ${escapeHtml(experience)}
-                </div>
-
-                <div class="detail">
-                    👤 <strong>Gender:</strong>
-                    ${escapeHtml(job.gender || "Any")}
-                </div>
-
-                ${
-                    job.department ? `
-                        <div class="detail">
-                            🏢 <strong>Department:</strong>
-                            ${escapeHtml(job.department)}
-                        </div>
-                    ` : ""
-                }
-
-                ${
-                    job.jobType ? `
-                        <div class="detail">
-                            📋 <strong>Job Type:</strong>
-                            ${escapeHtml(job.jobType)}
-                        </div>
-                    ` : ""
-                }
-            </div>
-
-            ${
-                skillsHtml ? `
-                    <div class="skills">
-                        <strong>🛠️ Skills</strong>
-                        <br>
-                        ${skillsHtml}
-                    </div>
-                ` : ""
-            }
-
-            ${
-                job.benefits ? `
-                    <div class="detail benefit-detail">
-                        🎁 <strong>Benefits:</strong>
-                        ${escapeHtml(job.benefits)}
-                    </div>
-                ` : ""
-            }
-
-            <div class="job-actions">
-                <a
-                    class="view-details-btn"
-                    href="${detailUrl}"
-                    aria-label="${escapeHtml(job.jobTitle || "Job")} की पूरी जानकारी देखें"
-                >
-                    👁️ View Details
-                </a>
-
-                <button
-                    type="button"
-                    class="apply-btn"
-                    onclick="openApplyById('${escapeHtml(id)}')"
-                >
-                    ✅ Apply करें
-                </button>
-            </div>
-        </article>
-    `;
+function renderAllJob(job){
+ const id=String(job._id||"");if(!id)return "";jobCache.set(id,job);
+ return renderJobCard(job,{details:true,compact:true});
 }
-
-/* =========================================================
-   OPEN APPLY
-========================================================= */
-
-function openApplyById(id){
-    const job = jobCache.get(String(id));
-
-    if(!job){
-        alert("Job information उपलब्ध नहीं है। दोबारा Search करें।");
-        return;
-    }
-
-    openApply(job);
+function renderJobCard(job,options){
+ const id=String(job._id||"");const salary=formatSalary(job.salaryMin,job.salaryMax),exp=formatExperience(job.experienceMin,job.experienceMax);
+ const location=job.companyLocation||job.industrialArea||"Location नहीं दी गई";
+ const remaining=job.workersRemaining;
+ let skillsHtml="";
+ if(Array.isArray(job.skills))skillsHtml=job.skills.map(s=>`<span class="skill-tag">${escapeHtml(s)}</span>`).join("");
+ else if(typeof job.skills==="string"&&job.skills.trim())skillsHtml=job.skills.split(",").map(s=>`<span class="skill-tag">${escapeHtml(s.trim())}</span>`).join("");
+ const contractor=job.contractorName?`<div class="contractor-name">🏢 Contractor: ${escapeHtml(job.contractorName)}</div>`:"";
+ const details=options.details?`<a class="view-details-btn" href="${getJobDetailsUrl(id)}">👁️ View Details</a>`:"";
+ return `<article class="job-card" data-job-id="${escapeHtml(id)}">
+ <div class="job-top"><div><h3 class="job-title">${escapeHtml(job.jobTitle||"Job Opportunity")}</h3><div class="company-name">🏭 ${escapeHtml(job.companyName||"Company")}</div>${contractor}</div>
+ <div class="job-badge">${remaining!==null&&remaining!==undefined?`${escapeHtml(remaining)} Vacancy`:"Available"}</div></div>
+ <div class="job-details">
+ <div class="detail">📍 <strong>जगह:</strong> ${escapeHtml(location)}</div><div class="detail">💰 <strong>Salary:</strong> ${escapeHtml(salary)}</div>
+ <div class="detail">🎓 <strong>Qualification:</strong> ${escapeHtml(job.qualification||"Not specified")}</div><div class="detail">🔧 <strong>Trade:</strong> ${escapeHtml(job.trade||"Not specified")}</div>
+ <div class="detail">🧑‍🔧 <strong>Experience:</strong> ${escapeHtml(exp)}</div><div class="detail">👤 <strong>Gender:</strong> ${escapeHtml(job.gender||"Any")}</div>
+ ${job.department?`<div class="detail">🏢 <strong>Department:</strong> ${escapeHtml(job.department)}</div>`:""}
+ ${job.jobType?`<div class="detail">📋 <strong>Job Type:</strong> ${escapeHtml(job.jobType)}</div>`:""}
+ </div>
+ ${skillsHtml?`<div class="skills"><strong>🛠️ Skills</strong><br>${skillsHtml}</div>`:""}
+ ${job.benefits?`<div class="detail benefit-detail">🎁 <strong>Benefits:</strong> ${escapeHtml(job.benefits)}</div>`:""}
+ <div class="job-actions">${details}<button type="button" class="apply-btn" onclick="openApplyById('${escapeHtml(id)}')">✅ Apply करें</button></div>
+ </article>`;
 }
-
+function getJobDetailsUrl(id){return `job.html?id=${encodeURIComponent(String(id||""))}`}
+async function loadAllActiveJobs(){
+ const grid=document.getElementById("allJobsGrid"),count=document.getElementById("allJobsCount"),btn=document.getElementById("moreJobsBtn"),msg=document.getElementById("moreJobsMessage");
+ grid.innerHTML='<div class="loading" style="grid-column:1/-1">⏳ सभी Active Jobs लोड हो रही हैं...</div>';btn.style.display="none";msg.textContent="";
+ try{
+  /* Uses the existing public-worker search endpoint without filters.
+     The backend should return all public, active jobs when no filters are supplied. */
+  const response=await fetch(`${API_URL}/public-worker/jobs/search`);
+  const data=await response.json();
+  if(!response.ok)throw new Error(data.message||"Active jobs load नहीं हुईं");
+  if(!data.success||!Array.isArray(data.jobs))throw new Error(data.message||"API से jobs की सही सूची नहीं मिली");
+  const seen=new Set();allActiveJobs=data.jobs.filter(j=>{
+   const id=String(j._id||"");if(!id||seen.has(id))return false;seen.add(id);
+   const status=String(j.status||"").toLowerCase();
+   if(j.isClosedByAdmin===true||j.isActive===false||status==="closed"||status==="inactive"||status==="expired")return false;
+   if(j.workersRemaining!==undefined&&Number(j.workersRemaining)<=0)return false;
+   return true;
+  });
+  visibleAllJobs=JOBS_PER_PAGE;
+  renderAllJobs();
+ }catch(err){
+  console.error("ALL ACTIVE JOBS ERROR:",err);
+  count.textContent="लोड नहीं हुआ";
+  grid.innerHTML=`<div class="message-box" style="grid-column:1/-1">⚠️ सभी Active Jobs अभी लोड नहीं हो सकीं।<br>${escapeHtml(err.message||"कृपया बाद में दोबारा कोशिश करें।")}<br><br><button type="button" class="view-details-btn" onclick="loadAllActiveJobs()">🔄 दोबारा कोशिश करें</button></div>`;
+  msg.textContent="अगर Search API खाली filters पर सभी jobs नहीं लौटाती, तो backend में public all-active-jobs endpoint जोड़ना होगा।";
+ }
+}
+function renderAllJobs(){
+ const grid=document.getElementById("allJobsGrid"),count=document.getElementById("allJobsCount"),btn=document.getElementById("moreJobsBtn"),msg=document.getElementById("moreJobsMessage");
+ const shown=allActiveJobs.slice(0,visibleAllJobs);
+ count.textContent=`${allActiveJobs.length} Active Job${allActiveJobs.length===1?"":"s"}`;
+ if(!shown.length){grid.innerHTML='<div class="message-box" style="grid-column:1/-1">अभी कोई Active Job उपलब्ध नहीं है।<br>नई Jobs आने पर यहाँ दिखाई देंगी।</div>';btn.style.display="none";msg.textContent="";return}
+ grid.innerHTML=shown.map(renderAllJob).join("");
+ if(visibleAllJobs<allActiveJobs.length){btn.style.display="inline-block";btn.disabled=false;btn.textContent=`⬇️ More Jobs देखें (${Math.min(JOBS_PER_PAGE,allActiveJobs.length-visibleAllJobs)} और)`;msg.textContent=`${shown.length} / ${allActiveJobs.length} Jobs दिखाई जा रही हैं।`}
+ else{btn.style.display="none";msg.textContent=`सभी ${allActiveJobs.length} Active Jobs दिखाई जा चुकी हैं।`}
+}
+function loadMoreJobs(){
+ const btn=document.getElementById("moreJobsBtn");btn.disabled=true;btn.textContent="⏳ Jobs लोड हो रही हैं...";
+ visibleAllJobs=Math.min(visibleAllJobs+JOBS_PER_PAGE,allActiveJobs.length);renderAllJobs();
+}
+function openApplyById(id){const job=jobCache.get(String(id));if(!job){alert("Job information उपलब्ध नहीं है। दोबारा Search करें।");return}openApply(job)}
 function openApply(job){
-    document.getElementById("applyJobId").value = job._id;
-
-    document.getElementById("selectedJob").innerHTML = `
-        <strong>${escapeHtml(job.jobTitle || "Job")}</strong>
-        🏭 ${escapeHtml(job.companyName || "Company")}
-        <br>
-        📍 ${escapeHtml(job.companyLocation || job.industrialArea || "Location")}
-    `;
-
-    document.getElementById("applyQualification").value = job.qualification || "";
-    document.getElementById("applyTrade").value = job.trade || "";
-    document.getElementById("applyExperience").value = job.experienceMin ?? "";
-
-    document.getElementById("applySkills").value =
-        Array.isArray(job.skills) ? job.skills.join(", ") : (job.skills || "");
-
-    document.getElementById("applyLocation").value =
-        job.companyLocation || job.industrialArea || "";
-
-    document.getElementById("applyModal").classList.add("show");
-    document.body.style.overflow = "hidden";
+ document.getElementById("applyJobId").value=job._id;
+ document.getElementById("selectedJob").innerHTML=`<strong>${escapeHtml(job.jobTitle||"Job")}</strong>🏭 ${escapeHtml(job.companyName||"Company")}<br>📍 ${escapeHtml(job.companyLocation||job.industrialArea||"Location")}`;
+ document.getElementById("applyQualification").value=job.qualification||"";document.getElementById("applyTrade").value=job.trade||"";
+ document.getElementById("applyExperience").value=job.experienceMin??"";
+ document.getElementById("applySkills").value=Array.isArray(job.skills)?job.skills.join(", "):(job.skills||"");
+ document.getElementById("applyLocation").value=job.companyLocation||job.industrialArea||"";
+ document.getElementById("applyModal").classList.add("show");document.body.style.overflow="hidden";
 }
-
-function closeApplyModal(){
-    document.getElementById("applyModal").classList.remove("show");
-    document.body.style.overflow = "";
-}
-
-/* =========================================================
-   APPLY FORM — EXISTING APPLICATION API PRESERVED
-========================================================= */
-
-document.getElementById("applyForm").addEventListener("submit", async function(event){
-    event.preventDefault();
-
-    const jobId = document.getElementById("applyJobId").value;
-    const workerName = document.getElementById("workerName").value.trim();
-    const workerMobile = document.getElementById("workerMobile").value.trim();
-    const qualification = document.getElementById("applyQualification").value.trim();
-    const trade = document.getElementById("applyTrade").value.trim();
-    const experience = document.getElementById("applyExperience").value.trim();
-    const skills = document.getElementById("applySkills").value.trim();
-    const preferredLocation = document.getElementById("applyLocation").value.trim();
-
-    if(!/^[6-9]\d{9}$/.test(workerMobile)){
-        alert("कृपया सही 10 अंकों का मोबाइल नंबर डालें।");
-        return;
-    }
-
-    const submitBtn = document.querySelector("#applyForm .submit-btn");
-    submitBtn.disabled = true;
-    submitBtn.textContent = "⏳ आवेदन जमा हो रहा है...";
-
-    try{
-        const response = await fetch(`${API_URL}/public-worker/apply`, {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                jobId,
-                workerName,
-                workerMobile,
-                qualification,
-                trade,
-                experience: experience ? Number(experience) : null,
-                skills,
-                preferredLocation
-            })
-        });
-
-        const data = await response.json();
-
-        if(!response.ok){
-            throw new Error(data.message || "Application failed");
-        }
-
-        if(data.trackingToken){
-            localStorage.setItem("contractorHubTrackingToken", data.trackingToken);
-        }
-
-        alert("✅ आपका आवेदन सफलतापूर्वक जमा हो गया है!");
-
-        closeApplyModal();
-        document.getElementById("applyForm").reset();
-
-        if(data.trackingToken){
-            window.location.href = `status.html?token=${encodeURIComponent(data.trackingToken)}`;
-        }
-
-    }catch(error){
-        console.error("APPLICATION ERROR:", error);
-        alert(error.message || "आवेदन जमा नहीं हो पाया।");
-    }finally{
-        submitBtn.disabled = false;
-        submitBtn.textContent = "✅ आवेदन जमा करें";
-    }
+function closeApplyModal(){document.getElementById("applyModal").classList.remove("show");document.body.style.overflow=""}
+document.getElementById("applyForm").addEventListener("submit",async function(e){
+ e.preventDefault();const jobId=document.getElementById("applyJobId").value,workerName=document.getElementById("workerName").value.trim(),workerMobile=document.getElementById("workerMobile").value.trim(),qualification=document.getElementById("applyQualification").value.trim(),trade=document.getElementById("applyTrade").value.trim(),experience=document.getElementById("applyExperience").value.trim(),skills=document.getElementById("applySkills").value.trim(),preferredLocation=document.getElementById("applyLocation").value.trim();
+ if(!/^[6-9]\d{9}$/.test(workerMobile)){alert("कृपया सही 10 अंकों का मोबाइल नंबर डालें।");return}
+ const btn=document.querySelector("#applyForm .submit-btn");btn.disabled=true;btn.textContent="⏳ आवेदन जमा हो रहा है...";
+ try{
+  const response=await fetch(`${API_URL}/public-worker/apply`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({jobId,workerName,workerMobile,qualification,trade,experience:experience?Number(experience):null,skills,preferredLocation})});
+  const data=await response.json();if(!response.ok)throw new Error(data.message||"Application failed");
+  if(data.trackingToken)localStorage.setItem("contractorHubTrackingToken",data.trackingToken);
+  alert("✅ आपका आवेदन सफलतापूर्वक जमा हो गया है!");closeApplyModal();document.getElementById("applyForm").reset();
+  if(data.trackingToken)window.location.href=`status.html?token=${encodeURIComponent(data.trackingToken)}`;
+ }catch(err){console.error("APPLICATION ERROR:",err);alert(err.message||"आवेदन जमा नहीं हो पाया।")}
+ finally{btn.disabled=false;btn.textContent="✅ आवेदन जमा करें"}
 });
-
-/* =========================================================
-   MODAL OUTSIDE CLICK / ESCAPE
-========================================================= */
-
-document.getElementById("applyModal").addEventListener("click", function(event){
-    if(event.target === this){
-        closeApplyModal();
-    }
-});
-
-document.addEventListener("keydown", function(event){
-    if(event.key === "Escape"){
-        closeApplyModal();
-    }
-});
-
-/* =========================================================
-   SALARY
-========================================================= */
-
-function formatSalary(min, max){
-    const format = value => {
-        if(value === null || value === undefined || value === ""){
-            return null;
-        }
-
-        const number = Number(value);
-
-        if(!Number.isFinite(number) || number <= 0){
-            return null;
-        }
-
-        return "₹" + number.toLocaleString("en-IN");
-    };
-
-    const minValue = format(min);
-    const maxValue = format(max);
-
-    if(minValue && maxValue){
-        return `${minValue} - ${maxValue}`;
-    }
-
-    return minValue || maxValue || "Salary नहीं दी गई";
+document.getElementById("applyModal").addEventListener("click",e=>{if(e.target===e.currentTarget)closeApplyModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeApplyModal()});
+function formatSalary(min,max){
+ const f=v=>{if(v===null||v===undefined||v==="")return null;const n=Number(v);return Number.isFinite(n)&&n>0?"₹"+n.toLocaleString("en-IN"):null};
+ const a=f(min),b=f(max);if(a&&b)return `${a} - ${b}`;return a||b||"Salary नहीं दी गई";
 }
-
-/* =========================================================
-   EXPERIENCE
-========================================================= */
-
-function formatExperience(min, max){
-    if(min !== null && min !== undefined && max !== null && max !== undefined){
-        return `${min} - ${max} Years`;
-    }
-
-    if(min !== null && min !== undefined){
-        return `${min}+ Years`;
-    }
-
-    if(max !== null && max !== undefined){
-        return `Up to ${max} Years`;
-    }
-
-    return "कोई भी";
+function formatExperience(min,max){
+ if(min!==null&&min!==undefined&&max!==null&&max!==undefined)return `${min} - ${max} Years`;
+ if(min!==null&&min!==undefined)return `${min}+ Years`;if(max!==null&&max!==undefined)return `Up to ${max} Years`;return "कोई भी";
 }
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value){
-    if(value === null || value === undefined){
-        return "";
-    }
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
+function escapeHtml(value){if(value===null||value===undefined)return "";return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+document.addEventListener("DOMContentLoaded",loadAllActiveJobs);
 </script>
-
 </body>
 </html>
